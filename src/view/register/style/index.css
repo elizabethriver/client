@@ -1,0 +1,33 @@
+main {
+   
+
+    height: 100vh;
+}
+fieldset{
+    display: flex;
+    flex-direction: column;
+}
+figure{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    background-color: #f3a402;
+}
+.mainLogin{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.containerLoginSection{
+    background-color: #faebd7;
+    width: 50%;
+}
+.displayFlex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.image_login{
+    background-size: cover;
+    width: 100%;
+}

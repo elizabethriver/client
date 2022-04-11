@@ -7,17 +7,14 @@ import { Dashboard } from "./view/dashboard/index";
 import { Income } from "./view/income/index";
 import { Expense } from "./view/expense/index";
 import { Register } from "./view/register/index";
-import { Layout } from "./components/layout";
+import { Home } from "./view/home";
 import { NotFound } from "./view/notfound";
 
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <Counter />
-      </header> */}
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Home />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="dashboard" element={<Dashboard />} />
