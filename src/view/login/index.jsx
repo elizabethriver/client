@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/index.css";
+import "./style/login.css";
 import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
@@ -15,9 +15,9 @@ export const Login = () => {
   return (
     <main className="containerLogin">
       <figure>
-        <img className="image_login" src="https://i.ibb.co/xHZrhpn/Music-Icon.jpg" alt="" srcset="" />
+        <img className="image_login" src="https://i.ibb.co/WGPHHBp/3071357.jpg" alt="" srcset="" />
       </figure>
-      <section className="containerLoginSection displayFlex">
+      <section className="containerLoginSectionLogin displayFlex">
         Login
         <div>
           <form onSubmit={submit}>

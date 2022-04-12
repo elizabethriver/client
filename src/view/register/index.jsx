@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import "./style/index.css";
+import "./style/register.css";
 
 export const Register = () => {
  
@@ -16,7 +16,7 @@ export const Register = () => {
   return (
     <main className='mainLogin'>
       <figure>
-        <img className="image_login" src="https://i.ibb.co/xHZrhpn/Music-Icon.jpg" alt="" srcset="" />
+        <img className="image_register" src="https://i.ibb.co/2hhgKXF/3094352.jpg" alt="" srcset="" />
       </figure>
       <section className="containerLoginSection displayFlex">
         Register

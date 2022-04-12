@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
-import './style/index.css'
+import './style/home.css'
 
 export const Home = () => {
   return (
