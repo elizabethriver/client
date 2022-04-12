@@ -15,7 +15,7 @@ export const Login = () => {
   return (
     <main className="containerLogin">
       <figure>
-        <img className="image_login" src="https://i.ibb.co/WGPHHBp/3071357.jpg" alt="" srcset="" />
+        <img className="image_login" src="https://i.ibb.co/WGPHHBp/3071357.jpg" alt=""  />
       </figure>
       <section className="containerLoginSectionLogin displayFlex">
         Login

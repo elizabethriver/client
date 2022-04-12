@@ -16,7 +16,7 @@ export const Register = () => {
   return (
     <main className='mainLogin'>
       <figure>
-        <img className="image_register" src="https://i.ibb.co/2hhgKXF/3094352.jpg" alt="" srcset="" />
+        <img className="image_register" src="https://i.ibb.co/2hhgKXF/3094352.jpg" alt=""  />
       </figure>
       <section className="containerLoginSection displayFlex">
         Register

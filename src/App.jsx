@@ -7,7 +7,7 @@ import { Dashboard } from "./view/dashboard/index";
 import { Income } from "./view/income/index";
 import { Expense } from "./view/expense/index";
 import { Register } from "./view/register/index";
-import { Home } from "./view/home";
+import {Home} from './components/home/'
 import { NotFound } from "./view/notfound";
 
 function App() {

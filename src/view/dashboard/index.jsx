@@ -4,17 +4,12 @@ import { Outlet, Link } from "react-router-dom";
 export const Dashboard = () => {
   return (
     <div>dashboard
-      <nav>
-        <ul>
-          <li>
-            <Link to="/income">Income</Link>
-          </li>
-          <li>
-            <Link to="/expense">Expense</Link>
-          </li>
-        </ul>
-      </nav>
-      <Outlet />
+      <button>
+      <Link to="/income">Income</Link>
+      </button>
+      <button>
+      <Link to="/expense">Expense</Link>
+      </button>
     </div>
   )
 }
