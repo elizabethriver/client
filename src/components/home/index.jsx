@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import './home.css'
 
+
 export const Home = () => {
   return (
     <div>
