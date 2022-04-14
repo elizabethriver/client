@@ -1,10 +1,10 @@
 const axios = require('axios').default;
 
-export const login = async () => {
+export const login = async (email, password) => {
   try {
     const data = {
-      email: 'prueba8@gmail.com',
-      password: '7777'
+      email,
+      password
     }
     const response = await axios.post('https://mywalletapicenter.herokuapp.com/login', data);
     // handle success

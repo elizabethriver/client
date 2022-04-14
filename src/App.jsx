@@ -2,7 +2,7 @@ import React from "react";
 // import { Counter } from "./features/counter/Counter";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { Login } from "./view/login/index";
+import { Login } from "./view/login";
 import { Dashboard } from "./view/dashboard/index";
 import { Income } from "./view/income/index";
 import { Expense } from "./view/expense/index";
