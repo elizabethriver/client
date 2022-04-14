@@ -20,7 +20,7 @@ export const Login = () => {
       [name]: value,
     });
   };
-
+ console.log('Prueba')
   const submit = async (e) => {
     e.preventDefault();
     let response;
