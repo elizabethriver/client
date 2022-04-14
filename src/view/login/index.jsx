@@ -25,13 +25,13 @@ export const Login = () => {
     let response;
     try {
       
-      response = await login(inputForm.email, inputForm.password);
+      response = await login(inputForm.email.trim(), inputForm.password.trim());
       const { token } = response.data;
       localStorage.setItem("token", token);
       setInputForm({ email: "", password: "" });
       document.getElementById("mssgIncorrectTyping").innerHTML = "Welcome";
       setTimeout(() => {
-        navigate("/register");
+        navigate("/dashboard");
       }, 2000);
     } catch (error) {
       document.getElementById("mssgIncorrectTyping").innerHTML =
