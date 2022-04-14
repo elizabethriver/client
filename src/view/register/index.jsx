@@ -23,13 +23,13 @@ export const Register = () => {
         <div>
           <form onSubmit={submit}>
             <fieldset>
-            <label htmlFor="">
+            <label htmlFor="name">
                 name:
-                <input type="input" value="" placeholder="example@mail.com" />
+                <input type="input" name='name' value="" placeholder="example@mail.com" />
               </label>
-              <label htmlFor="">
+              <label htmlFor="email">
                 email:
-                <input type="input" value="" placeholder="example@mail.com" />
+                <input type="input" name='email' value="" placeholder="example@mail.com" />
               </label>
               <label htmlFor="">
                 password:

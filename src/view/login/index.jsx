@@ -20,11 +20,11 @@ export const Login = () => {
       [name]: value,
     });
   };
- console.log('Prueba')
   const submit = async (e) => {
     e.preventDefault();
     let response;
     try {
+      
       response = await login(inputForm.email, inputForm.password);
       const { token } = response.data;
       localStorage.setItem("token", token);
