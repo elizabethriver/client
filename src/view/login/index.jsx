@@ -26,7 +26,6 @@ export const Login = () => {
     try {
       
       response = await login(inputForm.email, inputForm.password);
-      console.log(inputForm.email, inputForm.password)
       const { token } = response.data;
       localStorage.setItem("token", token);
       setInputForm({ email: "", password: "" });
@@ -35,7 +34,6 @@ export const Login = () => {
         navigate("/register");
       }, 2000);
     } catch (error) {
-      console.log(error)
       document.getElementById("mssgIncorrectTyping").innerHTML =
         "Incorrect password or email";
       setTimeout(() => {
