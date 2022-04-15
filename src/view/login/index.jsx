@@ -24,7 +24,6 @@ export const Login = () => {
     e.preventDefault();
     let response;
     try {
-      
       response = await login(inputForm.email.trim(), inputForm.password.trim());
       const { token } = response.data;
       localStorage.setItem("token", token);
