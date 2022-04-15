@@ -49,26 +49,31 @@ export const dashboard = async (token) => {
       "https://mywalletapicenter.herokuapp.com/dashboard",
       config
     );
-    return response
+    return response;
   } catch (error) {
     throw error;
   }
 };
 
-// export const dashboard = async (token) => {
-//   try {
-//     const config = {
-//       headers: {
-//         Authorization: "Bearer " + token,
-//       },
-//     };
-//     const response = await axios.get(
-//       "https://mywalletapicenter.herokuapp.com/dashboard",
-//       config
-//     );
-//     return response
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const income = async (token, product, income) => {
+  try {
+    const data = {
+      product,
+      income,
+    };
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
 
+    const response = await axios.post(
+      "https://mywalletapicenter.herokuapp.com/income",
+      data,
+      config
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
