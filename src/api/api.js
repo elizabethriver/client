@@ -77,3 +77,26 @@ export const income = async (token, product, income) => {
     throw error;
   }
 };
+
+export const expense = async (token, product, expense) => {
+  try {
+    const data = {
+      product,
+      expense,
+    };
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    const response = await axios.post(
+      "https://mywalletapicenter.herokuapp.com/expense",
+      data,
+      config
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
