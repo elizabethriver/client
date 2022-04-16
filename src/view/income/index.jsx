@@ -11,26 +11,61 @@ export const Income = () => {
     const value = e.target.value;
     setInputsIncome({ ...inputsIncome, [name]: value });
   };
-  const incomeFetch = async () => {
-    const example = {
-      product: inputsIncome.product,
-      income: inputsIncome.income,
-    };
-    console.log(example);
-    const response = await income(token, example.product, example.income);
-    console.log(response);
+  const onSubmitForm = async (e) => {
+    e.preventDefault();
+    let response;
+    try {
+      response = await income(
+        token,
+        inputsIncome.product,
+        parseInt(inputsIncome.income)
+      );
+      console.log(response.data);
+      setInputsIncome({ product: "", income: "" });
+      document.getElementById("mssgIncorrectTyping").innerHTML = "Item added";
+      setTimeout(() => {
+        document.getElementById("mssgIncorrectTyping").innerHTML = "";
+      }, 2000);
+    } catch (error) {
+      document.getElementById("mssgIncorrectTyping").innerHTML =
+        "Item with name is duplicated";
+    }
   };
-  incomeFetch();
   return (
-    <div>
+    <section>
       income
-      <form onSubmit={incomeFetch}>
-        <label htmlFor="product">Name of product</label>
-        <input type="input" name="product" value={onChangeInputsForm} />
-        <label htmlFor="income">Income</label>
-        <input type="input" name="income" value={onChangeInputsForm} />
+      <form onSubmit={onSubmitForm}>
+        <fieldset>
+          <label htmlFor="product">
+            Name of product
+            <input
+              type="text"
+              name="product"
+              placeholder="add your product"
+              onChange={onChangeInputsForm}
+              value={inputsIncome.product}
+              required
+              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+              title="Just type letters is allowed"
+            />
+          </label>
+          <label htmlFor="income">
+            Income
+            <input
+              type="text"
+              name="income"
+              placeholder="add your income"
+              value={inputsIncome.income}
+              onChange={onChangeInputsForm}
+              required
+              pattern="^[0-9]+$"
+              title="Just type number is allowed"
+            />
+          </label>
+          <button type="submit">Click</button>
+        </fieldset>
+        <small id="mssgIncorrectTyping" />
       </form>
-      <button type="submit">Click</button>
-    </div>
+    </section>
   );
 };
