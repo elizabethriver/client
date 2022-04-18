@@ -101,7 +101,7 @@ export const expense = async (token, product, expense) => {
   }
 };
 
-export const getIncomeByID = async (token) => {
+export const getIncomeByID = async (token, incomeId) => {
   try {
     const config = {
       headers: {
@@ -109,7 +109,7 @@ export const getIncomeByID = async (token) => {
       },
     };
     const response = await axios.get(
-      "https://mywalletapicenter.herokuapp.com/income/623bd566e984ad3ec23fd811",
+      `https://mywalletapicenter.herokuapp.com/income/${incomeId}`,
       config
     );
     return response;
