@@ -12,7 +12,7 @@ export const IncomeDetails = () => {
       const response = await getIncomeByID(token, params.incomeId)
       console.log(response)
     } catch (error) {
-      console.error(error)
+      console.error(error, 'error')
     }
   }
 
