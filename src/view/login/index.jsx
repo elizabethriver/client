@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./style/login.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import { login } from "../../api/api";
 
 export const Login = () => {
