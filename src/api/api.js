@@ -117,3 +117,20 @@ export const getIncomeByID = async (token, incomeId) => {
     throw error;
   }
 };
+
+export const getExpenseByID = async (token, expenseId) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    const response = await axios.get(
+      `https://mywalletapicenter.herokuapp.com/expense/${expenseId}`,
+      config
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};

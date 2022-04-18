@@ -10,6 +10,8 @@ import { Register } from "./view/register/index";
 import {Home} from './components/home/'
 import { NotFound } from "./view/notfound";
 import { IncomeDetails } from './view/incomedetails/index';
+import { ExpenseDetails } from "./view/expensedetails";
+
 function App() {
   return (
     <div className="App">
@@ -21,6 +23,7 @@ function App() {
           <Route path="income" element={<Income />} />
           <Route path="income/:incomeId" element={< IncomeDetails/>} />
           <Route path="expense" element={<Expense />} />
+          <Route path="expense/:expenseId" element={<ExpenseDetails />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
