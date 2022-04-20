@@ -1,14 +1,15 @@
 /* eslint-disable no-useless-escape */
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getIncomeByID } from "../../api/api";
 import "./style/incomedetails.css";
 import EdiText from "react-editext";
-import { putIncomeByID } from "./../../api/api";
+import { putIncomeByID, deleteIncomeByID } from "./../../api/api";
 
 export const IncomeDetails = () => {
   const token = localStorage.getItem("token");
   let params = useParams();
+  let navigate = useNavigate();
 
   const apiTest = async () => {
     try {
@@ -61,6 +62,20 @@ export const IncomeDetails = () => {
     let regex = /^[0-9]+$/
     regex.test(val) 
   }
+  const onClickDelete = async() => {
+    console.log('Delete')
+    try {
+      await deleteIncomeByID(token, params.incomeId)
+      document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
+      setTimeout(() => {
+        navigate("/income");
+      }, 2000);
+
+    } catch (error) {
+      document.getElementById("mssgIncorrectTyping").innerHTML = "Error with deleting";
+      throw error
+    }
+  }
 
   return (
     <div>
@@ -70,6 +85,8 @@ export const IncomeDetails = () => {
         <EdiText validation={validationNumber} validationMessage="Please type income" showButtonsOnHover type="text" value={inputIncome} onSave={handleSaveIncome} />
         <button type="submit">Update</button>
       </form>
+      <small id="mssgIncorrectTyping" />
+      <button onClick={onClickDelete}>Delete</button>
     </div>
   );
 };

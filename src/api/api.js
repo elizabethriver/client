@@ -181,3 +181,42 @@ export const putExpenseByID = async (token, product, expense, expenseId) => {
     throw error;
   }
 };
+
+
+export const deleteExpenseByID = async (token, expenseId) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    const response = await axios.delete(
+      `https://mywalletapicenter.herokuapp.com/expense/${expenseId}`,
+      config
+    );
+    return response;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+};
+
+export const deleteIncomeByID = async (token, incomeId) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    const response = await axios.delete(
+      `https://mywalletapicenter.herokuapp.com/income/${incomeId}`,
+      config
+    );
+    return response;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+};

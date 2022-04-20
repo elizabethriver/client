@@ -60,6 +60,14 @@ export const ExpenseDetails = () => {
     regex.test(val) 
   }
 
+  const onClickDelete = () => {
+    console.log('Delete')
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
   return (
     <div>
       expenseDetails {params.expenseId}
@@ -68,6 +76,7 @@ export const ExpenseDetails = () => {
         <EdiText validation={validationNumber} validationMessage="Please type name income." showButtonsOnHover type="text"  value={inputExpense} onSave={handleSaveExpense} />
         <button type="submit">Update</button>
       </form>
+      <button onClick={onClickDelete}>Delete</button>
     </div>
   );
 };
