@@ -12,10 +12,9 @@ export const ExpenseDetails = () => {
   const apiTest = async () => {
     try {
       const response = await getExpenseByID(token, params.expenseId);
-      console.log(response)
       return response;
     } catch (error) {
-      console.error(error, "error");
+      throw error
     }
   };
   apiTest();
@@ -29,17 +28,15 @@ export const ExpenseDetails = () => {
 
   const handleSaveProduct = (product) => {
     setInputProduct(product);
-    console.log(product);
   };
   const handleSaveExpense = (expense) => {
     setInputExpense(expense);
-    console.log(expense);
   };
   const dataToUpdate = {
     product: inputProduct,
     expense: parseInt(inputExpense),
   };
-  console.log(dataToUpdate);
+
   const submitUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -49,9 +46,9 @@ export const ExpenseDetails = () => {
         dataToUpdate.expense,
         params.expenseId
       );
-      console.log(response);
+      return response
     } catch (error) {
-      console.log(error);
+      throw error
     }
   };
 
@@ -59,9 +56,9 @@ export const ExpenseDetails = () => {
     <div>
       expenseDetails {params.expenseId}
       <form className="formForEdit" onSubmit={submitUpdate}>
-        <EdiText type="text" value={inputProduct} onSave={handleSaveProduct} />
-        <EdiText type="text" value={inputExpense} onSave={handleSaveExpense} />
-        <button type="submit">Saved</button>
+        <EdiText className="editext" showButtonsOnHover type="text" pattern value={inputProduct} onSave={handleSaveProduct} />
+        <EdiText className="editext" showButtonsOnHover type="text" value={inputExpense} onSave={handleSaveExpense} />
+        <button type="submit">Update</button>
       </form>
     </div>
   );
