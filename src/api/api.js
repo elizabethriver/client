@@ -134,3 +134,50 @@ export const getExpenseByID = async (token, expenseId) => {
     throw error;
   }
 };
+
+export const putIncomeByID = async (token, product, income, incomeId) => {
+  try {
+    const data = {
+      product,
+      income,
+    };
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    const response = await axios.put(
+      `https://mywalletapicenter.herokuapp.com/income/${incomeId}`,
+      data,
+      config
+    );
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const putExpenseByID = async (token, product, expense, expenseId) => {
+  try {
+    const data = {
+      product,
+      expense,
+    };
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    const response = await axios.put(
+      `https://mywalletapicenter.herokuapp.com/expense/${expenseId}`,
+      data,
+      config
+    );
+    return response;
+  } catch (error) {
+    console.error(error)
+    throw error;
+  }
+};
