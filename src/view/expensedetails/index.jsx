@@ -51,13 +51,21 @@ export const ExpenseDetails = () => {
       throw error
     }
   };
+  const validationName = (val) => {
+    let regex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/
+    regex.test(val) 
+  }
+  const validationNumber = (val) => {
+    let regex = /^[0-9]+$/
+    regex.test(val) 
+  }
 
   return (
     <div>
       expenseDetails {params.expenseId}
       <form className="formForEdit" onSubmit={submitUpdate}>
-        <EdiText showButtonsOnHover type="text" pattern value={inputProduct} onSave={handleSaveProduct} />
-        <EdiText showButtonsOnHover type="text" value={inputExpense} onSave={handleSaveExpense} />
+        <EdiText validation={validationName} validationMessage="Please type name income." showButtonsOnHover type="text"  value={inputProduct} onSave={handleSaveProduct} />
+        <EdiText validation={validationNumber} validationMessage="Please type name income." showButtonsOnHover type="text"  value={inputExpense} onSave={handleSaveExpense} />
         <button type="submit">Update</button>
       </form>
     </div>
