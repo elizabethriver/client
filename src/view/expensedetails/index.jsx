@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getExpenseByID } from "../../api/api";
 import "./style/expensedetails.css";
 import EdiText from "react-editext";
-import { putExpenseByID } from "./../../api/api";
+import { putExpenseByID, deleteExpenseByID } from "./../../api/api";
 
 export const ExpenseDetails = () => {
   const token = localStorage.getItem("token");
   let params = useParams();
+  let navigate = useNavigate();
+
 
   const apiTest = async () => {
     try {
@@ -60,12 +62,17 @@ export const ExpenseDetails = () => {
     regex.test(val) 
   }
 
-  const onClickDelete = () => {
+  const onClickDelete = async() => {
     console.log('Delete')
     try {
-      
+      await deleteExpenseByID(token, params.expenseId)
+      document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
+      setTimeout(() => {
+        navigate("/expense");
+      }, 2000);
     } catch (error) {
-      
+      document.getElementById("mssgIncorrectTyping").innerHTML = "Error with deleting";
+      throw error
     }
   }
   return (
@@ -76,6 +83,7 @@ export const ExpenseDetails = () => {
         <EdiText validation={validationNumber} validationMessage="Please type name income." showButtonsOnHover type="text"  value={inputExpense} onSave={handleSaveExpense} />
         <button type="submit">Update</button>
       </form>
+      <small id="mssgIncorrectTyping" />
       <button onClick={onClickDelete}>Delete</button>
     </div>
   );
