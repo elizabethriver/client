@@ -56,8 +56,8 @@ export const ExpenseDetails = () => {
     <div>
       expenseDetails {params.expenseId}
       <form className="formForEdit" onSubmit={submitUpdate}>
-        <EdiText className="editext" showButtonsOnHover type="text" pattern value={inputProduct} onSave={handleSaveProduct} />
-        <EdiText className="editext" showButtonsOnHover type="text" value={inputExpense} onSave={handleSaveExpense} />
+        <EdiText showButtonsOnHover type="text" pattern value={inputProduct} onSave={handleSaveProduct} />
+        <EdiText showButtonsOnHover type="text" value={inputExpense} onSave={handleSaveExpense} />
         <button type="submit">Update</button>
       </form>
     </div>
