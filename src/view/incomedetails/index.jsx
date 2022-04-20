@@ -66,7 +66,7 @@ export const IncomeDetails = () => {
     <div>
       IncomeDetails {params.incomeId}
       <form className="formForEdit" onSubmit={submitUpdate}>
-        <EdiText validation={validationName} validationMessage="Please type name income." showButtonsOnHover type="text" pattern value={inputProduct} onSave={handleSaveProduct} />
+        <EdiText validation={validationName} validationMessage="Please type name income." showButtonsOnHover type="text" value={inputProduct} onSave={handleSaveProduct} />
         <EdiText validation={validationNumber} validationMessage="Please type income" showButtonsOnHover type="text" value={inputIncome} onSave={handleSaveIncome} />
         <button type="submit">Update</button>
       </form>
