@@ -5,10 +5,12 @@ import "./style/expensedetails.css";
 import EdiText from "react-editext";
 import { putExpenseByID, deleteExpenseByID } from "./../../api/api";
 
+
 export const ExpenseDetails = () => {
   const token = localStorage.getItem("token");
   let params = useParams();
   let navigate = useNavigate();
+
 
 
   const apiTest = async () => {

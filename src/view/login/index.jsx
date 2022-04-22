@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./style/login.css";
-import { useNavigate, Outlet } from "react-router-dom";
-import { login } from "../../api/api";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import loginslide, { axiosLogin } from "./loginslide";
 
 export const Login = () => {
   const [inputForm, setInputForm] = useState({ email: "", password: "" });
+  const dispatch = useDispatch();
 
   let navigate = useNavigate();
 
@@ -22,27 +24,29 @@ export const Login = () => {
   };
   const submit = async (e) => {
     e.preventDefault();
-    let response;
-    try {
-      response = await login(inputForm.email.trim(), inputForm.password.trim());
-      const { token } = response.data;
-      localStorage.setItem("token", token);
-      setInputForm({ email: "", password: "" });
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Welcome";
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
-    } catch (error) {
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Incorrect password or email";
-      setTimeout(() => {
-        document.getElementById("mssgIncorrectTyping").innerHTML = "";
-      }, 2000);
-      if (response.data === undefined) {
-        return response;
-      }
-      throw error;
-    }
+    dispatch(
+      axiosLogin({
+        email: inputForm.email.trim(),
+        password: inputForm.password.trim(),
+      })
+    )
+      .then((response) => {
+        const { token } = response.payload;
+        localStorage.setItem("token", token);
+        setInputForm({ email: "", password: "" });
+        document.getElementById("mssgIncorrectTyping").innerHTML = "Welcome";
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
+      })
+      .catch((error) => {
+        document.getElementById("mssgIncorrectTyping").innerHTML =
+          "Incorrect password or email";
+        setTimeout(() => {
+          document.getElementById("mssgIncorrectTyping").innerHTML = "";
+        }, 2000);
+        throw error;
+      });
   };
 
   return (
