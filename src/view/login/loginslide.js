@@ -11,7 +11,6 @@ export const axiosLogin = createAsyncThunk(
   async ({ email, password }) => {
     try {
       const response = await login(email, password);
-      console.log(response);
       return response.data;
     } catch (error) {
       throw error;
