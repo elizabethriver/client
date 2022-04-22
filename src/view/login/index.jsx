@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style/login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import loginslide, { axiosLogin } from "./loginslide";
+import { axiosLogin } from "./loginslide";
 
 export const Login = () => {
   const [inputForm, setInputForm] = useState({ email: "", password: "" });
