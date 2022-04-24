@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style/login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import loginslide, { axiosLogin } from "./loginslide";
+import { axiosLogin } from "./loginslide";
 
 export const Login = () => {
   const [inputForm, setInputForm] = useState({ email: "", password: "" });
@@ -24,29 +24,30 @@ export const Login = () => {
   };
   const submit = async (e) => {
     e.preventDefault();
-    dispatch(
-      axiosLogin({
-        email: inputForm.email.trim(),
-        password: inputForm.password.trim(),
-      })
-    )
-      .then((response) => {
-        const { token } = response.payload;
-        localStorage.setItem("token", token);
-        setInputForm({ email: "", password: "" });
-        document.getElementById("mssgIncorrectTyping").innerHTML = "Welcome";
-        setTimeout(() => {
-          navigate("/dashboard");
-        }, 2000);
-      })
-      .catch((error) => {
-        document.getElementById("mssgIncorrectTyping").innerHTML =
-          "Incorrect password or email";
-        setTimeout(() => {
-          document.getElementById("mssgIncorrectTyping").innerHTML = "";
-        }, 2000);
-        throw error;
-      });
+    try {
+      const response = await dispatch(
+        axiosLogin({
+          email: inputForm.email.trim(),
+          password: inputForm.password.trim(),
+        })
+      ).unwrap();
+      // handle result here
+      const { token } = response;
+      localStorage.setItem("token", token);
+      setInputForm({ email: "", password: "" });
+      document.getElementById("mssgIncorrectTyping").innerHTML = "Welcome";
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
+    } catch (error) {
+      // handle error here
+      document.getElementById("mssgIncorrectTyping").innerHTML =
+        "Incorrect password or email";
+      setTimeout(() => {
+        document.getElementById("mssgIncorrectTyping").innerHTML = "";
+      }, 2000);
+      throw error;
+    }
   };
 
   return (
