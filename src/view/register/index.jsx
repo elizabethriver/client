@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style/register.css";
-import { register } from "../../api/api";
+import { axiosRegister } from "./registerSlice";
+import { useDispatch } from "react-redux";
 
 export const Register = () => {
   const [inputsRegister, setInputsRegister] = useState({
@@ -10,6 +11,8 @@ export const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  const dispatch = useDispatch();
+
   let navigate = useNavigate();
 
   const handleClick = () => {
@@ -20,42 +23,41 @@ export const Register = () => {
     const value = e.target.value;
     const name = e.target.name;
     setInputsRegister({ ...inputsRegister, [name]: value });
-    console.log(inputsRegister);
   };
 
   const submit = async (e) => {
     e.preventDefault();
-    let response;
     try {
-      
-      response = await register(
-        inputsRegister.name.trim(),
-        inputsRegister.email.trim(),
-        inputsRegister.password.trim(),
-        inputsRegister.confirmPassword.trim()
-      );
-      console.log(response);
+      const response = await dispatch(
+        axiosRegister({
+          name: inputsRegister.name.trim(),
+          email: inputsRegister.email.trim(),
+          password: inputsRegister.password.trim(),
+          confirmPassword: inputsRegister.confirmPassword.trim(),
+        })
+      ).unwrap();
+      // handle result here
+      const { name } = response.registerUser;
+      localStorage.setItem("nameUser", name);
       setInputsRegister({
         name: "",
         email: "",
         password: "",
         confirmPassword: "",
       });
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Your are register";
+      document.getElementById(
+        "mssgIncorrectTyping"
+      ).innerHTML = `${name}Your are register`;
       setTimeout(() => {
         navigate("/login");
       }, 2000);
     } catch (error) {
-      console.log(error);
+      // handle error here
       document.getElementById("mssgIncorrectTyping").innerHTML =
         "Please verify your inputs";
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";
       }, 2000);
-      if (response.data === undefined) {
-        return response;
-      }
       throw error;
     }
   };
