@@ -31,6 +31,7 @@ export const Login = () => {
           password: inputForm.password.trim(),
         })
       ).unwrap();
+      console.log(response)
       // handle result here
       const { token } = response;
       localStorage.setItem("token", token);
