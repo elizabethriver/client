@@ -7,6 +7,7 @@ export const store = configureStore({
   reducer: {
     login: loginslide,
     register: registerSlice,
-    dashboard: dashboardSlice
+    incomeDashboard: dashboardSlice,
+    expensesDashboard: dashboardSlice
   },
 });

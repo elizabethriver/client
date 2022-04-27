@@ -1,46 +1,33 @@
-import React, { useCallback, useEffect  ,useState} from "react";
+import React, { useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { axiosDashboard } from "./dashboardSlice";
-import  {Items}  from "../../components/item/items";
+import {
+  incomeAllAxiosDashboard,
+  expensesAllAxiosDashboard,
+} from "./dashboardSlice";
+import { Items } from "../../components/item/items";
+import "./style/dashboard.css"
 
 export const Dashboard = () => {
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const {dashboardData, loading} = useSelector((state) => state.dashboard);
-  console.log(dashboardData, loading)
-  const [info, setinfo] = useState({})
-  const initFetch = useCallback(() => {
-    dispatch(axiosDashboard(token));
+  const { incomeAllDashboardData, loadingIncome } = useSelector(
+    (state) => state.incomeDashboard
+  );
+  const { expenseAllDashboardData, loadingExpense } = useSelector(
+    (state) => state.expensesDashboard
+  );
 
+  const initFetch = useCallback(() => {
+    dispatch(incomeAllAxiosDashboard(token));
+    dispatch(expensesAllAxiosDashboard(token));
   }, [dispatch, token]);
 
   useEffect(() => {
     initFetch();
   }, [initFetch]);
 
-  // useEffect(() => {
-  //   setinfo(dashboard)
-  // }, [dashboard])
-  
-  
-  console.log(info)
-  // const { incomeAll, expensesAll } = info.dashboardData
-  // console.log(incomeAll, expensesAll)
-  // const Items = (props) => {
-  //   return (
-  //     <>
-  //       {props.array.map((item) => (
-  //         <li id={`${item._id}`} key={item._id}>
-  //           <span>{item.product}</span>
-  //           <strong>{item.income ? item.income : item.expense}</strong>
-  //           <button>Delete</button>
-  //           <button>Details</button>
-  //         </li>
-  //       ))}
-  //     </>
-  //   );
-  // };
+  if (loadingIncome && loadingExpense) return <p>Loading...</p>;
   return (
     <div>
       dashboard
@@ -53,16 +40,18 @@ export const Dashboard = () => {
             <Link to="/expense">Expense</Link>
           </button>
         </div>
-        <div>
-          {/* <ul>
-            Income
-            <Items array={info.dashboardData.incomeAll} />
-          </ul>
-          <ul>
-            Expense
-            <Items array={info.dashboardData.expensesAll} />
-          </ul> */}
-        </div>
+        <section className="container">
+          
+            <span className="income_title">Incomes</span>
+            <ul className="income_body">
+              <Items array={incomeAllDashboardData} />
+            </ul>
+            <span className="expense_title">Expenses</span>
+            <ul className="expense_body">
+              <Items array={expenseAllDashboardData} />
+            </ul>
+          
+        </section>
       </main>
     </div>
   );
