@@ -41,11 +41,11 @@ export const Dashboard = () => {
           
             <span className="income_title">Incomes</span>
             <ul className="income_body">
-              <Items array={incomeAllDashboardData} />
+              <Items array={incomeAllDashboardData} url='/income'/>
             </ul>
             <span className="expense_title">Expenses</span>
             <ul className="expense_body">
-              <Items array={expenseAllDashboardData} />
+              <Items array={expenseAllDashboardData} url='/expense'/>
             </ul>
           
         </section>
