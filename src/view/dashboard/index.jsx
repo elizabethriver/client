@@ -14,7 +14,6 @@ export const Dashboard = () => {
   const { incomeAllDashboardData, expenseAllDashboardData, loading } = useSelector(
     (state) => state.dataDashboard
   );
-  console.log(incomeAllDashboardData,loading, expenseAllDashboardData)
 
   const initFetch = useCallback(() => {
     dispatch(incomeAllAxiosDashboard(token));
