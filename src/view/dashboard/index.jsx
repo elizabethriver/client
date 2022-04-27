@@ -11,12 +11,10 @@ import "./style/dashboard.css"
 export const Dashboard = () => {
   const token = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const { incomeAllDashboardData, loadingIncome } = useSelector(
-    (state) => state.incomeDashboard
+  const { incomeAllDashboardData, expenseAllDashboardData, loading } = useSelector(
+    (state) => state.dataDashboard
   );
-  const { expenseAllDashboardData, loadingExpense } = useSelector(
-    (state) => state.expensesDashboard
-  );
+  console.log(incomeAllDashboardData,loading, expenseAllDashboardData)
 
   const initFetch = useCallback(() => {
     dispatch(incomeAllAxiosDashboard(token));
@@ -27,7 +25,7 @@ export const Dashboard = () => {
     initFetch();
   }, [initFetch]);
 
-  if (loadingIncome && loadingExpense) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>;
   return (
     <div>
       dashboard
