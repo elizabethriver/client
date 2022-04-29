@@ -1,12 +1,11 @@
 /* eslint-disable no-useless-escape */
-import React, { useState, useCallback, useEffect,  useRef} from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getIncomeByID } from "../../api/api";
 import "./style/incomedetails.css";
 import EdiText from "react-editext";
 import { putIncomeByID, deleteIncomeByID } from "./../../api/api";
-import { getIncomeByIdTrunk } from './incomeDetailsSlice';
+import { getIncomeByIdTrunk } from "./incomeDetailsSlice";
 
 export const IncomeDetails = () => {
   const token = localStorage.getItem("token");
@@ -16,9 +15,8 @@ export const IncomeDetails = () => {
   const { dataIncomeById, loading } = useSelector(
     (state) => state.getIncomeByID
   );
-  console.log(dataIncomeById, loading)
   const initFetch = useCallback(() => {
-    dispatch(getIncomeByIdTrunk({token: token,  incomeId: params.incomeId}));
+    dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
   }, [dispatch, params.incomeId, token]);
 
   useEffect(() => {
@@ -48,36 +46,36 @@ export const IncomeDetails = () => {
         dataToUpdate.income,
         params.incomeId
       );
-      return response
+      return response;
     } catch (error) {
-      throw error
+      throw error;
     }
   };
 
   const validationName = (val) => {
-    let regex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/
-    regex.test(val) 
-  }
+    let regex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+    regex.test(val);
+  };
   const validationNumber = (val) => {
-    let regex = /^[0-9]+$/
-    regex.test(val) 
-  }
-  const onClickDelete = async() => {
-    console.log('Delete')
+    let regex = /^[0-9]+$/;
+    regex.test(val);
+  };
+  const onClickDelete = async () => {
+    console.log("Delete");
     try {
-      await deleteIncomeByID(token, params.incomeId)
+      await deleteIncomeByID(token, params.incomeId);
       document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
       setTimeout(() => {
         navigate("/income");
       }, 2000);
-
     } catch (error) {
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Error with deleting";
-      throw error
+      document.getElementById("mssgIncorrectTyping").innerHTML =
+        "Error with deleting";
+      throw error;
     }
-  }
+  };
   if (loading) {
-    return <p>Loading</p>
+    return <p>Loading</p>;
   }
   return (
     <div>
@@ -85,8 +83,22 @@ export const IncomeDetails = () => {
       <form className="formForEdit" onSubmit={submitUpdate}>
         <span>{dataIncomeById.product}</span>
         <strong>{dataIncomeById.income}</strong>
-        <EdiText validation={validationName} validationMessage="Please type name income." showButtonsOnHover type="text" value={inputProduct} onSave={handleSaveProduct} />
-        <EdiText validation={validationNumber} validationMessage="Please type income" showButtonsOnHover type="text" value={inputIncome} onSave={handleSaveIncome} />
+        <EdiText
+          validation={validationName}
+          validationMessage="Please type name income."
+          showButtonsOnHover
+          type="text"
+          value={inputProduct}
+          onSave={handleSaveProduct}
+        />
+        <EdiText
+          validation={validationNumber}
+          validationMessage="Please type income"
+          showButtonsOnHover
+          type="text"
+          value={inputIncome}
+          onSave={handleSaveIncome}
+        />
         <button type="submit">Update</button>
       </form>
       <small id="mssgIncorrectTyping" />
