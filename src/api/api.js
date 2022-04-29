@@ -112,7 +112,8 @@ export const getIncomeByID = async (token, incomeId) => {
       `https://mywalletapicenter.herokuapp.com/income/${incomeId}`,
       config
     );
-    return response;
+    const {data} = response
+    return data;
   } catch (error) {
     throw error;
   }
