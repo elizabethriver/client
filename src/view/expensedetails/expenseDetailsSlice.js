@@ -1,15 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getIncomeByID } from "../../api/api";
+import { getExpenseByID } from "../../api/api";
 const initialState = {
-  dataIncomeById: [],
+  dataExpenseById: [],
   loading: false,
 };
 
-export const getIncomeByIdTrunk = createAsyncThunk(
-  async (dataIncomeByID) => {
-    const { token, incomeId } = dataIncomeByID;
+export const getExpenseByIdTrunk = createAsyncThunk("getExpenseById/api",
+  async (dataExpenseByID) => {
+    const { token, expenseId } = dataExpenseByID;
     try {
-      const response = await getIncomeByID(token, incomeId);
+      const response = await getExpenseByID(token, expenseId);
       const {findedObject} = response
       return findedObject;
     } catch (error) {
@@ -18,24 +18,24 @@ export const getIncomeByIdTrunk = createAsyncThunk(
   }
 );
 
-const incomeDetailsSlice = createSlice({
-  name: "getIncomeByIdTrunk",
+const expenseDetailsSlice = createSlice({
+  name: "getExpenseByIdTrunk",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(getIncomeByIdTrunk.pending, (state) => {
+    builder.addCase(getExpenseByIdTrunk.pending, (state) => {
       // Add user to the state array
       state.loading = true;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(getIncomeByIdTrunk.fulfilled, (state, action) => {
+    builder.addCase(getExpenseByIdTrunk.fulfilled, (state, action) => {
       // Add user to the state array
       state.loading = false;
-      state.dataIncomeById = action.payload;
+      state.dataExpenseById = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(getIncomeByIdTrunk.rejected, (state) => {
+    builder.addCase(getExpenseByIdTrunk.rejected, (state) => {
       // Add user to the state array
       state.loading = false;
     });
@@ -44,4 +44,4 @@ const incomeDetailsSlice = createSlice({
 
 // export const {} = incomeDetailsSlice.actions
 
-export default incomeDetailsSlice.reducer;
+export default expenseDetailsSlice.reducer;
