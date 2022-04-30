@@ -2,10 +2,10 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/expensedetails.css";
-import { deleteExpenseByID } from "./../../api/api";
 import {
   getExpenseByIdTrunk,
   updateExpenseByIdTrunk,
+  deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
 
 export const ExpenseDetails = () => {
@@ -13,9 +13,9 @@ export const ExpenseDetails = () => {
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const { dataExpenseById, loading } = useSelector(
-    (state) => state.getExpenseByID
-  );
+  const { dataExpenseById, loading, docUpdateById, deleteDocUpdateById } =
+    useSelector((state) => state.getExpenseByID);
+  console.log(dataExpenseById, loading, docUpdateById, deleteDocUpdateById);
   const initFetch = useCallback(() => {
     dispatch(
       getExpenseByIdTrunk({ token: token, expenseId: params.expenseId })
@@ -70,10 +70,16 @@ export const ExpenseDetails = () => {
   };
 
   const onClickDelete = async () => {
-    console.log("Delete");
     try {
-      await deleteExpenseByID(token, params.expenseId);
+      console.log();
+      dispatch(
+        deleteExpenseByIdTrunk({
+          token: token,
+          expenseId: params.expenseId,
+        })
+      ).unwrap();
       document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
+      removeEditMode();
       setTimeout(() => {
         navigate("/expense");
       }, 2000);
@@ -82,6 +88,7 @@ export const ExpenseDetails = () => {
         "Error with deleting";
       throw error;
     }
+    
   };
   if (loading) {
     return <p>Loading</p>;
@@ -123,6 +130,7 @@ export const ExpenseDetails = () => {
           </div>
         )}
       </div>
+      <small id="mssgIncorrectTyping"></small>
       <button onClick={onClickDelete}>Delete</button>
     </div>
   );

@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getIncomeByID, putIncomeByID } from "../../api/api";
+import { getIncomeByID, putIncomeByID, deleteIncomeByID } from "../../api/api";
 const initialState = {
   dataIncomeById: [],
   loading: false,
   docUpdateById: [],
+  deleteDocUpdateById: [],
 };
 
 export const getIncomeByIdTrunk = createAsyncThunk(
@@ -19,7 +20,19 @@ export const getIncomeByIdTrunk = createAsyncThunk(
     }
   }
 );
-
+export const deleteIncomeByIdTrunk = createAsyncThunk(
+  "deleteIncomeById/api",
+  async (dataIncomeByID) => {
+    const { token, incomeId } = dataIncomeByID;
+    try {
+      const response = await deleteIncomeByID(token, incomeId);
+      const { mssg } = response.data;
+      return mssg;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 export const updateIncomeByIdTrunk = createAsyncThunk(
   "updateIncomeByIdTrunk/api",
   async (dataIncomeByID) => {
@@ -69,6 +82,22 @@ const incomeDetailsSlice = createSlice({
     });
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(updateIncomeByIdTrunk.rejected, (state) => {
+      // Add user to the state array
+      state.loading = false;
+    });
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(deleteIncomeByIdTrunk.pending, (state) => {
+      // Add user to the state array
+      state.loading = true;
+    });
+    // // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(deleteIncomeByIdTrunk.fulfilled, (state, action) => {
+      // Add user to the state array
+      console.log(action.payload);
+      state.deleteDocUpdateById = action.payload;
+    });
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(deleteIncomeByIdTrunk.rejected, (state) => {
       // Add user to the state array
       state.loading = false;
     });
