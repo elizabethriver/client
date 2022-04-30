@@ -3,8 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/incomedetails.css";
-import { deleteIncomeByID } from "./../../api/api";
-import { getIncomeByIdTrunk, updateIncomeByIdTrunk } from "./incomeDetailsSlice";
+import {
+  getIncomeByIdTrunk,
+  updateIncomeByIdTrunk,
+  deleteIncomeByIdTrunk,
+} from "./incomeDetailsSlice";
 
 export const IncomeDetails = () => {
   const token = localStorage.getItem("token");
@@ -54,18 +57,25 @@ export const IncomeDetails = () => {
           incomeId: params.incomeId,
         })
       ).unwrap();
-      removeEditMode()
+      removeEditMode();
       navigate("/dashboard");
     } catch (error) {
       throw error;
     }
   };
-  
+
   const onClickDelete = async () => {
     console.log("Delete");
     try {
-      await deleteIncomeByID(token, params.incomeId);
+      console.log();
+      dispatch(
+        deleteIncomeByIdTrunk({
+          token: token,
+          incomeId: params.incomeId,
+        })
+      ).unwrap();
       document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
+      removeEditMode();
       setTimeout(() => {
         navigate("/income");
       }, 2000);
@@ -117,6 +127,7 @@ export const IncomeDetails = () => {
         )}
       </div>
       <button onClick={onClickDelete}>Delete</button>
+      <small id="mssgIncorrectTyping"></small>
     </div>
   );
 };

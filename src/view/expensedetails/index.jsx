@@ -2,7 +2,6 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/expensedetails.css";
-import { deleteExpenseByID } from "./../../api/api";
 import {
   getExpenseByIdTrunk,
   updateExpenseByIdTrunk,
@@ -72,7 +71,7 @@ export const ExpenseDetails = () => {
 
   const onClickDelete = async () => {
     try {
-      console.log()
+      console.log();
       dispatch(
         deleteExpenseByIdTrunk({
           token: token,
@@ -89,6 +88,7 @@ export const ExpenseDetails = () => {
         "Error with deleting";
       throw error;
     }
+    
   };
   if (loading) {
     return <p>Loading</p>;
