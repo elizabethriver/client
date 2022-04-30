@@ -130,9 +130,11 @@ export const getExpenseByID = async (token, expenseId) => {
       `https://mywalletapicenter.herokuapp.com/expense/${expenseId}`,
       config
     );
+    console.log(response)
     const {data} = response;
     return data;
   } catch (error) {
+    console.log(error)
     throw error;
   }
 };

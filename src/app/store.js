@@ -3,7 +3,7 @@ import  loginslide from './../view/login/loginslide.js';
 import registerSlice from '../view/register/registerSlice.js';
 import dashboardSlice from '../view/dashboard/dashboardSlice.js';
 import incomeDetailsSlice from '../view/incomedetails/incomeDetailsSlice.js';
-import expenseDetailsSlice from '../view/expensedetails/expenseDetailsSlice';
+import expenseDetailsSlice from '../view/expensedetails/expenseDetailsSlice.js';
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +12,7 @@ export const store = configureStore({
     dataDashboard: dashboardSlice,
     getExpenseByID: expenseDetailsSlice,
     getIncomeByID: incomeDetailsSlice,
+    // dataExpenseById: expenseDetailsSlice,
+    // dataIncomeById: incomeDetailsSlice
   },
 });

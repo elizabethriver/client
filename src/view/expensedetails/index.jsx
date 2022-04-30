@@ -1,10 +1,12 @@
-import React, { useState, useCallback, useEffect} from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/expensedetails.css";
-import EdiText from "react-editext";
 import { putExpenseByID, deleteExpenseByID } from "./../../api/api";
-import { getExpenseByIdTrunk } from './expenseDetailsSlice';
+import {
+  getExpenseByIdTrunk,
+  updateExpenseByIdTrunk,
+} from "./expenseDetailsSlice";
 
 export const ExpenseDetails = () => {
   const token = localStorage.getItem("token");
@@ -14,53 +16,53 @@ export const ExpenseDetails = () => {
   const { dataExpenseById, loading } = useSelector(
     (state) => state.getExpenseByID
   );
-  const initFetch = useCallback(() => {
-    dispatch(getExpenseByIdTrunk({ token: token, expenseId: params.expenseId }));
+  console.log(dataExpenseById);
+  useEffect(() => {
+    dispatch(
+      getExpenseByIdTrunk({ token: token, expenseId: params.expenseId })
+    );
   }, [dispatch, params.expenseId, token]);
 
-  useEffect(() => {
-    initFetch();
-  }, [initFetch]);
-
-  const mockData = {
-    product: "uva",
-    expense: 233,
+  const [inputsEditMode, setInputsEditMode] = useState({
+    product: "",
+    expense: "",
+  });
+  const [editState, setEditState] = useState(false);
+  const editMode = () => {
+    setEditState(!editState);
   };
-  const [inputProduct, setInputProduct] = useState(mockData.product);
-  const [inputExpense, setInputExpense] = useState(mockData.expense);
-
-  const handleSaveProduct = (product) => {
-    setInputProduct(product);
+  const removeEditMode = () => {
+    setEditState(false);
   };
-  const handleSaveExpense = (expense) => {
-    setInputExpense(expense);
+  const onChangeHandlerInputs = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setInputsEditMode({
+      ...inputsEditMode,
+      [name]: value,
+    });
   };
   const dataToUpdate = {
-    product: inputProduct,
-    expense: parseInt(inputExpense),
+    product: inputsEditMode.product,
+    expense: parseInt(inputsEditMode.expense),
   };
 
   const submitUpdate = async (e) => {
     e.preventDefault();
     try {
-      const response = await putExpenseByID(
-        token,
-        dataToUpdate.product,
-        dataToUpdate.expense,
-        params.expenseId
-      );
-      return response;
+      dispatch(
+        updateExpenseByIdTrunk({
+          token: token,
+          product: dataToUpdate.product,
+          expense: dataToUpdate.expense,
+          expenseId: params.expenseId,
+        })
+      ).unwrap();
+      removeEditMode();
+      navigate("/dashboard");
     } catch (error) {
       throw error;
     }
-  };
-  const validationName = (val) => {
-    let regex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
-    regex.test(val);
-  };
-  const validationNumber = (val) => {
-    let regex = /^[0-9]+$/;
-    regex.test(val);
   };
 
   const onClickDelete = async () => {
@@ -83,27 +85,40 @@ export const ExpenseDetails = () => {
   return (
     <div>
       expenseDetails {params.expenseId}
-      <form className="formForEdit" onSubmit={submitUpdate}>
-        <span>{dataExpenseById.product}</span>
-        <strong>{dataExpenseById.expense}</strong>
-        <EdiText
-          validation={validationName}
-          validationMessage="Please type name income."
-          showButtonsOnHover
-          type="text"
-          value={inputProduct}
-          onSave={handleSaveProduct}
-        />
-        <EdiText
-          validation={validationNumber}
-          validationMessage="Please type name income."
-          showButtonsOnHover
-          type="text"
-          value={inputExpense}
-          onSave={handleSaveExpense}
-        />
-        <button type="submit">Update</button>
-      </form>
+      <div>
+        {editState ? (
+          <form onSubmit={submitUpdate}>
+            <input
+              type="text"
+              name="product"
+              placeholder={dataExpenseById.product}
+              onChange={onChangeHandlerInputs}
+              value={inputsEditMode.product}
+              required
+              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
+              title="Just type letters is allowed"
+            />
+            <input
+              type="text"
+              name="expense"
+              placeholder={dataExpenseById.expense}
+              onChange={onChangeHandlerInputs}
+              value={inputsEditMode.expense}
+              required
+              pattern="^[0-9]+$"
+              title="Just type number is allowed"
+            />
+            <button type="submit">Save</button>
+            <button onClick={removeEditMode}>Cancel</button>
+          </form>
+        ) : (
+          <div>
+            <span>{dataExpenseById.product}</span>
+            <strong>${dataExpenseById.expense}</strong>
+            <button onClick={editMode}>Update</button>
+          </div>
+        )}
+      </div>
       <small id="mssgIncorrectTyping" />
       <button onClick={onClickDelete}>Delete</button>
     </div>

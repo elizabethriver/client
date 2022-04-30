@@ -4,7 +4,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/incomedetails.css";
 import { deleteIncomeByID } from "./../../api/api";
-import { getIncomeByIdTrunk, updateIncomeByIdTrunk } from "./incomeDetailsSlice";
+import {
+  getIncomeByIdTrunk,
+  updateIncomeByIdTrunk,
+} from "./incomeDetailsSlice";
 
 export const IncomeDetails = () => {
   const token = localStorage.getItem("token");
@@ -14,6 +17,7 @@ export const IncomeDetails = () => {
   const { dataIncomeById, loading } = useSelector(
     (state) => state.getIncomeByID
   );
+  console.log(dataIncomeById, loading);
   useEffect(() => {
     dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
   }, [dispatch, params.incomeId, token]);
@@ -54,13 +58,13 @@ export const IncomeDetails = () => {
           incomeId: params.incomeId,
         })
       ).unwrap();
-      removeEditMode()
+      removeEditMode();
       navigate("/dashboard");
     } catch (error) {
       throw error;
     }
   };
-  
+
   const onClickDelete = async () => {
     console.log("Delete");
     try {
