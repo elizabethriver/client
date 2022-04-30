@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getExpenseByID, putExpenseByID } from "../../api/api";
+import {
+  getExpenseByID,
+  deleteExpenseByID,
+  putExpenseByID,
+} from "../../api/api";
 const initialState = {
   dataExpenseById: [],
   loading: false,
   docUpdateById: [],
+  deleteDocUpdateById: [],
 };
 
 export const getExpenseByIdTrunk = createAsyncThunk(
@@ -30,12 +35,24 @@ export const updateExpenseByIdTrunk = createAsyncThunk(
       const { docUpdate } = response.data;
       return docUpdate;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       throw error;
     }
   }
 );
-
+export const deleteExpenseByIdTrunk = createAsyncThunk(
+  "deleteExpenseById/api",
+  async (dataExpenseByID) => {
+    const { token, expenseId } = dataExpenseByID;
+    try {
+      const response = await deleteExpenseByID(token, expenseId);
+      const { mssg } = response.data;
+      return mssg;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
 const expenseDetailsSlice = createSlice({
   name: "getExpenseByIdTrunk",
   initialState,
@@ -70,6 +87,22 @@ const expenseDetailsSlice = createSlice({
     });
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(updateExpenseByIdTrunk.rejected, (state) => {
+      // Add user to the state array
+      state.loading = false;
+    });
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(deleteExpenseByIdTrunk.pending, (state) => {
+      // Add user to the state array
+      state.loading = true;
+    });
+    // // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(deleteExpenseByIdTrunk.fulfilled, (state, action) => {
+      // Add user to the state array
+      console.log(action.payload)
+      state.deleteDocUpdateById = action.payload;
+    });
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(deleteExpenseByIdTrunk.rejected, (state) => {
       // Add user to the state array
       state.loading = false;
     });
