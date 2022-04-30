@@ -81,7 +81,7 @@ export const ExpenseDetails = () => {
       document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
       removeEditMode();
       setTimeout(() => {
-        navigate("/expense");
+        navigate("/dashboard");
       }, 2000);
     } catch (error) {
       document.getElementById("mssgIncorrectTyping").innerHTML =

@@ -77,7 +77,7 @@ export const IncomeDetails = () => {
       document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
       removeEditMode();
       setTimeout(() => {
-        navigate("/income");
+        navigate("/dashboard");
       }, 2000);
     } catch (error) {
       document.getElementById("mssgIncorrectTyping").innerHTML =
