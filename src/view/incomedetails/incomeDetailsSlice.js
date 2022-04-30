@@ -3,7 +3,7 @@ import { getIncomeByID, putIncomeByID } from "../../api/api";
 const initialState = {
   dataIncomeById: [],
   loading: false,
-  docUpdateById: []
+  docUpdateById: [],
 };
 
 export const getIncomeByIdTrunk = createAsyncThunk(
@@ -27,7 +27,7 @@ export const updateIncomeByIdTrunk = createAsyncThunk(
     try {
       const response = await putIncomeByID(token, product, income, incomeId);
       console.log(response.data);
-      const {docUpdate} = response.data
+      const { docUpdate } = response.data;
       return docUpdate;
     } catch (error) {
       throw error;
