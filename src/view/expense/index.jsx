@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { expense } from "../../api/api";
+import { useDispatch } from "react-redux";
+import { expensePostTrunk } from './expenseSlide';
+
 export const Expense = () => {
   const token = localStorage.getItem("token");
   const [inputsExpense, setInputsExpense] = useState({
     product: "",
     expense: "",
   });
-
+  const dispatch = useDispatch();
   const onChangeInputsForm = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -14,14 +16,14 @@ export const Expense = () => {
   };
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    let response;
     try {
-      response = await expense(
-        token,
-        inputsExpense.product,
-        parseInt(inputsExpense.expense)
-      );
-      console.log(response.data);
+      await dispatch(
+        expensePostTrunk({
+          token,
+          product: inputsExpense.product.trim(),
+          expense: parseInt(inputsExpense.expense),
+        })
+      ).unwrap();
       setInputsExpense({ product: "", expense: "" });
       document.getElementById("mssgIncorrectTyping").innerHTML = "Item added";
       setTimeout(() => {
