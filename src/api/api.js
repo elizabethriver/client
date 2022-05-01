@@ -78,7 +78,7 @@ export const incomePost = async (token, product, income) => {
   }
 };
 
-export const expense = async (token, product, expense) => {
+export const expensePost = async (token, product, expense) => {
   try {
     const data = {
       product,
