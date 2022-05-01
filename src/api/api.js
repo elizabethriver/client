@@ -55,7 +55,7 @@ export const dashboard = async (token) => {
   }
 };
 
-export const income = async (token, product, income) => {
+export const incomePost = async (token, product, income) => {
   try {
     const data = {
       product,

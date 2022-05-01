@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { income } from "../../api/api";
+import { useDispatch } from "react-redux";
 import "./style/income.css";
+import { incomePostTrunk } from "./incomeSlide";
 
 export const Income = () => {
   const token = localStorage.getItem("token");
   const [inputsIncome, setInputsIncome] = useState({ product: "", income: "" });
-
+  const dispatch = useDispatch();
   const onChangeInputsForm = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -13,14 +14,14 @@ export const Income = () => {
   };
   const onSubmitForm = async (e) => {
     e.preventDefault();
-    let response;
     try {
-      response = await income(
-        token,
-        inputsIncome.product,
-        parseInt(inputsIncome.income)
-      );
-      console.log(response.data);
+      await dispatch(
+        incomePostTrunk({
+          token,
+          product: inputsIncome.product.trim(),
+          income: parseInt(inputsIncome.income),
+        })
+      ).unwrap();
       setInputsIncome({ product: "", income: "" });
       document.getElementById("mssgIncorrectTyping").innerHTML = "Item added";
       setTimeout(() => {
