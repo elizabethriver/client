@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useParams, useNavigate, Navigate} from "react-router-dom";
+import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/expensedetails.css";
 import {
@@ -7,7 +7,7 @@ import {
   updateExpenseByIdTrunk,
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
-import { getKeyFromLocalStorage } from "../../utils/utils";
+import { getKeyFromLocalStorage, redirectingRoute, RedirectingRoute, sendMsg } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 
@@ -81,23 +81,21 @@ export const ExpenseDetails = () => {
           expenseId: params.expenseId,
         })
       ).unwrap();
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
+      sendMsg("mssgIncorrectTyping", "Deleting");
       removeEditMode();
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
     } catch (error) {
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Error with deleting";
+      sendMsg("mssgIncorrectTyping", "Error with deleting");
       throw error;
     }
-    
   };
   if (!token) {
     return <AuthNoLogged />;
   }
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
   return (
     <div>

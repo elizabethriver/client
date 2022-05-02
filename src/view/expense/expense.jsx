@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getKeyFromLocalStorage } from "../../utils/utils";
+import { cleanMsg, getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { expensePostTrunk } from './expenseSlide';
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 
@@ -27,13 +27,10 @@ export const Expense = () => {
         })
       ).unwrap();
       setInputsExpense({ product: "", expense: "" });
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Item added";
-      setTimeout(() => {
-        document.getElementById("mssgIncorrectTyping").innerHTML = "";
-      }, 2000);
+      sendMsg('mssgIncorrectTyping', 'Item added')
+      cleanMsg(2000)
     } catch (error) {
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Item with name is duplicated";
+      sendMsg('mssgIncorrectTyping', "Item with name is duplicated")
     }
   };
   if (!token) {

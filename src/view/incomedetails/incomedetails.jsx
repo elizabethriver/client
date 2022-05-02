@@ -9,7 +9,6 @@ import {
   deleteIncomeByIdTrunk,
 } from "./incomeDetailsSlice";
 import { getKeyFromLocalStorage } from "../../utils/utils";
-import { Navigate } from 'react-router-dom';
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 
