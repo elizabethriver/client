@@ -7,7 +7,7 @@ import {
 } from "./dashboardSlice";
 import { Items } from "../../components/item/items";
 import "./style/dashboard.css";
-import { getKeyFromLocalStorage, getName, getToken } from "../../utils/utils";
+import { getKeyFromLocalStorage } from "../../utils/utils";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
