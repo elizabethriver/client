@@ -12,17 +12,3 @@ export const getKeyFromLocalStorage = (key) => {
 
 }
 
-export const setToken = (token) => {
-    return localStorage.setItem("token", token);
-}
-export const getToken = (token) => {
-    return localStorage.getItem(token);
-
-}
-export const setName = (name) => {
-    return localStorage.setItem("name", name);
-}
-export const getName = (name) => {
-    return localStorage.getItem(name);
-
-}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./style/register.css";
 import { axiosRegister } from "./registerSlice";
 import { useDispatch } from "react-redux";
-import { setName } from "../../utils/utils";
+import { setKeyFromLocalStorage } from "../../utils/utils";
 
 export const Register = () => {
   
@@ -40,7 +40,7 @@ export const Register = () => {
       ).unwrap();
       // handle result here
       const { name } = response.registerUser;
-      setName(name)
+      setKeyFromLocalStorage("name", name)
       setInputsRegister({
         name: "",
         email: "",

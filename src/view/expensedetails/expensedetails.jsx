@@ -7,11 +7,11 @@ import {
   updateExpenseByIdTrunk,
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
-import { getToken } from "../../utils/utils";
+import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 
 export const ExpenseDetails = () => {
-  const token = getToken("token");
+  const token = getKeyFromLocalStorage("token");
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();

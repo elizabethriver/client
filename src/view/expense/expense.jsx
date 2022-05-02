@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getToken } from "../../utils/utils";
+import { getKeyFromLocalStorage } from "../../utils/utils";
 import { expensePostTrunk } from './expenseSlide';
 import { Navigate } from 'react-router-dom';
 
 export const Expense = () => {
-  const token = getToken('token');
+  const token = getKeyFromLocalStorage('token');
   const [inputsExpense, setInputsExpense] = useState({
     product: "",
     expense: "",

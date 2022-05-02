@@ -8,12 +8,12 @@ import {
   updateIncomeByIdTrunk,
   deleteIncomeByIdTrunk,
 } from "./incomeDetailsSlice";
-import { getToken } from "../../utils/utils";
+import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Navigate } from 'react-router-dom';
 import { Loading } from "../../components/loading/loading";
 
 export const IncomeDetails = () => {
-  const token = getToken("token");
+  const token = getKeyFromLocalStorage("token");
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
