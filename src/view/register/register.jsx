@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./style/register.css";
 import { axiosRegister } from "./registerSlice";
 import { useDispatch } from "react-redux";
-import { setKeyFromLocalStorage } from "../../utils/utils";
+import { sendMsg, setKeyFromLocalStorage } from "../../utils/utils";
 
 export const Register = () => {
   
@@ -47,16 +47,13 @@ export const Register = () => {
         password: "",
         confirmPassword: "",
       });
-      document.getElementById(
-        "mssgIncorrectTyping"
-      ).innerHTML = `${name}Your are register`;
+      sendMsg("mssgIncorrectTyping", `${name}Your are register`)
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (error) {
       // handle error here
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Please verify your inputs";
+      sendMsg("mssgIncorrectTyping","Please verify your inputs")
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";
       }, 2000);

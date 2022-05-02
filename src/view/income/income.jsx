@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
-import { getKeyFromLocalStorage } from "../../utils/utils";
-import { Navigate } from 'react-router-dom';
+import { cleanMsg, getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 
 export const Income = () => {
@@ -26,13 +25,10 @@ export const Income = () => {
         })
       ).unwrap();
       setInputsIncome({ product: "", income: "" });
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Item added";
-      setTimeout(() => {
-        document.getElementById("mssgIncorrectTyping").innerHTML = "";
-      }, 2000);
+      sendMsg("mssgIncorrectTyping", "Item added")
+      cleanMsg(2000);
     } catch (error) {
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Item with name is duplicated";
+      sendMsg("mssgIncorrectTyping", "Item with name is duplicated")
     }
   };
   if (!token) {
