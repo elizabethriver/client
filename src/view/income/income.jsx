@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
 import { cleanMsg, getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
-import { FormOfProduct } from "../../components/formOfProduct/formOfProduct";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 
 export const Income = () => {
@@ -36,11 +35,6 @@ export const Income = () => {
   return (
     <section>
       income
-      {/* <FormOfProduct
-      onSubmit={onSubmitForm}
-      onChangeInputsForm={onChangeInputsForm}
-      inputsIncome={inputsForm}
-      /> */}
       <form onSubmit={onSubmitForm}>
         <fieldset>
           <label htmlFor="product">

@@ -7,9 +7,13 @@ import {
   updateExpenseByIdTrunk,
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
-import { getKeyFromLocalStorage, redirectingRoute, RedirectingRoute, sendMsg } from "../../utils/utils";
+import {
+  getKeyFromLocalStorage,
+  sendMsg,
+} from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -28,11 +32,9 @@ export const ExpenseDetails = () => {
   useEffect(() => {
     initFetch();
   }, [initFetch]);
-
-  const [inputsEditMode, setInputsEditMode] = useState({
-    product: "",
-    expense: "",
-  });
+  const product = { product: "", expense: "" };
+  const { inputsForm, setInputsForm, onChangeInputsForm } =
+    HooksFormOfProducts(product);
   const [editState, setEditState] = useState(false);
   const editMode = () => {
     setEditState(!editState);
@@ -40,20 +42,10 @@ export const ExpenseDetails = () => {
   const removeEditMode = () => {
     setEditState(false);
   };
-  const onChangeHandlerInputs = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputsEditMode({
-      ...inputsEditMode,
-      [name]: value,
-    });
-  };
-
   const dataToUpdate = {
-    product: inputsEditMode.product,
-    expense: parseInt(inputsEditMode.expense),
+    product: inputsForm.product,
+    expense: parseInt(inputsForm.expense),
   };
-
   const submitUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -65,6 +57,7 @@ export const ExpenseDetails = () => {
           expenseId: params.expenseId,
         })
       ).unwrap();
+      setInputsForm(product)
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
@@ -107,8 +100,8 @@ export const ExpenseDetails = () => {
               type="text"
               name="product"
               placeholder={dataExpenseById.product}
-              onChange={onChangeHandlerInputs}
-              value={inputsEditMode.product}
+              onChange={onChangeInputsForm}
+              value={inputsForm.product}
               required
               pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
               title="Just type letters is allowed"
@@ -117,8 +110,8 @@ export const ExpenseDetails = () => {
               type="text"
               name="expense"
               placeholder={dataExpenseById.expense}
-              onChange={onChangeHandlerInputs}
-              value={inputsEditMode.expense}
+              onChange={onChangeInputsForm}
+              value={inputsForm.expense}
               required
               pattern="^[0-9]+$"
               title="Just type number is allowed"

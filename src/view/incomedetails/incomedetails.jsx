@@ -11,6 +11,7 @@ import {
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 
 export const IncomeDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -23,11 +24,9 @@ export const IncomeDetails = () => {
   useEffect(() => {
     dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
   }, [dispatch, params.incomeId, token]);
-
-  const [inputsEditMode, setInputsEditMode] = useState({
-    product: "",
-    income: "",
-  });
+  const product = { product: "", income: "" };
+  const { inputsForm, setInputsForm, onChangeInputsForm } =
+    HooksFormOfProducts(product);
   const [editState, setEditState] = useState(false);
   const editMode = () => {
     setEditState(!editState);
@@ -35,20 +34,10 @@ export const IncomeDetails = () => {
   const removeEditMode = () => {
     setEditState(false);
   };
-  const onChangeHandlerInputs = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputsEditMode({
-      ...inputsEditMode,
-      [name]: value,
-    });
-  };
-
   const dataToUpdate = {
-    product: inputsEditMode.product,
-    income: parseInt(inputsEditMode.income),
+    product: inputsForm.product,
+    income: parseInt(inputsForm.income),
   };
-
   const submitUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -60,6 +49,7 @@ export const IncomeDetails = () => {
           incomeId: params.incomeId,
         })
       ).unwrap();
+      setInputsForm(product);
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
@@ -89,10 +79,10 @@ export const IncomeDetails = () => {
     }
   };
   if (!token) {
-    return <AuthNoLogged/>;
+    return <AuthNoLogged />;
   }
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
   }
   return (
     <div>
@@ -104,8 +94,8 @@ export const IncomeDetails = () => {
               type="text"
               name="product"
               placeholder={dataIncomeById.product}
-              onChange={onChangeHandlerInputs}
-              value={inputsEditMode.product}
+              onChange={onChangeInputsForm}
+              value={inputsForm.product}
               required
               pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
               title="Just type letters is allowed"
@@ -114,8 +104,8 @@ export const IncomeDetails = () => {
               type="text"
               name="income"
               placeholder={dataIncomeById.income}
-              onChange={onChangeHandlerInputs}
-              value={inputsEditMode.income}
+              onChange={onChangeInputsForm}
+              value={inputsForm.income}
               required
               pattern="^[0-9]+$"
               title="Just type number is allowed"
