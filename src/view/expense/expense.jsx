@@ -1,28 +1,32 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./style/income.css";
-import { incomePostTrunk } from "./incomeSlide";
+import { getToken } from "../../utils/utils";
+import { expensePostTrunk } from './expenseSlide';
+import { Navigate } from 'react-router-dom';
 
-export const Income = () => {
-  const token = localStorage.getItem("token");
-  const [inputsIncome, setInputsIncome] = useState({ product: "", income: "" });
+export const Expense = () => {
+  const token = getToken('token');
+  const [inputsExpense, setInputsExpense] = useState({
+    product: "",
+    expense: "",
+  });
   const dispatch = useDispatch();
   const onChangeInputsForm = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setInputsIncome({ ...inputsIncome, [name]: value });
+    setInputsExpense({ ...inputsExpense, [name]: value });
   };
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       await dispatch(
-        incomePostTrunk({
+        expensePostTrunk({
           token,
-          product: inputsIncome.product.trim(),
-          income: parseInt(inputsIncome.income),
+          product: inputsExpense.product.trim(),
+          expense: parseInt(inputsExpense.expense),
         })
       ).unwrap();
-      setInputsIncome({ product: "", income: "" });
+      setInputsExpense({ product: "", expense: "" });
       document.getElementById("mssgIncorrectTyping").innerHTML = "Item added";
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";
@@ -32,9 +36,12 @@ export const Income = () => {
         "Item with name is duplicated";
     }
   };
+  if (!token) {
+    return <Navigate to="/" />;
+  } else {
   return (
     <section>
-      income
+      expense
       <form onSubmit={onSubmitForm}>
         <fieldset>
           <label htmlFor="product">
@@ -44,19 +51,19 @@ export const Income = () => {
               name="product"
               placeholder="add your product"
               onChange={onChangeInputsForm}
-              value={inputsIncome.product}
+              value={inputsExpense.product}
               required
               pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
               title="Just type letters is allowed"
             />
           </label>
-          <label htmlFor="income">
-            Income
+          <label htmlFor="expense">
+            Expense
             <input
               type="text"
-              name="income"
-              placeholder="add your income"
-              value={inputsIncome.income}
+              name="expense"
+              placeholder="add your expense"
+              value={inputsExpense.expense}
               onChange={onChangeInputsForm}
               required
               pattern="^[0-9]+$"
@@ -68,5 +75,7 @@ export const Income = () => {
         <small id="mssgIncorrectTyping" />
       </form>
     </section>
-  );
+  );    
+  }
+
 };

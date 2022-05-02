@@ -8,9 +8,10 @@ import {
   updateIncomeByIdTrunk,
   deleteIncomeByIdTrunk,
 } from "./incomeDetailsSlice";
+import { getToken } from "../../utils/utils";
 
 export const IncomeDetails = () => {
-  const token = localStorage.getItem("token");
+  const token = getToken("token");
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();

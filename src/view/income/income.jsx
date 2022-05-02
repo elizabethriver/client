@@ -1,30 +1,29 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { expensePostTrunk } from './expenseSlide';
+import "./style/income.css";
+import { incomePostTrunk } from "./incomeSlide";
+import { getToken } from "../../utils/utils";
 
-export const Expense = () => {
-  const token = localStorage.getItem("token");
-  const [inputsExpense, setInputsExpense] = useState({
-    product: "",
-    expense: "",
-  });
+export const Income = () => {
+  const token = getToken('token');
+  const [inputsIncome, setInputsIncome] = useState({ product: "", income: "" });
   const dispatch = useDispatch();
   const onChangeInputsForm = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setInputsExpense({ ...inputsExpense, [name]: value });
+    setInputsIncome({ ...inputsIncome, [name]: value });
   };
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       await dispatch(
-        expensePostTrunk({
+        incomePostTrunk({
           token,
-          product: inputsExpense.product.trim(),
-          expense: parseInt(inputsExpense.expense),
+          product: inputsIncome.product.trim(),
+          income: parseInt(inputsIncome.income),
         })
       ).unwrap();
-      setInputsExpense({ product: "", expense: "" });
+      setInputsIncome({ product: "", income: "" });
       document.getElementById("mssgIncorrectTyping").innerHTML = "Item added";
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";
@@ -34,9 +33,11 @@ export const Expense = () => {
         "Item with name is duplicated";
     }
   };
+  
+
   return (
     <section>
-      expense
+      income
       <form onSubmit={onSubmitForm}>
         <fieldset>
           <label htmlFor="product">
@@ -46,19 +47,19 @@ export const Expense = () => {
               name="product"
               placeholder="add your product"
               onChange={onChangeInputsForm}
-              value={inputsExpense.product}
+              value={inputsIncome.product}
               required
               pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
               title="Just type letters is allowed"
             />
           </label>
-          <label htmlFor="expense">
-            Expense
+          <label htmlFor="income">
+            Income
             <input
               type="text"
-              name="expense"
-              placeholder="add your expense"
-              value={inputsExpense.expense}
+              name="income"
+              placeholder="add your income"
+              value={inputsIncome.income}
               onChange={onChangeInputsForm}
               required
               pattern="^[0-9]+$"

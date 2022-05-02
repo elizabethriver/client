@@ -7,9 +7,10 @@ import {
   updateExpenseByIdTrunk,
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
+import { getToken } from "../../utils/utils";
 
 export const ExpenseDetails = () => {
-  const token = localStorage.getItem("token");
+  const token = getToken("token");
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
