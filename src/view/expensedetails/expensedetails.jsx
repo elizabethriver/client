@@ -9,6 +9,7 @@ import {
 } from "./expenseDetailsSlice";
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
+import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -93,7 +94,7 @@ export const ExpenseDetails = () => {
     
   };
   if (!token) {
-    return <Navigate to="/" />;
+    return <AuthNoLogged />;
   }
   if (loading) {
     return <Loading/>;

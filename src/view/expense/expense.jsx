@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { expensePostTrunk } from './expenseSlide';
-import { Navigate } from 'react-router-dom';
+import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 
 export const Expense = () => {
   const token = getKeyFromLocalStorage('token');
@@ -37,7 +37,7 @@ export const Expense = () => {
     }
   };
   if (!token) {
-    return <Navigate to="/" />;
+    return <AuthNoLogged />;
   }
   return (
     <section>

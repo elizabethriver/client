@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useContext } from "react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   incomeAllAxiosDashboard,
@@ -9,6 +9,7 @@ import { Items } from "../../components/item/items";
 import "./style/dashboard.css";
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
+import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
@@ -27,7 +28,7 @@ export const Dashboard = () => {
   }, [initFetch]);
 
   if (!token) {
-    return <Navigate to="/" />;
+    return <AuthNoLogged/>;
   }
   if (loading) return <Loading/>;
   return (

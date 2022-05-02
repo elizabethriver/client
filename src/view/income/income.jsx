@@ -4,6 +4,7 @@ import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Navigate } from 'react-router-dom';
+import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 
 export const Income = () => {
   const token = getKeyFromLocalStorage('token');
@@ -35,7 +36,7 @@ export const Income = () => {
     }
   };
   if (!token) {
-    return <Navigate to="/" />;
+    return <AuthNoLogged />;
   }
   return (
     <section>
