@@ -4,31 +4,31 @@ import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
 import { cleanMsg, getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { FormOfProduct } from "../../components/formOfProduct/formOfProduct";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 
 export const Income = () => {
-  const token = getKeyFromLocalStorage('token');
-  const [inputsIncome, setInputsIncome] = useState({ product: "", income: "" });
+  const token = getKeyFromLocalStorage("token");
+  const product = { product: "", income: "" };
+  const { inputsForm, setInputsForm, onChangeInputsForm } =
+    HooksFormOfProducts(product);
   const dispatch = useDispatch();
-  const onChangeInputsForm = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputsIncome({ ...inputsIncome, [name]: value });
-  };
+
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       await dispatch(
         incomePostTrunk({
           token,
-          product: inputsIncome.product.trim(),
-          income: parseInt(inputsIncome.income),
+          product: inputsForm.product.trim(),
+          income: parseInt(inputsForm.income),
         })
       ).unwrap();
-      setInputsIncome({ product: "", income: "" });
-      sendMsg("mssgIncorrectTyping", "Item added")
+      setInputsForm({ product: "", income: "" });
+      sendMsg("mssgIncorrectTyping", "Item added");
       cleanMsg(2000);
     } catch (error) {
-      sendMsg("mssgIncorrectTyping", "Item with name is duplicated")
+      sendMsg("mssgIncorrectTyping", "Item with name is duplicated");
     }
   };
   if (!token) {
@@ -37,6 +37,11 @@ export const Income = () => {
   return (
     <section>
       income
+      {/* <FormOfProduct
+      onSubmit={onSubmitForm}
+      onChangeInputsForm={onChangeInputsForm}
+      inputsIncome={inputsForm}
+      /> */}
       <form onSubmit={onSubmitForm}>
         <fieldset>
           <label htmlFor="product">
@@ -46,7 +51,7 @@ export const Income = () => {
               name="product"
               placeholder="add your product"
               onChange={onChangeInputsForm}
-              value={inputsIncome.product}
+              value={inputsForm.product}
               required
               pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
               title="Just type letters is allowed"
@@ -58,7 +63,7 @@ export const Income = () => {
               type="text"
               name="income"
               placeholder="add your income"
-              value={inputsIncome.income}
+              value={inputsForm.income}
               onChange={onChangeInputsForm}
               required
               pattern="^[0-9]+$"
