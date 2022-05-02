@@ -10,6 +10,7 @@ import {
 } from "./incomeDetailsSlice";
 import { getToken } from "../../utils/utils";
 import { Navigate } from 'react-router-dom';
+import { Loading } from "../../components/loading/loading";
 
 export const IncomeDetails = () => {
   const token = getToken("token");
@@ -91,7 +92,7 @@ export const IncomeDetails = () => {
     return <Navigate to="/" />;
   }
   if (loading) {
-    return <p>Loading</p>;
+    return <Loading/>;
   }
   return (
     <div>

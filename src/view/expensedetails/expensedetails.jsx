@@ -8,6 +8,7 @@ import {
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
 import { getToken } from "../../utils/utils";
+import { Loading } from "../../components/loading/loading";
 
 export const ExpenseDetails = () => {
   const token = getToken("token");
@@ -95,7 +96,7 @@ export const ExpenseDetails = () => {
     return <Navigate to="/" />;
   }
   if (loading) {
-    return <p>Loading</p>;
+    return <Loading/>;
   }
   return (
     <div>

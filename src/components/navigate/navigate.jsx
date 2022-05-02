@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import "./navigate.css";
+import "./style/navigate.css";
 
 export const Navigate = () => {
   return (

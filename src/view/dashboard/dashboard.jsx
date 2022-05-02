@@ -8,6 +8,7 @@ import {
 import { Items } from "../../components/item/items";
 import "./style/dashboard.css";
 import { getKeyFromLocalStorage } from "../../utils/utils";
+import { Loading } from "../../components/loading/loading";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
@@ -28,7 +29,7 @@ export const Dashboard = () => {
   if (!token) {
     return <Navigate to="/" />;
   }
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading/>;
   return (
     <div>
       dashboard {nameUserSet}
