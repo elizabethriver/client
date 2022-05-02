@@ -1,34 +1,31 @@
-import React, { useState, useCallback, useEffect } from "react";
+/* eslint-disable no-useless-escape */
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "./style/expensedetails.css";
+import "./style/incomedetails.css";
 import {
-  getExpenseByIdTrunk,
-  updateExpenseByIdTrunk,
-  deleteExpenseByIdTrunk,
-} from "./expenseDetailsSlice";
+  getIncomeByIdTrunk,
+  updateIncomeByIdTrunk,
+  deleteIncomeByIdTrunk,
+} from "./incomeDetailsSlice";
+import { getToken } from "../../utils/utils";
+import { Navigate } from 'react-router-dom';
 
-export const ExpenseDetails = () => {
-  const token = localStorage.getItem("token");
+export const IncomeDetails = () => {
+  const token = getToken("token");
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const { dataExpenseById, loading, docUpdateById, deleteDocUpdateById } =
-    useSelector((state) => state.getExpenseByID);
-  console.log(dataExpenseById, loading, docUpdateById, deleteDocUpdateById);
-  const initFetch = useCallback(() => {
-    dispatch(
-      getExpenseByIdTrunk({ token: token, expenseId: params.expenseId })
-    );
-  }, [dispatch, params.expenseId, token]);
-
+  const { dataIncomeById, loading } = useSelector(
+    (state) => state.getIncomeByID
+  );
   useEffect(() => {
-    initFetch();
-  }, [initFetch]);
+    dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
+  }, [dispatch, params.incomeId, token]);
 
   const [inputsEditMode, setInputsEditMode] = useState({
     product: "",
-    expense: "",
+    income: "",
   });
   const [editState, setEditState] = useState(false);
   const editMode = () => {
@@ -48,18 +45,18 @@ export const ExpenseDetails = () => {
 
   const dataToUpdate = {
     product: inputsEditMode.product,
-    expense: parseInt(inputsEditMode.expense),
+    income: parseInt(inputsEditMode.income),
   };
 
   const submitUpdate = async (e) => {
     e.preventDefault();
     try {
       dispatch(
-        updateExpenseByIdTrunk({
+        updateIncomeByIdTrunk({
           token: token,
           product: dataToUpdate.product,
-          expense: dataToUpdate.expense,
-          expenseId: params.expenseId,
+          income: dataToUpdate.income,
+          incomeId: params.incomeId,
         })
       ).unwrap();
       removeEditMode();
@@ -70,12 +67,13 @@ export const ExpenseDetails = () => {
   };
 
   const onClickDelete = async () => {
+    console.log("Delete");
     try {
       console.log();
       dispatch(
-        deleteExpenseByIdTrunk({
+        deleteIncomeByIdTrunk({
           token: token,
-          expenseId: params.expenseId,
+          incomeId: params.incomeId,
         })
       ).unwrap();
       document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
@@ -88,21 +86,23 @@ export const ExpenseDetails = () => {
         "Error with deleting";
       throw error;
     }
-    
   };
+  if (!token) {
+    return <Navigate to="/" />;
+  }
   if (loading) {
     return <p>Loading</p>;
   }
   return (
     <div>
-      expenseDetails {params.expenseId}
+      IncomeDetails {params.incomeId}
       <div>
         {editState ? (
           <form onSubmit={submitUpdate}>
             <input
               type="text"
               name="product"
-              placeholder={dataExpenseById.product}
+              placeholder={dataIncomeById.product}
               onChange={onChangeHandlerInputs}
               value={inputsEditMode.product}
               required
@@ -111,10 +111,10 @@ export const ExpenseDetails = () => {
             />
             <input
               type="text"
-              name="expense"
-              placeholder={dataExpenseById.expense}
+              name="income"
+              placeholder={dataIncomeById.income}
               onChange={onChangeHandlerInputs}
-              value={inputsEditMode.expense}
+              value={inputsEditMode.income}
               required
               pattern="^[0-9]+$"
               title="Just type number is allowed"
@@ -124,14 +124,14 @@ export const ExpenseDetails = () => {
           </form>
         ) : (
           <div>
-            <span>{dataExpenseById.product}</span>
-            <strong>${dataExpenseById.expense}</strong>
+            <span>{dataIncomeById.product}</span>
+            <strong>${dataIncomeById.income}</strong>
             <button onClick={editMode}>Update</button>
           </div>
         )}
       </div>
-      <small id="mssgIncorrectTyping"></small>
       <button onClick={onClickDelete}>Delete</button>
+      <small id="mssgIncorrectTyping"></small>
     </div>
   );
 };

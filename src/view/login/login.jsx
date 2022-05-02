@@ -3,6 +3,7 @@ import "./style/login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { axiosLogin } from "./loginslide";
+import { setToken } from "../../utils/utils";
 
 export const Login = () => {
   const [inputForm, setInputForm] = useState({ email: "", password: "" });
@@ -33,7 +34,8 @@ export const Login = () => {
       ).unwrap();
       // handle result here
       const { token } = response;
-      localStorage.setItem("token", token);
+      console.log(token)
+      setToken(token)
       setInputForm({ email: "", password: "" });
       document.getElementById("mssgIncorrectTyping").innerHTML = "Welcome";
       setTimeout(() => {

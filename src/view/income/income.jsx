@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
+import { getToken } from "../../utils/utils";
+import { Navigate } from 'react-router-dom';
 
 export const Income = () => {
-  const token = localStorage.getItem("token");
+  const token = getToken('token');
   const [inputsIncome, setInputsIncome] = useState({ product: "", income: "" });
   const dispatch = useDispatch();
   const onChangeInputsForm = (e) => {
@@ -32,6 +34,9 @@ export const Income = () => {
         "Item with name is duplicated";
     }
   };
+  if (!token) {
+    return <Navigate to="/" />;
+  }
   return (
     <section>
       income

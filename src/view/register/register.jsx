@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./style/register.css";
 import { axiosRegister } from "./registerSlice";
 import { useDispatch } from "react-redux";
+import { setName } from "../../utils/utils";
 
 export const Register = () => {
+  
   const [inputsRegister, setInputsRegister] = useState({
     name: "",
     email: "",
@@ -16,7 +18,7 @@ export const Register = () => {
   let navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/login");
+    navigate("/");
   };
 
   const onchangeHandler = (e) => {
@@ -38,7 +40,7 @@ export const Register = () => {
       ).unwrap();
       // handle result here
       const { name } = response.registerUser;
-      localStorage.setItem("nameUser", name);
+      setName(name)
       setInputsRegister({
         name: "",
         email: "",
@@ -49,7 +51,7 @@ export const Register = () => {
         "mssgIncorrectTyping"
       ).innerHTML = `${name}Your are register`;
       setTimeout(() => {
-        navigate("/login");
+        navigate("/");
       }, 2000);
     } catch (error) {
       // handle error here

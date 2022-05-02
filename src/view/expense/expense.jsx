@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { getToken } from "../../utils/utils";
 import { expensePostTrunk } from './expenseSlide';
+import { Navigate } from 'react-router-dom';
 
 export const Expense = () => {
-  const token = localStorage.getItem("token");
+  const token = getToken('token');
   const [inputsExpense, setInputsExpense] = useState({
     product: "",
     expense: "",
@@ -34,6 +36,9 @@ export const Expense = () => {
         "Item with name is duplicated";
     }
   };
+  if (!token) {
+    return <Navigate to="/" />;
+  }
   return (
     <section>
       expense
@@ -70,5 +75,5 @@ export const Expense = () => {
         <small id="mssgIncorrectTyping" />
       </form>
     </section>
-  );
-};
+  );    
+  };
