@@ -13,7 +13,6 @@ export const Income = () => {
   const { inputsForm, setInputsForm, onChangeInputsForm } =
     HooksFormOfProducts(product);
   const dispatch = useDispatch();
-
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
@@ -24,7 +23,7 @@ export const Income = () => {
           income: parseInt(inputsForm.income),
         })
       ).unwrap();
-      setInputsForm({ product: "", income: "" });
+      setInputsForm(product);
       sendMsg("mssgIncorrectTyping", "Item added");
       cleanMsg(2000);
     } catch (error) {

@@ -3,30 +3,25 @@ import { useDispatch } from "react-redux";
 import { cleanMsg, getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { expensePostTrunk } from './expenseSlide';
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 
 export const Expense = () => {
   const token = getKeyFromLocalStorage('token');
-  const [inputsExpense, setInputsExpense] = useState({
-    product: "",
-    expense: "",
-  });
+  const product = { product: "", expense: "" };
+  const { inputsForm, setInputsForm, onChangeInputsForm } =
+  HooksFormOfProducts(product);
   const dispatch = useDispatch();
-  const onChangeInputsForm = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputsExpense({ ...inputsExpense, [name]: value });
-  };
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       await dispatch(
         expensePostTrunk({
           token,
-          product: inputsExpense.product.trim(),
-          expense: parseInt(inputsExpense.expense),
+          product: inputsForm.product.trim(),
+          expense: parseInt(inputsForm.expense),
         })
       ).unwrap();
-      setInputsExpense({ product: "", expense: "" });
+      setInputsForm(product);
       sendMsg('mssgIncorrectTyping', 'Item added')
       cleanMsg(2000)
     } catch (error) {
@@ -48,7 +43,7 @@ export const Expense = () => {
               name="product"
               placeholder="add your product"
               onChange={onChangeInputsForm}
-              value={inputsExpense.product}
+              value={inputsForm.product}
               required
               pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
               title="Just type letters is allowed"
@@ -60,7 +55,7 @@ export const Expense = () => {
               type="text"
               name="expense"
               placeholder="add your expense"
-              value={inputsExpense.expense}
+              value={inputsForm.expense}
               onChange={onChangeInputsForm}
               required
               pattern="^[0-9]+$"
