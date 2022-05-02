@@ -9,6 +9,7 @@ import {
   deleteIncomeByIdTrunk,
 } from "./incomeDetailsSlice";
 import { getToken } from "../../utils/utils";
+import { Navigate } from 'react-router-dom';
 
 export const IncomeDetails = () => {
   const token = getToken("token");
@@ -86,7 +87,9 @@ export const IncomeDetails = () => {
       throw error;
     }
   };
-
+  if (!token) {
+    return <Navigate to="/" />;
+  }
   if (loading) {
     return <p>Loading</p>;
   }

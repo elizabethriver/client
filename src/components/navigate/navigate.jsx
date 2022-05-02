@@ -4,7 +4,7 @@ import "./navigate.css";
 
 export const Navigate = () => {
   return (
-    <div>
+    <header>
       <nav>
         <li>
           <Link to="/">Login</Link>
@@ -14,6 +14,6 @@ export const Navigate = () => {
         </li>
       </nav>
       <Outlet />
-    </div>
+    </header>
   );
 };

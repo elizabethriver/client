@@ -38,7 +38,7 @@ export const Expense = () => {
   };
   if (!token) {
     return <Navigate to="/" />;
-  } else {
+  }
   return (
     <section>
       expense
@@ -76,6 +76,4 @@ export const Expense = () => {
       </form>
     </section>
   );    
-  }
-
-};
+  };

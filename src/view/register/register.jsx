@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./style/register.css";
 import { axiosRegister } from "./registerSlice";
 import { useDispatch } from "react-redux";
-import { getName, setName } from "../../utils/utils";
+import { setName } from "../../utils/utils";
 
 export const Register = () => {
   

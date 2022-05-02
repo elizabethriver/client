@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Navigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/expensedetails.css";
 import {
@@ -91,6 +91,9 @@ export const ExpenseDetails = () => {
     }
     
   };
+  if (!token) {
+    return <Navigate to="/" />;
+  }
   if (loading) {
     return <p>Loading</p>;
   }

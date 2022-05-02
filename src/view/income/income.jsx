@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
 import { getToken } from "../../utils/utils";
+import { Navigate } from 'react-router-dom';
 
 export const Income = () => {
   const token = getToken('token');
@@ -33,8 +34,9 @@ export const Income = () => {
         "Item with name is duplicated";
     }
   };
-  
-
+  if (!token) {
+    return <Navigate to="/" />;
+  }
   return (
     <section>
       income
