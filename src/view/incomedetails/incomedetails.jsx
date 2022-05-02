@@ -8,10 +8,11 @@ import {
   updateIncomeByIdTrunk,
   deleteIncomeByIdTrunk,
 } from "./incomeDetailsSlice";
-import { getKeyFromLocalStorage } from "../../utils/utils";
+import { getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { EditMode } from "../../components/editMode/EditMode";
 
 export const IncomeDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -27,13 +28,7 @@ export const IncomeDetails = () => {
   const product = { product: "", income: "" };
   const { inputsForm, setInputsForm, onChangeInputsForm } =
     HooksFormOfProducts(product);
-  const [editState, setEditState] = useState(false);
-  const editMode = () => {
-    setEditState(!editState);
-  };
-  const removeEditMode = () => {
-    setEditState(false);
-  };
+  const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
     product: inputsForm.product,
     income: parseInt(inputsForm.income),
@@ -67,7 +62,7 @@ export const IncomeDetails = () => {
           incomeId: params.incomeId,
         })
       ).unwrap();
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
+      sendMsg("mssgIncorrectTyping", "Deleting");
       removeEditMode();
       setTimeout(() => {
         navigate("/dashboard");

@@ -7,13 +7,11 @@ import {
   updateExpenseByIdTrunk,
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
-import {
-  getKeyFromLocalStorage,
-  sendMsg,
-} from "../../utils/utils";
+import { getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { EditMode } from "../../components/editMode/EditMode";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -35,13 +33,7 @@ export const ExpenseDetails = () => {
   const product = { product: "", expense: "" };
   const { inputsForm, setInputsForm, onChangeInputsForm } =
     HooksFormOfProducts(product);
-  const [editState, setEditState] = useState(false);
-  const editMode = () => {
-    setEditState(!editState);
-  };
-  const removeEditMode = () => {
-    setEditState(false);
-  };
+  const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
     product: inputsForm.product,
     expense: parseInt(inputsForm.expense),
@@ -57,7 +49,7 @@ export const ExpenseDetails = () => {
           expenseId: params.expenseId,
         })
       ).unwrap();
-      setInputsForm(product)
+      setInputsForm(product);
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
