@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../buttons/button";
 
 export const CardStandardExpense = ({editMode, productData, numberData}) => {
     const object = {
@@ -9,7 +10,7 @@ export const CardStandardExpense = ({editMode, productData, numberData}) => {
     <div>
       <span>{object.product}</span>
       <strong>${object.expense}</strong>
-      <button onClick={editMode}>Update</button>
+      <Button onClick={editMode} children='Update'/>
     </div>
   );
 };

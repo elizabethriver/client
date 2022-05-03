@@ -14,6 +14,7 @@ import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfP
 import { EditMode } from "../../components/editMode/EditMode";
 import { CardStandardExpense } from "../../components/cardStandard/cardStandardExpense";
 import { FormExpense } from "../../components/formOfProduct/formExpense";
+import { Button } from "../../components/buttons/button";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -107,7 +108,7 @@ export const ExpenseDetails = () => {
         )}
       </div>
       <small id="mssgIncorrectTyping"></small>
-      <button onClick={onClickDelete}>Delete</button>
+      <Button onClick={onClickDelete} children='Delete'/>
     </div>
   );
 };

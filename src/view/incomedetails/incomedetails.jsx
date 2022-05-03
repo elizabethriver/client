@@ -15,6 +15,7 @@ import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfP
 import { EditMode } from "../../components/editMode/EditMode";
 import { CardStandardIncome } from "../../components/cardStandard/cardStandardIncome";
 import { FormIncome } from "../../components/formOfProduct/formIncome";
+import { Button } from "../../components/buttons/button";
 
 export const IncomeDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -103,7 +104,7 @@ export const IncomeDetails = () => {
           />
         )}
       </div>
-      <button onClick={onClickDelete}>Delete</button>
+      <Button onClick={onClickDelete} children='Delete'/>
       <small id="mssgIncorrectTyping"></small>
     </div>
   );

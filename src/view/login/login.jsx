@@ -91,7 +91,7 @@ export const Login = () => {
         </div>
         <div>
           <span>You dont have a account? Click</span>
-          <button onClick={handleClick}>here</button>
+          <Button onClick={handleClick} children='here'/>
         </div>
       </section>
     </main>

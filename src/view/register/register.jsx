@@ -118,7 +118,7 @@ export const Register = () => {
         </div>
         <div>
           <span>You have a account? Click</span>
-          <button onClick={handleClick}>here</button>
+          <Button onClick={handleClick} children='here'/>
         </div>
       </section>
     </main>

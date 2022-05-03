@@ -10,6 +10,7 @@ import "./style/dashboard.css";
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { Button } from "./../../components/buttons/button";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
@@ -28,20 +29,20 @@ export const Dashboard = () => {
   }, [initFetch]);
 
   if (!token) {
-    return <AuthNoLogged/>;
+    return <AuthNoLogged />;
   }
-  if (loading) return <Loading/>;
+  if (loading) return <Loading />;
   return (
     <div>
       dashboard {nameUserSet}
       <main>
         <div>
-          <button>
+          <Button>
             <Link to="/income">Income</Link>
-          </button>
-          <button>
+          </Button>
+          <Button>
             <Link to="/expense">Expense</Link>
-          </button>
+          </Button>
         </div>
         <section className="container">
           <span className="income_title">Incomes</span>

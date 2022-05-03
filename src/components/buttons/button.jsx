@@ -1,7 +1,7 @@
 import React from 'react'
 
-export const Button = ({type, children}) => {
+export const Button = ({type, onClick, children}) => {
   return (
-    <button type={type}>{children}</button>
+    <button type={type} onClick={onClick} >{children}</button>
   )
 }

@@ -33,7 +33,7 @@ export const FormExpense = ({
         title="Just type number is allowed"
       />
       <Button type='submit' children='Save'/>
-      <button onClick={removeEditMode}>Cancel</button>
+      <Button onClick={removeEditMode} children='Cancel'/>
     </form>
   );
 };
