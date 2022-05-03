@@ -13,6 +13,7 @@ import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { EditMode } from "../../components/editMode/EditMode";
+import { CardStandardIncome } from "../../components/cardStandard/cardStandardIncome";
 
 export const IncomeDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -109,11 +110,11 @@ export const IncomeDetails = () => {
             <button onClick={removeEditMode}>Cancel</button>
           </form>
         ) : (
-          <div>
-            <span>{dataIncomeById.product}</span>
-            <strong>${dataIncomeById.income}</strong>
-            <button onClick={editMode}>Update</button>
-          </div>
+          <CardStandardIncome
+            editMode={editMode}
+            productData={dataIncomeById.product}
+            numberData={dataIncomeById.income}
+          />
         )}
       </div>
       <button onClick={onClickDelete}>Delete</button>

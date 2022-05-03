@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style/login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { axiosLogin } from "./loginslide";
 import { cleanMsg, sendMsg, setKeyFromLocalStorage } from "../../utils/utils";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 
 export const Login = () => {
-  const [inputForm, setInputForm] = useState({ email: "", password: "" });
+  const product = { email: "", password: "" };
+  const { inputsForm, setInputsForm, onChangeInputsForm } =
+    HooksFormOfProducts(product);
   const dispatch = useDispatch();
 
   let navigate = useNavigate();
@@ -14,29 +17,20 @@ export const Login = () => {
   const handleClick = () => {
     navigate("/register");
   };
-
-  const changeInputsForm = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputForm({
-      ...inputForm,
-      [name]: value,
-    });
-  };
   const submit = async (e) => {
     e.preventDefault();
     try {
       const response = await dispatch(
         axiosLogin({
-          email: inputForm.email.trim(),
-          password: inputForm.password.trim(),
+          email: inputsForm.email.trim(),
+          password: inputsForm.password.trim(),
         })
       ).unwrap();
       // handle result here
       const { token } = response;
       console.log(token)
       setKeyFromLocalStorage('token', token)
-      setInputForm({ email: "", password: "" });
+      setInputsForm({ email: "", password: "" });
       sendMsg("mssgIncorrectTyping", "Welcome")
       setTimeout(() => {
         navigate("/dashboard");
@@ -68,8 +62,8 @@ export const Login = () => {
                 <input
                   type="input"
                   name="email"
-                  value={inputForm.email}
-                  onChange={changeInputsForm}
+                  value={inputsForm.email}
+                  onChange={onChangeInputsForm}
                   placeholder="example@mail.com"
                   required
                   pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
@@ -81,8 +75,8 @@ export const Login = () => {
                 <input
                   type="input"
                   name="password"
-                  value={inputForm.password}
-                  onChange={changeInputsForm}
+                  value={inputsForm.password}
+                  onChange={onChangeInputsForm}
                   placeholder="*******"
                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                   required

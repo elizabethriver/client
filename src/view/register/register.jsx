@@ -4,56 +4,39 @@ import "./style/register.css";
 import { axiosRegister } from "./registerSlice";
 import { useDispatch } from "react-redux";
 import { sendMsg, setKeyFromLocalStorage } from "../../utils/utils";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 
 export const Register = () => {
-  
-  const [inputsRegister, setInputsRegister] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const product = { name: "", email: "", password: "", confirmPassword: "" };
+  const { inputsForm, setInputsForm, onChangeInputsForm } =
+    HooksFormOfProducts(product);
   const dispatch = useDispatch();
-
   let navigate = useNavigate();
-
   const handleClick = () => {
     navigate("/");
   };
-
-  const onchangeHandler = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
-    setInputsRegister({ ...inputsRegister, [name]: value });
-  };
-
   const submit = async (e) => {
     e.preventDefault();
     try {
       const response = await dispatch(
         axiosRegister({
-          name: inputsRegister.name.trim(),
-          email: inputsRegister.email.trim(),
-          password: inputsRegister.password.trim(),
-          confirmPassword: inputsRegister.confirmPassword.trim(),
+          name: inputsForm.name.trim(),
+          email: inputsForm.email.trim(),
+          password: inputsForm.password.trim(),
+          confirmPassword: inputsForm.confirmPassword.trim(),
         })
       ).unwrap();
       // handle result here
       const { name } = response.registerUser;
-      setKeyFromLocalStorage("name", name)
-      setInputsRegister({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-      sendMsg("mssgIncorrectTyping", `${name}Your are register`)
+      setKeyFromLocalStorage("name", name);
+      setInputsForm(product);
+      sendMsg("mssgIncorrectTyping", `${name}Your are register`);
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (error) {
       // handle error here
-      sendMsg("mssgIncorrectTyping","Please verify your inputs")
+      sendMsg("mssgIncorrectTyping", "Please verify your inputs");
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";
       }, 2000);
@@ -80,9 +63,9 @@ export const Register = () => {
                 <input
                   type="input"
                   name="name"
-                  value={inputsRegister.name}
+                  value={inputsForm.name}
                   placeholder="add your name"
-                  onChange={onchangeHandler}
+                  onChange={onChangeInputsForm}
                   required
                   pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
                   title="Please add your name without a number or symbol"
@@ -93,9 +76,9 @@ export const Register = () => {
                 <input
                   type="input"
                   name="email"
-                  value={inputsRegister.email}
+                  value={inputsForm.email}
                   placeholder="example@mail.com"
-                  onChange={onchangeHandler}
+                  onChange={onChangeInputsForm}
                   required
                   pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                   title="Please add your email (e.g example@mail.com)"
@@ -106,9 +89,9 @@ export const Register = () => {
                 <input
                   type="input"
                   name="password"
-                  value={inputsRegister.password}
+                  value={inputsForm.password}
                   placeholder="*******"
-                  onChange={onchangeHandler}
+                  onChange={onChangeInputsForm}
                   required
                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                   title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
@@ -119,9 +102,9 @@ export const Register = () => {
                 <input
                   type="input"
                   name="confirmPassword"
-                  value={inputsRegister.confirmPassword}
+                  value={inputsForm.confirmPassword}
                   placeholder="*******"
-                  onChange={onchangeHandler}
+                  onChange={onChangeInputsForm}
                   required
                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                   title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"

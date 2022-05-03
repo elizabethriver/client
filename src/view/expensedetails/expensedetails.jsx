@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { useParams, useNavigate, Navigate } from "react-router-dom";
+import React, { useCallback, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/expensedetails.css";
 import {
@@ -12,6 +12,7 @@ import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { EditMode } from "../../components/editMode/EditMode";
+import { CardStandardExpense } from "../../components/cardStandard/cardStandardExpense";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -112,11 +113,11 @@ export const ExpenseDetails = () => {
             <button onClick={removeEditMode}>Cancel</button>
           </form>
         ) : (
-          <div>
-            <span>{dataExpenseById.product}</span>
-            <strong>${dataExpenseById.expense}</strong>
-            <button onClick={editMode}>Update</button>
-          </div>
+          <CardStandardExpense
+            editMode={editMode}
+            productData={dataExpenseById.product}
+            numberData={dataExpenseById.expense}
+          />
         )}
       </div>
       <small id="mssgIncorrectTyping"></small>
