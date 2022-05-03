@@ -13,6 +13,7 @@ import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { EditMode } from "../../components/editMode/EditMode";
 import { CardStandardExpense } from "../../components/cardStandard/cardStandardExpense";
+import { FormExpense } from "../../components/formOfProduct/formExpense";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -88,30 +89,15 @@ export const ExpenseDetails = () => {
       expenseDetails {params.expenseId}
       <div>
         {editState ? (
-          <form onSubmit={submitUpdate}>
-            <input
-              type="text"
-              name="product"
-              placeholder={dataExpenseById.product}
-              onChange={onChangeInputsForm}
-              value={inputsForm.product}
-              required
-              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
-              title="Just type letters is allowed"
-            />
-            <input
-              type="text"
-              name="expense"
-              placeholder={dataExpenseById.expense}
-              onChange={onChangeInputsForm}
-              value={inputsForm.expense}
-              required
-              pattern="^[0-9]+$"
-              title="Just type number is allowed"
-            />
-            <button type="submit">Save</button>
-            <button onClick={removeEditMode}>Cancel</button>
-          </form>
+          <FormExpense
+          submitUpdate={submitUpdate}
+          dataIncomeById={dataExpenseById}
+          onChangeInputsForm={onChangeInputsForm}
+          inputsForm={inputsForm}
+          removeEditMode={removeEditMode}
+          product='product'
+          registerNumber='expense'
+          />
         ) : (
           <CardStandardExpense
             editMode={editMode}

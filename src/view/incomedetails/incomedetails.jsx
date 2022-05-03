@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/incomedetails.css";
@@ -14,6 +14,7 @@ import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { EditMode } from "../../components/editMode/EditMode";
 import { CardStandardIncome } from "../../components/cardStandard/cardStandardIncome";
+import { FormIncome } from "../../components/formOfProduct/formIncome";
 
 export const IncomeDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -85,30 +86,15 @@ export const IncomeDetails = () => {
       IncomeDetails {params.incomeId}
       <div>
         {editState ? (
-          <form onSubmit={submitUpdate}>
-            <input
-              type="text"
-              name="product"
-              placeholder={dataIncomeById.product}
-              onChange={onChangeInputsForm}
-              value={inputsForm.product}
-              required
-              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
-              title="Just type letters is allowed"
-            />
-            <input
-              type="text"
-              name="income"
-              placeholder={dataIncomeById.income}
-              onChange={onChangeInputsForm}
-              value={inputsForm.income}
-              required
-              pattern="^[0-9]+$"
-              title="Just type number is allowed"
-            />
-            <button type="submit">Save</button>
-            <button onClick={removeEditMode}>Cancel</button>
-          </form>
+          <FormIncome
+            submitUpdate={submitUpdate}
+            dataIncomeById={dataIncomeById}
+            onChangeInputsForm={onChangeInputsForm}
+            inputsForm={inputsForm}
+            removeEditMode={removeEditMode}
+            product='product'
+            registerNumber='income'
+          />
         ) : (
           <CardStandardIncome
             editMode={editMode}
