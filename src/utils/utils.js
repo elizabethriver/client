@@ -17,5 +17,10 @@ export const cleanMsg = (timeout) => {
 export const sendMsg = (id, msg) => {
   return (document.getElementById(id).innerHTML = msg);
 };
-
-
+export const productObject = (name) => {
+  const item = {
+    product: "",
+    [name]: "",
+  };
+  return item;
+};

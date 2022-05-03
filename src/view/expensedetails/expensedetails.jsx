@@ -12,9 +12,9 @@ import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { EditMode } from "../../components/editMode/EditMode";
-import { CardStandardExpense } from "../../components/cardStandard/cardStandardExpense";
 import { FormExpense } from "../../components/formOfProduct/formExpense";
 import { Button } from "../../components/buttons/button";
+import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -100,7 +100,8 @@ export const ExpenseDetails = () => {
           registerNumber='expense'
           />
         ) : (
-          <CardStandardExpense
+          <CardStandardProduct
+            name='expense'
             editMode={editMode}
             productData={dataExpenseById.product}
             numberData={dataExpenseById.expense}

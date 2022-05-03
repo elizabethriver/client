@@ -2,12 +2,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
-import { cleanMsg, getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
+import { cleanMsg, getKeyFromLocalStorage, productObject, sendMsg } from "../../utils/utils";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { Button } from './../../components/buttons/button';
 
 export const Income = () => {
+  const x = productObject('expense')
+  console.log(x)
+  const y = productObject('income')
+  console.log(x, y)
   const token = getKeyFromLocalStorage("token");
   const product = { product: "", income: "" };
   const { inputsForm, setInputsForm, onChangeInputsForm } =

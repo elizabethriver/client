@@ -13,7 +13,7 @@ import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { EditMode } from "../../components/editMode/EditMode";
-import { CardStandardIncome } from "../../components/cardStandard/cardStandardIncome";
+import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
 import { FormIncome } from "../../components/formOfProduct/formIncome";
 import { Button } from "../../components/buttons/button";
 
@@ -97,7 +97,8 @@ export const IncomeDetails = () => {
             registerNumber='income'
           />
         ) : (
-          <CardStandardIncome
+          <CardStandardProduct
+            name='income'
             editMode={editMode}
             productData={dataIncomeById.product}
             numberData={dataIncomeById.income}
