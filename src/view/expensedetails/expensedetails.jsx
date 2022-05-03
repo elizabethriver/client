@@ -91,17 +91,17 @@ export const ExpenseDetails = () => {
       <div>
         {editState ? (
           <FormExpense
-          submitUpdate={submitUpdate}
-          dataIncomeById={dataExpenseById}
-          onChangeInputsForm={onChangeInputsForm}
-          inputsForm={inputsForm}
-          removeEditMode={removeEditMode}
-          product='product'
-          registerNumber='expense'
+            submitUpdate={submitUpdate}
+            dataIncomeById={dataExpenseById}
+            onChangeInputsForm={onChangeInputsForm}
+            inputsForm={inputsForm}
+            removeEditMode={removeEditMode}
+            product="product"
+            registerNumber="expense"
           />
         ) : (
           <CardStandardProduct
-            name='expense'
+            name="expense"
             editMode={editMode}
             productData={dataExpenseById.product}
             numberData={dataExpenseById.expense}
@@ -109,7 +109,7 @@ export const ExpenseDetails = () => {
         )}
       </div>
       <small id="mssgIncorrectTyping"></small>
-      <Button onClick={onClickDelete} children='Delete'/>
+      <Button onClick={onClickDelete} children="Delete" />
     </div>
   );
 };
