@@ -5,6 +5,7 @@ import { axiosRegister } from "./registerSlice";
 import { useDispatch } from "react-redux";
 import { sendMsg, setKeyFromLocalStorage } from "../../utils/utils";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { Button } from "../../components/buttons/button";
 
 export const Register = () => {
   const product = { name: "", email: "", password: "", confirmPassword: "" };
@@ -110,7 +111,7 @@ export const Register = () => {
                   title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
                 />
               </label>
-              <button type="submit">Register</button>
+              <Button type='submit' children='Register'/>
             </fieldset>
             <small id="mssgIncorrectTyping" />
           </form>

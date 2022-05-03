@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../buttons/button";
 
 export const FormExpense = ({
   submitUpdate,
@@ -31,7 +32,7 @@ export const FormExpense = ({
         pattern="^[0-9]+$"
         title="Just type number is allowed"
       />
-      <button type="submit">Save</button>
+      <Button type='submit' children='Save'/>
       <button onClick={removeEditMode}>Cancel</button>
     </form>
   );

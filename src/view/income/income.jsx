@@ -5,6 +5,7 @@ import { incomePostTrunk } from "./incomeSlide";
 import { cleanMsg, getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { Button } from './../../components/buttons/button';
 
 export const Income = () => {
   const token = getKeyFromLocalStorage("token");
@@ -63,7 +64,7 @@ export const Income = () => {
               title="Just type number is allowed"
             />
           </label>
-          <button type="submit">Click</button>
+          <Button type='submit' children='Click'/>
         </fieldset>
         <small id="mssgIncorrectTyping" />
       </form>

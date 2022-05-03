@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { axiosLogin } from "./loginslide";
 import { cleanMsg, sendMsg, setKeyFromLocalStorage } from "../../utils/utils";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { Button } from "../../components/buttons/button";
 
 export const Login = () => {
   const product = { email: "", password: "" };
@@ -83,7 +84,7 @@ export const Login = () => {
                   title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
                 />
               </label>
-              <button type="submit">Log In</button>
+              <Button type='submit' children='Log In'/>
             </fieldset>
             <small id="mssgIncorrectTyping" />
           </form>
