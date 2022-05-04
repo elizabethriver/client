@@ -5,7 +5,7 @@ import { incomePostTrunk } from "./incomeSlide";
 import { cleanMsg, getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
-import { Button } from "./../../components/buttons/button";
+import { FormRegister } from './../../components/formRegister/formRegister';
 
 export const Income = () => {
   const token = getKeyFromLocalStorage("token");
@@ -36,38 +36,14 @@ export const Income = () => {
   return (
     <section>
       income
-      <form onSubmit={onSubmitForm}>
-        <fieldset>
-          <label htmlFor="product">
-            Name of product
-            <input
-              type="text"
-              name="product"
-              placeholder="add your product"
-              onChange={onChangeInputsForm}
-              value={inputsForm.product}
-              required
-              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
-              title="Just type letters is allowed"
-            />
-          </label>
-          <label htmlFor="income">
-            Income
-            <input
-              type="text"
-              name="income"
-              placeholder="add your income"
-              value={inputsForm.income}
-              onChange={onChangeInputsForm}
-              required
-              pattern="^[0-9]+$"
-              title="Just type number is allowed"
-            />
-          </label>
-          <Button type="submit" children="Click" />
-        </fieldset>
-        <small id="mssgIncorrectTyping" />
-      </form>
+      <FormRegister
+        name='income'
+        onSubmitForm={onSubmitForm}
+        onChangeInputsForm={onChangeInputsForm}
+        inputsFormProduct={inputsForm.product}
+        inputsFormRegistered={inputsForm.income}
+        htmlFor='income'
+      />
     </section>
   );
 };
