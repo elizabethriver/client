@@ -13,7 +13,7 @@ import { ExpenseDetails } from "./view/expensedetails/expensedetails";
 import { Protected } from "./utils/utils";
 
 const AuthContext = createContext(null);
-console.log(AuthContext);
+console.log(AuthContext.Provider);
 function App() {
   const [token, setToken] = useState(null);
 

@@ -1,21 +1,15 @@
 import React from "react";
-import { productObject } from "../../utils/utils";
 import { Button } from "../buttons/button";
 
 export const FormProduct = ({
   name,
   submitUpdate,
   onChangeInputsForm,
-  inputsFormProduct,
-  inputsFormNumber,
   removeEditMode,
   dataProductNameUpdated,
   dataNumberUpdated,
 }) => {
-  // let object = productObject(name);
 
-  // object = { inputsFormProduct, inputsFormNumber };
-  // console.log(object);
   return (
     <form onSubmit={submitUpdate}>
       <input
@@ -23,7 +17,6 @@ export const FormProduct = ({
         name="product"
         placeholder={dataProductNameUpdated}
         onChange={onChangeInputsForm}
-        // value={inputsFormProduct}
         required
         pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
         title="Just type letters is allowed"
@@ -33,7 +26,6 @@ export const FormProduct = ({
         name={name}
         placeholder={dataNumberUpdated}
         onChange={onChangeInputsForm}
-        // value={inputsFormNumber}
         required
         pattern="^[0-9]+$"
         title="Just type number is allowed"

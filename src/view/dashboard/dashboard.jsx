@@ -1,17 +1,16 @@
-import React, { useCallback, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   incomeAllAxiosDashboard,
   expensesAllAxiosDashboard,
 } from "./dashboardSlice";
-import { Items } from "../../components/item/items";
 import "./style/dashboard.css";
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { Button } from "./../../components/buttons/button";
 import { DashboardArray } from "../../components/dashboardArray/dashboardArray";
+import { LinkStandard } from './../../components/link/Link';
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
@@ -39,10 +38,10 @@ export const Dashboard = () => {
       <main>
         <div>
           <Button>
-            <Link to="/income">Income</Link>
+            <LinkStandard to={"/income"} children={'Income'}/>
           </Button>
           <Button>
-            <Link to="/expense">Expense</Link>
+            <LinkStandard to={"/expense"} children={'Expense'}/>
           </Button>
         </div>
         <section>

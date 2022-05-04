@@ -21,9 +21,8 @@ export const ExpenseDetails = () => {
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const { dataExpenseById, loading, docUpdateById, deleteDocUpdateById } =
+  const { dataExpenseById, loading } =
     useSelector((state) => state.getExpenseByID);
-  console.log(dataExpenseById, loading, docUpdateById, deleteDocUpdateById);
   const initFetch = useCallback(() => {
     dispatch(
       getExpenseByIdTrunk({ token: token, expenseId: params.expenseId })
