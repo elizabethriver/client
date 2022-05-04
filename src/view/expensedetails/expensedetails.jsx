@@ -12,9 +12,9 @@ import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { EditMode } from "../../components/editMode/EditMode";
-import { FormExpense } from "../../components/formOfProduct/formExpense";
 import { Button } from "../../components/buttons/button";
 import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
+import { FormProduct } from "../../components/formOfProduct/formProduct";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -90,14 +90,15 @@ export const ExpenseDetails = () => {
       expenseDetails {params.expenseId}
       <div>
         {editState ? (
-          <FormExpense
+          <FormProduct
+            name="expense"
             submitUpdate={submitUpdate}
-            dataIncomeById={dataExpenseById}
             onChangeInputsForm={onChangeInputsForm}
-            inputsForm={inputsForm}
+            inputsFormProduct={dataToUpdate.product}
+            inputsFormNumber={dataToUpdate.expense}
             removeEditMode={removeEditMode}
-            product="product"
-            registerNumber="expense"
+            dataProductNameUpdated={dataExpenseById.product}
+            dataNumberUpdated={dataExpenseById.expense}
           />
         ) : (
           <CardStandardProduct

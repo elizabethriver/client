@@ -14,7 +14,7 @@ import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { EditMode } from "../../components/editMode/EditMode";
 import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
-import { FormIncome } from "../../components/formOfProduct/formIncome";
+import { FormProduct } from "../../components/formOfProduct/formProduct";
 import { Button } from "../../components/buttons/button";
 
 export const IncomeDetails = () => {
@@ -25,7 +25,7 @@ export const IncomeDetails = () => {
   const { dataIncomeById, loading } = useSelector(
     (state) => state.getIncomeByID
   );
-  console.log(dataIncomeById)
+  console.log(dataIncomeById);
   useEffect(() => {
     dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
   }, [dispatch, params.incomeId, token]);
@@ -89,7 +89,7 @@ export const IncomeDetails = () => {
       IncomeDetails {params.incomeId}
       <div>
         {editState ? (
-          <FormIncome
+          <FormProduct
             name="income"
             submitUpdate={submitUpdate}
             onChangeInputsForm={onChangeInputsForm}

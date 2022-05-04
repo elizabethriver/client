@@ -2,7 +2,7 @@ import React from "react";
 import { productObject } from "../../utils/utils";
 import { Button } from "../buttons/button";
 
-export const FormIncome = ({
+export const FormProduct = ({
   name,
   submitUpdate,
   onChangeInputsForm,
@@ -12,10 +12,10 @@ export const FormIncome = ({
   dataProductNameUpdated,
   dataNumberUpdated,
 }) => {
-  let object = productObject(name);
+  // let object = productObject(name);
 
-  object = { inputsFormProduct, inputsFormNumber };
-  console.log(object);
+  // object = { inputsFormProduct, inputsFormNumber };
+  // console.log(object);
   return (
     <form onSubmit={submitUpdate}>
       <input
