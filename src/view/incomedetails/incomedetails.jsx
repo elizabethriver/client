@@ -25,12 +25,14 @@ export const IncomeDetails = () => {
   const { dataIncomeById, loading } = useSelector(
     (state) => state.getIncomeByID
   );
+  console.log(dataIncomeById)
   useEffect(() => {
     dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
   }, [dispatch, params.incomeId, token]);
   const product = { product: "", income: "" };
   const { inputsForm, setInputsForm, onChangeInputsForm } =
     HooksFormOfProducts(product);
+  // console.log(inputsForm);
   const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
     product: inputsForm.product,
@@ -88,24 +90,25 @@ export const IncomeDetails = () => {
       <div>
         {editState ? (
           <FormIncome
+            name="income"
             submitUpdate={submitUpdate}
-            dataIncomeById={dataIncomeById}
             onChangeInputsForm={onChangeInputsForm}
-            inputsForm={inputsForm}
+            inputsFormProduct={dataToUpdate.product}
+            inputsFormNumber={dataToUpdate.income}
             removeEditMode={removeEditMode}
-            product='product'
-            registerNumber='income'
+            dataProductNameUpdated={dataIncomeById.product}
+            dataNumberUpdated={dataIncomeById.income}
           />
         ) : (
           <CardStandardProduct
-            name='income'
+            name="income"
             editMode={editMode}
             productData={dataIncomeById.product}
             numberData={dataIncomeById.income}
           />
         )}
       </div>
-      <Button onClick={onClickDelete} children='Delete'/>
+      <Button onClick={onClickDelete} children="Delete" />
       <small id="mssgIncorrectTyping"></small>
     </div>
   );
