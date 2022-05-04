@@ -11,6 +11,7 @@ import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { Button } from "./../../components/buttons/button";
+import { DashboardArray } from "../../components/dashboardArray/dashboardArray";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
@@ -44,15 +45,17 @@ export const Dashboard = () => {
             <Link to="/expense">Expense</Link>
           </Button>
         </div>
-        <section className="container">
-          <span className="income_title">Incomes</span>
-          <ul className="income_body">
-            <Items array={incomeAllDashboardData} url="/income" />
-          </ul>
-          <span className="expense_title">Expenses</span>
-          <ul className="expense_body">
-            <Items array={expenseAllDashboardData} url="/expense" />
-          </ul>
+        <section>
+          <DashboardArray
+            listDashboardData={incomeAllDashboardData}
+            title="Incomes"
+            url="/income"
+          />
+          <DashboardArray
+            listDashboardData={expenseAllDashboardData}
+            title="Expenses"
+            url="/expense"
+          />
         </section>
       </main>
     </div>
