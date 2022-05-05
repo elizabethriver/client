@@ -7,7 +7,7 @@ import {
   updateExpenseByIdTrunk,
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
-import { getKeyFromLocalStorage, sendMsg } from "../../utils/utils";
+import { getKeyFromLocalStorage, productExpense, sendMsg } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
@@ -32,9 +32,9 @@ export const ExpenseDetails = () => {
   useEffect(() => {
     initFetch();
   }, [initFetch]);
-  const product = { product: "", expense: "" };
+  const { product, expense } = productExpense
   const { inputsForm, setInputsForm, onChangeInputsForm } =
-    HooksFormOfProducts(product);
+    HooksFormOfProducts({ product, expense });
   const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
     product: inputsForm.product,
@@ -51,7 +51,7 @@ export const ExpenseDetails = () => {
           expenseId: params.expenseId,
         })
       ).unwrap();
-      setInputsForm(product);
+      setInputsForm({ product, expense });
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
