@@ -18,8 +18,9 @@ export const Register = () => {
   };
   const submit = async (e) => {
     e.preventDefault();
+    let response = null; 
     try {
-      const response = await dispatch(
+      response = await dispatch(
         axiosRegister({
           name: inputsForm.name.trim(),
           email: inputsForm.email.trim(),
@@ -37,6 +38,8 @@ export const Register = () => {
       }, 2000);
     } catch (error) {
       // handle error here
+      response = error
+      console.log(response)
       sendMsg("mssgIncorrectTyping", "Please verify your inputs");
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";

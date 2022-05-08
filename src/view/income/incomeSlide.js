@@ -10,11 +10,16 @@ export const incomePostTrunk = createAsyncThunk(
   "incomePost/api",
   async (dataIncome) => {
     const { token, product, income } = dataIncome;
+    let response = null;
+
     try {
-      const response = await incomePost(token, product, income);
+      response = await incomePost(token, product, income);
       console.log(response);
       return response.data;
     } catch (error) {
+      // handle error
+      response = error.response;
+      console.log(response);
       throw error;
     }
   }

@@ -15,11 +15,15 @@ export const getExpenseByIdTrunk = createAsyncThunk(
   "getExpenseById/api",
   async (dataExpenseByID) => {
     const { token, expenseId } = dataExpenseByID;
+    let response = null;
     try {
-      const response = await getExpenseByID(token, expenseId);
+      response = await getExpenseByID(token, expenseId);
       const { findedObject } = response;
       return findedObject;
     } catch (error) {
+      // handle error
+      response = error.response;
+      console.log(response);
       throw error;
     }
   }
@@ -29,13 +33,16 @@ export const updateExpenseByIdTrunk = createAsyncThunk(
   "updateExpenseByIdTrunk/api",
   async (dataExpenseByID) => {
     const { token, product, expense, expenseId } = dataExpenseByID;
+    let response = null;
     try {
-      const response = await putExpenseByID(token, product, expense, expenseId);
+      response = await putExpenseByID(token, product, expense, expenseId);
       console.log(response.data);
       const { docUpdate } = response.data;
       return docUpdate;
     } catch (error) {
-      console.log(error);
+      // handle error
+      response = error.response;
+      console.log(response);
       throw error;
     }
   }
@@ -44,13 +51,16 @@ export const deleteExpenseByIdTrunk = createAsyncThunk(
   "deleteExpenseById/api",
   async (dataExpenseByID) => {
     const { token, expenseId } = dataExpenseByID;
+    let response = null;
     try {
-      const response = await deleteExpenseByID(token, expenseId);
+      response = await deleteExpenseByID(token, expenseId);
       const { mssg } = response.data;
       return mssg;
     } catch (error) {
-      throw error;
-    }
+      // handle error
+      response = error.response;
+      console.log(response);
+      throw error;    }
   }
 );
 const expenseDetailsSlice = createSlice({
@@ -98,7 +108,7 @@ const expenseDetailsSlice = createSlice({
     // // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(deleteExpenseByIdTrunk.fulfilled, (state, action) => {
       // Add user to the state array
-      console.log(action.payload)
+      console.log(action.payload);
       state.deleteDocUpdateById = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed

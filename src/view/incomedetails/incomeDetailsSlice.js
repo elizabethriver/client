@@ -11,11 +11,16 @@ export const getIncomeByIdTrunk = createAsyncThunk(
   "getIncomeById/api",
   async (dataIncomeByID) => {
     const { token, incomeId } = dataIncomeByID;
+    let response = null;
+
     try {
-      const response = await getIncomeByID(token, incomeId);
+      response = await getIncomeByID(token, incomeId);
       const { findedObject } = response;
       return findedObject;
     } catch (error) {
+      // handle error
+      response = error.response;
+      console.log(response);
       throw error;
     }
   }
@@ -24,11 +29,15 @@ export const deleteIncomeByIdTrunk = createAsyncThunk(
   "deleteIncomeById/api",
   async (dataIncomeByID) => {
     const { token, incomeId } = dataIncomeByID;
+    let response = null;
+
     try {
       const response = await deleteIncomeByID(token, incomeId);
       const { mssg } = response.data;
       return mssg;
     } catch (error) {
+      response = error.response;
+      console.log(response);
       throw error;
     }
   }
@@ -37,12 +46,17 @@ export const updateIncomeByIdTrunk = createAsyncThunk(
   "updateIncomeByIdTrunk/api",
   async (dataIncomeByID) => {
     const { token, product, income, incomeId } = dataIncomeByID;
+    let response = null;
+
     try {
-      const response = await putIncomeByID(token, product, income, incomeId);
+      response = await putIncomeByID(token, product, income, incomeId);
       console.log(response.data);
       const { docUpdate } = response.data;
       return docUpdate;
     } catch (error) {
+      // handle error
+      response = error.response;
+      console.log(response);
       throw error;
     }
   }
@@ -65,7 +79,7 @@ const incomeDetailsSlice = createSlice({
       state.dataIncomeById = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(getIncomeByIdTrunk.rejected, (state) => {
+    builder.addCase(getIncomeByIdTrunk.rejected, (state, action) => {
       // Add user to the state array
       state.loading = false;
     });

@@ -3,15 +3,20 @@ import { login } from "../../api/api";
 
 const initialState = {
   dataLogin: [],
+  loading: false,
 };
 
 // First, create the thunk
 export const axiosLogin = createAsyncThunk("login/api", async (dataLogin) => {
   const { email, password } = dataLogin;
+  let response = null;
   try {
-    const response = await login(email, password);
-    return response.data;
+    response = await login(email, password);
+    const { data } = response;
+    return data;
   } catch (error) {
+    response = error.response;
+    console.log(response);
     throw error;
   }
 });
@@ -21,14 +26,16 @@ export const loginSlide = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(axiosLogin.pending, (state) => {
+      state.loading = true;
+    });
     builder.addCase(axiosLogin.fulfilled, (state, action) => {
-      // Add user to the state array
       state.dataLogin.push(action.payload);
+    });
+    builder.addCase(axiosLogin.rejected, (state, action) => {
+      state.loading = false;
     });
   },
 });
-
-// export const {} = loginslide.actions
 
 export default loginSlide.reducer;

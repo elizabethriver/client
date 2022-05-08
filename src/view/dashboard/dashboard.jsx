@@ -34,7 +34,7 @@ export const Dashboard = () => {
   if (loading) return <Loading />;
   return (
     <div>
-      dashboard {nameUserSet}
+      Welcome {nameUserSet}
       <main>
         <div>
           <Button>

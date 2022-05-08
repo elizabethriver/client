@@ -20,17 +20,19 @@ export const Login = () => {
   };
   const submit = async (e) => {
     e.preventDefault();
+    let response = null; 
     try {
-      const response = await dispatch(
+      response = await dispatch(
         axiosLogin({
           email: inputsForm.email.trim(),
           password: inputsForm.password.trim(),
         })
       ).unwrap();
       // handle result here
-      const { token } = response;
+      const { token, name } = response;
       console.log(token)
       setKeyFromLocalStorage('token', token)
+      setKeyFromLocalStorage('name', name)
       setInputsForm({ email: "", password: "" });
       sendMsg("mssgIncorrectTyping", "Welcome")
       setTimeout(() => {
@@ -38,6 +40,8 @@ export const Login = () => {
       }, 2000);
     } catch (error) {
       // handle error here
+      response = error
+      console.log(response)
       sendMsg("mssgIncorrectTyping", "Incorrect password or email")
       cleanMsg(2000)
       throw error;

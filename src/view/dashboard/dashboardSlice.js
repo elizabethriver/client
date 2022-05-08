@@ -10,11 +10,14 @@ const initialState = {
 export const incomeAllAxiosDashboard = createAsyncThunk(
   "incomeDashboardData/api",
   async (token) => {
+    let response = null;
     try {
-      const response = await dashboard(token);
+      response = await dashboard(token);
       const { incomeAll } = response.data;
       return incomeAll;
     } catch (error) {
+      response = error.response;
+      console.log(response);
       throw error;
     }
   }
@@ -23,13 +26,15 @@ export const incomeAllAxiosDashboard = createAsyncThunk(
 export const expensesAllAxiosDashboard = createAsyncThunk(
   "expenseDashboardData/api",
   async (token) => {
+    let response = null;
     try {
-      const response = await dashboard(token);
+      response = await dashboard(token);
       const { expensesAll } = response.data;
       return expensesAll;
     } catch (error) {
-      throw error;
-    }
+      response = error.response;
+      console.log(response);
+      throw error;    }
   }
 );
 
