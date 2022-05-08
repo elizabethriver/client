@@ -15,6 +15,7 @@ import { EditMode } from "../../components/editMode/EditMode";
 import { Button } from "../../components/buttons/button";
 import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
 import { FormProduct } from "../../components/formOfProduct/formProduct";
+import { NotFound } from "../notfound/notfound";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -83,6 +84,9 @@ export const ExpenseDetails = () => {
   }
   if (loading) {
     return <Loading />;
+  }
+  if (dataExpenseById.length === 0) {
+    return <NotFound />;
   }
   return (
     <div>

@@ -8,7 +8,11 @@ import {
   updateIncomeByIdTrunk,
   deleteIncomeByIdTrunk,
 } from "./incomeDetailsSlice";
-import { getKeyFromLocalStorage, productIncome, sendMsg } from "../../utils/utils";
+import {
+  getKeyFromLocalStorage,
+  productIncome,
+  sendMsg,
+} from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
@@ -16,6 +20,7 @@ import { EditMode } from "../../components/editMode/EditMode";
 import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
 import { FormProduct } from "../../components/formOfProduct/formProduct";
 import { Button } from "../../components/buttons/button";
+import { NotFound } from "../notfound/notfound";
 
 export const IncomeDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -29,9 +34,10 @@ export const IncomeDetails = () => {
   useEffect(() => {
     dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
   }, [dispatch, params.incomeId, token]);
-  const {product, income} = productIncome
-  const { inputsForm, setInputsForm, onChangeInputsForm } =
-    HooksFormOfProducts({product, income});
+  const { product, income } = productIncome;
+  const { inputsForm, setInputsForm, onChangeInputsForm } = HooksFormOfProducts(
+    { product, income }
+  );
   // console.log(inputsForm);
   const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
@@ -49,7 +55,7 @@ export const IncomeDetails = () => {
           incomeId: params.incomeId,
         })
       ).unwrap();
-      setInputsForm({product, income});
+      setInputsForm({ product, income });
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
@@ -83,6 +89,9 @@ export const IncomeDetails = () => {
   }
   if (loading) {
     return <Loading />;
+  }
+  if (dataIncomeById.length === 0) {
+    return <NotFound />;
   }
   return (
     <div>
