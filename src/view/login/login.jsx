@@ -30,7 +30,6 @@ export const Login = () => {
       ).unwrap();
       // handle result here
       const { token, name } = response;
-      console.log(token);
       setKeyFromLocalStorage("token", token);
       setKeyFromLocalStorage("name", name);
       setInputsForm({ email: "", password: "" });
@@ -41,7 +40,6 @@ export const Login = () => {
     } catch (error) {
       // handle error here
       response = error;
-      console.log(response);
       sendMsg("mssgIncorrectTyping", "Incorrect password or email");
       cleanMsg(2000);
       throw error;

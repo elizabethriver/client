@@ -30,7 +30,6 @@ export const IncomeDetails = () => {
   const { dataIncomeById, loading } = useSelector(
     (state) => state.getIncomeByID
   );
-  console.log(dataIncomeById);
   useEffect(() => {
     dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
   }, [dispatch, params.incomeId, token]);
@@ -38,7 +37,6 @@ export const IncomeDetails = () => {
   const { inputsForm, setInputsForm, onChangeInputsForm } = HooksFormOfProducts(
     { product, income }
   );
-  // console.log(inputsForm);
   const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
     product: inputsForm.product,
@@ -64,9 +62,7 @@ export const IncomeDetails = () => {
   };
 
   const onClickDelete = async () => {
-    console.log("Delete");
     try {
-      console.log();
       dispatch(
         deleteIncomeByIdTrunk({
           token: token,

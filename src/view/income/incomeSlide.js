@@ -16,14 +16,11 @@ export const incomePostTrunk = createAsyncThunk(
 
     try {
       response = await incomePost(token, product, income);
-      console.log(response);
       return response.data;
     } catch (error) {
       // handle error
       response = error.response;
-      console.log(response);
       if (response.status === 403) {
-        console.log('here')
         removeKeyFromLocalStorage('token')
         removeKeyFromLocalStorage('name')
       }

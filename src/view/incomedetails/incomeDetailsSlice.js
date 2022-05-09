@@ -22,9 +22,7 @@ export const getIncomeByIdTrunk = createAsyncThunk(
     } catch (error) {
       // handle error
       response = error.response;
-      console.log(response);
       if (response.status === 403) {
-        console.log('here')
         removeKeyFromLocalStorage('token')
         removeKeyFromLocalStorage('name')
       }
@@ -44,9 +42,7 @@ export const deleteIncomeByIdTrunk = createAsyncThunk(
       return mssg;
     } catch (error) {
       response = error.response;
-      console.log(response);
       if (response.status === 403) {
-        console.log('here')
         removeKeyFromLocalStorage('token')
         removeKeyFromLocalStorage('name')
       }
@@ -62,15 +58,12 @@ export const updateIncomeByIdTrunk = createAsyncThunk(
 
     try {
       response = await putIncomeByID(token, product, income, incomeId);
-      console.log(response.data);
       const { docUpdate } = response.data;
       return docUpdate;
     } catch (error) {
       // handle error
       response = error.response;
-      console.log(response);
       if (response.status === 403) {
-        console.log('here')
         removeKeyFromLocalStorage('token')
         removeKeyFromLocalStorage('name')
       }
@@ -126,7 +119,6 @@ const incomeDetailsSlice = createSlice({
     // // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(deleteIncomeByIdTrunk.fulfilled, (state, action) => {
       // Add user to the state array
-      console.log(action.payload);
       state.deleteDocUpdateById = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed

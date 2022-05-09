@@ -6,6 +6,7 @@ import { cleanMsg, getKeyFromLocalStorage, productIncome, sendMsg } from "../../
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { FormRegister } from './../../components/formRegister/formRegister';
+import { Loading } from "../../components/loading/loading";
 
 export const Income = () => {
   const token = getKeyFromLocalStorage("token");
@@ -14,7 +15,6 @@ export const Income = () => {
     HooksFormOfProducts({product, income});
   const dispatch = useDispatch();
   const { loading, status } = useSelector((state) => state.dataPostExpense);
-  console.log(loading, status);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -38,6 +38,9 @@ export const Income = () => {
   }
   if (status !== null) {
     return <AuthNoLogged />;
+  }
+  if (loading) {
+    return <Loading/>
   }
   return (
     <section>

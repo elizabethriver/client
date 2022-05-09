@@ -10,7 +10,7 @@ const initialState = {
   loading: false,
   docUpdateById: [],
   deleteDocUpdateById: [],
-  status: null
+  status: null,
 };
 
 export const getExpenseByIdTrunk = createAsyncThunk(
@@ -26,9 +26,8 @@ export const getExpenseByIdTrunk = createAsyncThunk(
       // handle error
       response = error.response;
       if (response.status === 403) {
-        console.log('here')
-        removeKeyFromLocalStorage('token')
-        removeKeyFromLocalStorage('name')
+        removeKeyFromLocalStorage("token");
+        removeKeyFromLocalStorage("name");
       }
       throw error;
     }
@@ -42,17 +41,14 @@ export const updateExpenseByIdTrunk = createAsyncThunk(
     let response = null;
     try {
       response = await putExpenseByID(token, product, expense, expenseId);
-      console.log(response.data);
       const { docUpdate } = response.data;
       return docUpdate;
     } catch (error) {
       // handle error
       response = error.response;
-      console.log(response);
       if (response.status === 403) {
-        console.log('here')
-        removeKeyFromLocalStorage('token')
-        removeKeyFromLocalStorage('name')
+        removeKeyFromLocalStorage("token");
+        removeKeyFromLocalStorage("name");
       }
       throw error;
     }
@@ -70,13 +66,12 @@ export const deleteExpenseByIdTrunk = createAsyncThunk(
     } catch (error) {
       // handle error
       response = error.response;
-      console.log(response);
       if (response.status === 403) {
-        console.log('here')
-        removeKeyFromLocalStorage('token')
-        removeKeyFromLocalStorage('name')
+        removeKeyFromLocalStorage("token");
+        removeKeyFromLocalStorage("name");
       }
-      throw error;    }
+      throw error;
+    }
   }
 );
 const expenseDetailsSlice = createSlice({
@@ -98,7 +93,7 @@ const expenseDetailsSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getExpenseByIdTrunk.rejected, (state, action) => {
       // Add user to the state array
-      state.status = action.error
+      state.status = action.error;
       state.loading = false;
     });
     // Add reducers for additional action types here, and handle loading state as needed
@@ -115,7 +110,7 @@ const expenseDetailsSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(updateExpenseByIdTrunk.rejected, (state, action) => {
       // Add user to the state array
-      state.status = action.error
+      state.status = action.error;
       state.loading = false;
     });
     // Add reducers for additional action types here, and handle loading state as needed
@@ -131,7 +126,7 @@ const expenseDetailsSlice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(deleteExpenseByIdTrunk.rejected, (state, action) => {
       // Add user to the state array
-      state.status = action.error
+      state.status = action.error;
       state.loading = false;
     });
   },

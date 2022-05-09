@@ -62,7 +62,6 @@ export const ExpenseDetails = () => {
 
   const onClickDelete = async () => {
     try {
-      console.log();
       dispatch(
         deleteExpenseByIdTrunk({
           token: token,

@@ -19,9 +19,7 @@ export const incomeAllAxiosDashboard = createAsyncThunk(
       return incomeAll;
     } catch (error) {
       response = error.response;
-      console.log(response);
       if (response.status === 403) {
-        console.log('here')
         removeKeyFromLocalStorage('token')
         removeKeyFromLocalStorage('name')
       }
@@ -40,9 +38,7 @@ export const expensesAllAxiosDashboard = createAsyncThunk(
       return expensesAll;
     } catch (error) {
       response = error.response;
-      console.log(response);
       if (response.status === 403) {
-        console.log('here')
         removeKeyFromLocalStorage('token')
         removeKeyFromLocalStorage('name')
       }

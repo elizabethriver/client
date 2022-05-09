@@ -12,12 +12,10 @@ export const login = async (email, password) => {
       data
     );
     // handle success
-    console.log(response);
     return response;
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -40,7 +38,6 @@ export const register = async (name, email, password, confirmPassword) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -61,7 +58,6 @@ export const dashboard = async (token) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -87,7 +83,6 @@ export const incomePost = async (token, product, income) => {
     return response;
   } catch (error) {
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -115,7 +110,6 @@ export const expensePost = async (token, product, expense) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -138,7 +132,6 @@ export const getIncomeByID = async (token, incomeId) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -152,7 +145,7 @@ export const getExpenseByID = async (token, expenseId) => {
         Authorization: "Bearer " + token,
       },
     };
-    const response = await axios.get(
+    response = await axios.get(
       `https://mywalletapicenter.herokuapp.com/expense/${expenseId}`,
       config
     );
@@ -161,7 +154,6 @@ export const getExpenseByID = async (token, expenseId) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -189,7 +181,6 @@ export const putIncomeByID = async (token, product, income, incomeId) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -217,7 +208,6 @@ export const putExpenseByID = async (token, product, expense, expenseId) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -240,7 +230,6 @@ export const deleteExpenseByID = async (token, expenseId) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };
@@ -262,7 +251,6 @@ export const deleteIncomeByID = async (token, incomeId) => {
   } catch (error) {
     // handle error
     response = error.response;
-    console.log(response);
     throw error;
   }
 };

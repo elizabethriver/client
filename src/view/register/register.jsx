@@ -39,7 +39,6 @@ export const Register = () => {
     } catch (error) {
       // handle error here
       response = error
-      console.log(response)
       sendMsg("mssgIncorrectTyping", "Please verify your inputs");
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";

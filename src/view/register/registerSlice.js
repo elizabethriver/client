@@ -12,12 +12,10 @@ export const axiosRegister = createAsyncThunk(
     const { name, email, password, confirmPassword } = dataRegister;
     let response = null;
     try {
-      console.log({ name, email, password, confirmPassword });
       response = await register(name, email, password, confirmPassword);
       return response.data;
     } catch (error) {
       response = error.response;
-      console.log(response);
       throw error;
     }
   }

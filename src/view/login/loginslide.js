@@ -16,7 +16,6 @@ export const axiosLogin = createAsyncThunk("login/api", async (dataLogin) => {
     return data;
   } catch (error) {
     response = error.response;
-    console.log(response);
     throw error;
   }
 });
