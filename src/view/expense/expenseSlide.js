@@ -4,6 +4,7 @@ import { expensePost } from "../../api/api";
 const initialState = {
   dataExpense: [],
   loading: false,
+  status: null
 };
 
 export const expensePostTrunk = createAsyncThunk(
@@ -35,7 +36,8 @@ const expenseSlide = createSlice({
       state.loading = false;
       state.dataExpense = action.payload;
     });
-    builder.addCase(expensePostTrunk.rejected, (state) => {
+    builder.addCase(expensePostTrunk.rejected, (state, action) => {
+      state.status = action.error
       state.loading = false;
     });
   },

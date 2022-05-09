@@ -26,7 +26,7 @@ export const FormRegister = ({
           />
         </label>
         <label htmlFor={htmlFor}>
-          Income
+          Register
           <input
             type="text"
             name={name}

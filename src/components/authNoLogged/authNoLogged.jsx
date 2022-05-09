@@ -7,7 +7,7 @@ export const AuthNoLogged = () => {
     useEffect(() => {
       setTimeout(() => {
         navigate('/', { replace: true });
-      }, 2000);
+      }, 5000);
     });
   
     return (

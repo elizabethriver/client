@@ -10,13 +10,13 @@ import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { Button } from "./../../components/buttons/button";
 import { DashboardArray } from "../../components/dashboardArray/dashboardArray";
-import { LinkStandard } from './../../components/link/Link';
+import { LinkStandard } from "./../../components/link/Link";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
   const nameUserSet = getKeyFromLocalStorage("name");
   const dispatch = useDispatch();
-  const { incomeAllDashboardData, expenseAllDashboardData, loading } =
+  const { incomeAllDashboardData, expenseAllDashboardData, loading, status } =
     useSelector((state) => state.dataDashboard);
 
   const initFetch = useCallback(() => {
@@ -31,6 +31,9 @@ export const Dashboard = () => {
   if (!token) {
     return <AuthNoLogged />;
   }
+  if (status) {
+    return <AuthNoLogged />;
+  }
   if (loading) return <Loading />;
   return (
     <div>
@@ -38,10 +41,10 @@ export const Dashboard = () => {
       <main>
         <div>
           <Button>
-            <LinkStandard to={"/income"} children={'Income'}/>
+            <LinkStandard to={"/income"} children={"Income"} />
           </Button>
           <Button>
-            <LinkStandard to={"/expense"} children={'Expense'}/>
+            <LinkStandard to={"/expense"} children={"Expense"} />
           </Button>
         </div>
         <section>

@@ -5,6 +5,7 @@ const initialState = {
   incomeAllDashboardData: [],
   expenseAllDashboardData: [],
   loading: false,
+  status: null
 };
 // First, create the thunk
 export const incomeAllAxiosDashboard = createAsyncThunk(
@@ -18,6 +19,9 @@ export const incomeAllAxiosDashboard = createAsyncThunk(
     } catch (error) {
       response = error.response;
       console.log(response);
+      if (response.status === 403) {
+        console.log('here')
+      }
       throw error;
     }
   }
@@ -34,6 +38,9 @@ export const expensesAllAxiosDashboard = createAsyncThunk(
     } catch (error) {
       response = error.response;
       console.log(response);
+      if (response.status === 403) {
+        console.log('here')
+      }
       throw error;    }
   }
 );
@@ -71,8 +78,9 @@ const dashboardSlice = createSlice({
       state.expenseAllDashboardData = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(expensesAllAxiosDashboard.rejected, (state) => {
+    builder.addCase(expensesAllAxiosDashboard.rejected, (state, action) => {
       // Add user to the state array
+      state.status = action.error
       state.loading = false;
     });
   },
