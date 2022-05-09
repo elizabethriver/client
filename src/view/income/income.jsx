@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
 import { cleanMsg, getKeyFromLocalStorage, productIncome, sendMsg } from "../../utils/utils";
@@ -13,7 +13,9 @@ export const Income = () => {
   const { inputsForm, setInputsForm, onChangeInputsForm } =
     HooksFormOfProducts({product, income});
   const dispatch = useDispatch();
-  
+  const { loading, status } = useSelector((state) => state.dataPostExpense);
+  console.log(loading, status);
+
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
@@ -32,6 +34,9 @@ export const Income = () => {
     }
   };
   if (!token) {
+    return <AuthNoLogged />;
+  }
+  if (status !== null) {
     return <AuthNoLogged />;
   }
   return (

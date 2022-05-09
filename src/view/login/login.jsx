@@ -20,7 +20,7 @@ export const Login = () => {
   };
   const submit = async (e) => {
     e.preventDefault();
-    let response = null; 
+    let response = null;
     try {
       response = await dispatch(
         axiosLogin({
@@ -30,20 +30,20 @@ export const Login = () => {
       ).unwrap();
       // handle result here
       const { token, name } = response;
-      console.log(token)
-      setKeyFromLocalStorage('token', token)
-      setKeyFromLocalStorage('name', name)
+      console.log(token);
+      setKeyFromLocalStorage("token", token);
+      setKeyFromLocalStorage("name", name);
       setInputsForm({ email: "", password: "" });
-      sendMsg("mssgIncorrectTyping", "Welcome")
+      sendMsg("mssgIncorrectTyping", "Welcome");
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
     } catch (error) {
       // handle error here
-      response = error
-      console.log(response)
-      sendMsg("mssgIncorrectTyping", "Incorrect password or email")
-      cleanMsg(2000)
+      response = error;
+      console.log(response);
+      sendMsg("mssgIncorrectTyping", "Incorrect password or email");
+      cleanMsg(2000);
       throw error;
     }
   };
@@ -88,14 +88,14 @@ export const Login = () => {
                   title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
                 />
               </label>
-              <Button type='submit' children='Log In'/>
+              <Button type="submit" children="Log In" />
             </fieldset>
             <small id="mssgIncorrectTyping" />
           </form>
         </div>
         <div>
           <span>You dont have a account? Click</span>
-          <Button onClick={handleClick} children='here'/>
+          <Button onClick={handleClick} children="here" />
         </div>
       </section>
     </main>

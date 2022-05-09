@@ -4,6 +4,7 @@ import { incomePost } from "../../api/api";
 const initialState = {
   dataIncome: [],
   loading: false,
+  status: null
 };
 
 export const incomePostTrunk = createAsyncThunk(
@@ -42,8 +43,9 @@ const incomeSlide = createSlice({
       state.dataIncome = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(incomePostTrunk.rejected, (state) => {
+    builder.addCase(incomePostTrunk.rejected, (state, action) => {
       // Add user to the state array
+      state.status = action.error
       state.loading = false;
     });
   },
