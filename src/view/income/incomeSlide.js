@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { incomePost } from "../../api/api";
+import { removeKeyFromLocalStorage } from "../../utils/utils";
 
 const initialState = {
   dataIncome: [],
@@ -21,6 +22,11 @@ export const incomePostTrunk = createAsyncThunk(
       // handle error
       response = error.response;
       console.log(response);
+      if (response.status === 403) {
+        console.log('here')
+        removeKeyFromLocalStorage('token')
+        removeKeyFromLocalStorage('name')
+      }
       throw error;
     }
   }

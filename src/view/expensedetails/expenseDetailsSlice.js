@@ -4,11 +4,13 @@ import {
   deleteExpenseByID,
   putExpenseByID,
 } from "../../api/api";
+import { removeKeyFromLocalStorage } from "../../utils/utils";
 const initialState = {
   dataExpenseById: [],
   loading: false,
   docUpdateById: [],
   deleteDocUpdateById: [],
+  status: null
 };
 
 export const getExpenseByIdTrunk = createAsyncThunk(
@@ -23,7 +25,11 @@ export const getExpenseByIdTrunk = createAsyncThunk(
     } catch (error) {
       // handle error
       response = error.response;
-      console.log(response);
+      if (response.status === 403) {
+        console.log('here')
+        removeKeyFromLocalStorage('token')
+        removeKeyFromLocalStorage('name')
+      }
       throw error;
     }
   }
@@ -43,6 +49,11 @@ export const updateExpenseByIdTrunk = createAsyncThunk(
       // handle error
       response = error.response;
       console.log(response);
+      if (response.status === 403) {
+        console.log('here')
+        removeKeyFromLocalStorage('token')
+        removeKeyFromLocalStorage('name')
+      }
       throw error;
     }
   }
@@ -60,6 +71,11 @@ export const deleteExpenseByIdTrunk = createAsyncThunk(
       // handle error
       response = error.response;
       console.log(response);
+      if (response.status === 403) {
+        console.log('here')
+        removeKeyFromLocalStorage('token')
+        removeKeyFromLocalStorage('name')
+      }
       throw error;    }
   }
 );
@@ -80,8 +96,9 @@ const expenseDetailsSlice = createSlice({
       state.dataExpenseById = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(getExpenseByIdTrunk.rejected, (state) => {
+    builder.addCase(getExpenseByIdTrunk.rejected, (state, action) => {
       // Add user to the state array
+      state.status = action.error
       state.loading = false;
     });
     // Add reducers for additional action types here, and handle loading state as needed
@@ -96,8 +113,9 @@ const expenseDetailsSlice = createSlice({
       state.docUpdateById = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(updateExpenseByIdTrunk.rejected, (state) => {
+    builder.addCase(updateExpenseByIdTrunk.rejected, (state, action) => {
       // Add user to the state array
+      state.status = action.error
       state.loading = false;
     });
     // Add reducers for additional action types here, and handle loading state as needed
@@ -108,12 +126,12 @@ const expenseDetailsSlice = createSlice({
     // // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(deleteExpenseByIdTrunk.fulfilled, (state, action) => {
       // Add user to the state array
-      console.log(action.payload);
       state.deleteDocUpdateById = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(deleteExpenseByIdTrunk.rejected, (state) => {
+    builder.addCase(deleteExpenseByIdTrunk.rejected, (state, action) => {
       // Add user to the state array
+      state.status = action.error
       state.loading = false;
     });
   },

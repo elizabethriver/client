@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   cleanMsg,
@@ -20,14 +20,6 @@ export const Expense = () => {
   );
   const dispatch = useDispatch();
   const { loading, status } = useSelector((state) => state.dataPostExpense);
-  console.log(loading, status);
-  // useEffect(() => {
-  //   first
-  
-  //   return () => {
-  //     second
-  //   }
-  // }, [third])
   
   const onSubmitForm = async (e) => {
     e.preventDefault();

@@ -1,10 +1,11 @@
-import { useParams, useNavigate, Navigate } from "react-router-dom";
-
 export const setKeyFromLocalStorage = (key, value) => {
   return localStorage.setItem(key, value);
 };
 export const getKeyFromLocalStorage = (key) => {
   return localStorage.getItem(key);
+};
+export const removeKeyFromLocalStorage = (key) => {
+  return localStorage.removeItem(key);
 };
 export const cleanMsg = (timeout) => {
   return setTimeout(() => {
