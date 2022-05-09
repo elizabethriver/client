@@ -10,10 +10,10 @@ import { FormRegister } from './../../components/formRegister/formRegister';
 export const Income = () => {
   const token = getKeyFromLocalStorage("token");
   const {product, income} = productIncome
-  // const product = { product: "", income: "" };
   const { inputsForm, setInputsForm, onChangeInputsForm } =
     HooksFormOfProducts({product, income});
   const dispatch = useDispatch();
+  
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
