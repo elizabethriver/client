@@ -39,14 +39,6 @@ export const Dashboard = () => {
     <div>
       Welcome {nameUserSet}
       <main>
-        <div>
-          <Button>
-            <LinkStandard to={"/income"} children={"Income"} />
-          </Button>
-          <Button>
-            <LinkStandard to={"/expense"} children={"Expense"} />
-          </Button>
-        </div>
         <section>
           <DashboardArray
             listDashboardData={incomeAllDashboardData}

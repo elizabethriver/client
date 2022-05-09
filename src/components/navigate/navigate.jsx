@@ -1,18 +1,46 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import "./style/navigate.css";
 import { LinkStandard } from "./../link/Link";
+import {
+  getKeyFromLocalStorage,
+  removeKeyFromLocalStorage,
+} from "../../utils/utils";
+import { Button } from "./../buttons/button";
 
 export const Navigate = () => {
+  const userToken = getKeyFromLocalStorage("token");
+  let navigate = useNavigate();
+  const logOut = () => {
+    removeKeyFromLocalStorage("token");
+    removeKeyFromLocalStorage("name");
+    navigate("/");
+  };
   return (
     <header>
       <nav>
-        <li>
-          <LinkStandard to="/" children="Login" />
-        </li>
-        <li>
-          <LinkStandard to="/register" children="Register" />
-        </li>
+        <div className='container_nav'>
+          <li>
+            <LinkStandard to="/dashboard" children="Dashboard" />
+          </li>
+          <li>
+            <LinkStandard to={"/income"} children={"Income"} />
+          </li>
+          <li>
+            <LinkStandard to={"/expense"} children={"Expense"} />
+          </li>
+        </div>
+        <div>
+          {userToken ? (
+            <li>
+              <Button type='link' onClick={logOut} children="Log Out" />
+            </li>
+          ) : (
+            <li>
+              <LinkStandard to="/" children="Log In" />
+            </li>
+          )}
+        </div>
       </nav>
       <Outlet />
     </header>

@@ -1,8 +1,15 @@
-nav{
-    display: flex;
-    background-color: #000;
+nav {
+  display: flex;
+  background-color: var(--black);
+  justify-content: space-between;
 }
-li>a{
-    color: #fff;
-    text-decoration: none;
+li > a {
+  color: var(--white);
+  text-decoration: none;
+}
+.container_nav {
+  display: flex;
+}
+.button_logOut {
+  background-color: transparent;
 }

@@ -1,0 +1,10 @@
+.button_link{
+    background-color: transparent;
+    cursor: pointer;
+}
+.classLink{
+    color: var(--white);
+}
+.classButton{
+    color: var(--black);
+}
