@@ -7,17 +7,16 @@ export const Items = (props) => {
   return (
     <>
       {props?.array.map((item) => (
-        <li id={`${item._id}`} key={item._id}>
+        <li className="container_list" id={`${item._id}`} key={item._id}>
           <Button
             type="button"
             children={
               <LinkStandard
                 to={`${props.url}/${item._id}`}
-                children={"Details"}
+                children={<span>{item.product}</span>}
               />
             }
           />
-          <span>{item.product}</span>
           <strong>$ {item.income ? item.income : item.expense}</strong>
         </li>
       ))}

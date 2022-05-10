@@ -34,22 +34,20 @@ export const Dashboard = () => {
   // }
   if (loading) return <Loading />;
   return (
-    <div>
-      Welcome {nameUserSet}
-      <main>
-        <section>
-          <DashboardArray
-            listDashboardData={incomeAllDashboardData}
-            title="Incomes"
-            url="/income"
-          />
-          <DashboardArray
-            listDashboardData={expenseAllDashboardData}
-            title="Expenses"
-            url="/expense"
-          />
-        </section>
-      </main>
-    </div>
+    <main>
+      <h1>Welcome {nameUserSet}</h1>
+      <section className="dashboard">
+        <DashboardArray
+          listDashboardData={incomeAllDashboardData}
+          title="Incomes"
+          url="/income"
+        />
+        <DashboardArray
+          listDashboardData={expenseAllDashboardData}
+          title="Expenses"
+          url="/expense"
+        />
+      </section>
+    </main>
   );
 };

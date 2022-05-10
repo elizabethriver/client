@@ -2,4 +2,9 @@ li{
     display: flex;
     align-items: center;
     padding: 5px 10px;
+    justify-content: space-between;
+}
+li.container_list{
+    background-color: var(--grey);
+    margin: 10px;
 }
