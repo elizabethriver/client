@@ -1,25 +1,34 @@
-.button_link{
-    cursor: pointer;
+.button_link {
+  cursor: pointer;
 }
-.classLink{
-    color: var(--white);
-    background-color: transparent;
-    border: none;
-    padding: 5px;
+.classLink {
+  color: var(--white);
+  background-color: transparent;
+  border: none;
+  padding: 5px;
 }
-.classButtonLogin{
-    color: var(--white);
-    background-color: var(--blueLight);
-    border-radius: 5px;
-    border: solid 1px var(--black);
-    padding: 5px;
-    margin: 4px 30% 0;;
+.classButtonLogin {
+  color: var(--white);
+  background-color: var(--blueLight);
+  border-radius: 5px;
+  border: solid 1px var(--black);
+  padding: 5px;
+  margin: 4px 30% 0;
 }
-.classButtonRegister{
-    color: var(--white);
-    background-color: var(--greenLight);
-    border-radius: 5px;
-    border: solid 1px var(--black);
-    padding: 5px;
-    margin: 4px 30% 0;;
+.classButtonRegister {
+  color: var(--white);
+  background-color: var(--greenLight);
+  border-radius: 5px;
+  border: solid 1px var(--black);
+  padding: 5px;
+  margin: 4px 30% 0;
+}
+.classButtonDetailsLink {
+  border: none;
+  background-color: transparent;
+  white-space: nowrap; 
+  width: 120px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  text-align: left;
 }

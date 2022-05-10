@@ -13,6 +13,9 @@ export const Button = ({ type, name, onClick, children }) => {
     case "register":
       classButton = "classButtonRegister";
       break;
+    case "details_link":
+      classButton = "classButtonDetailsLink";
+      break;
     default:
     // code block
   }

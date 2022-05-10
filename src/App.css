@@ -12,10 +12,17 @@
   --greyLight: #fbf8f6;
   --greyDark: #a29b99;
   --azure: #f0ffff;
+  --greenDarkest: #1b3a3c;
   --greenDark: #2e6166;
+  --pinkDark: #c3196b;
+  --pinkDarkCore: #7e0b42;
 }
 h1 {
   padding: 10px;
+}
+a{
+  text-decoration: none;
+  color: var(--white)
 }
 section {
   display: flex;
@@ -43,7 +50,7 @@ input:focus-visible {
   color: var(--greenDark);
 }
 main {
-  background-color: var(--azure);
+  background-color: var(--grey);
 }
 label {
   display: flex;
