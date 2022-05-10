@@ -3,10 +3,7 @@ main {
 
     height: 100vh;
 }
-fieldset{
-    display: flex;
-    flex-direction: column;
-}
+
 figure{
     width: 50%;
     display: flex;

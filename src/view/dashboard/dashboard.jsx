@@ -8,15 +8,13 @@ import "./style/dashboard.css";
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
-import { Button } from "./../../components/buttons/button";
 import { DashboardArray } from "../../components/dashboardArray/dashboardArray";
-import { LinkStandard } from "./../../components/link/Link";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
   const nameUserSet = getKeyFromLocalStorage("name");
   const dispatch = useDispatch();
-  const { incomeAllDashboardData, expenseAllDashboardData, loading, status } =
+  const { incomeAllDashboardData, expenseAllDashboardData, loading } =
     useSelector((state) => state.dataDashboard);
 
   const initFetch = useCallback(() => {
@@ -31,9 +29,9 @@ export const Dashboard = () => {
   if (!token) {
     return <AuthNoLogged />;
   }
-  if (status) {
-    return <AuthNoLogged />;
-  }
+  // if (status) {
+  //   return <AuthNoLogged />;
+  // }
   if (loading) return <Loading />;
   return (
     <div>

@@ -20,7 +20,7 @@ export const Expense = () => {
   );
   const dispatch = useDispatch();
   const { loading, status } = useSelector((state) => state.dataPostExpense);
-  
+
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
@@ -46,16 +46,18 @@ export const Expense = () => {
   }
   if (loading) return <Loading />;
   return (
-    <section>
-      expense
-      <FormRegister
-        name="expense"
-        onSubmitForm={onSubmitForm}
-        onChangeInputsForm={onChangeInputsForm}
-        inputsFormProduct={inputsForm.product}
-        inputsFormRegistered={inputsForm.expense}
-        htmlFor="expense"
-      />
-    </section>
+    <main>
+      <section className="container">
+        <h1>Expense</h1>
+        <FormRegister
+          name="expense"
+          onSubmitForm={onSubmitForm}
+          onChangeInputsForm={onChangeInputsForm}
+          inputsFormProduct={inputsForm.product}
+          inputsFormRegistered={inputsForm.expense}
+          htmlFor="expense"
+        />
+      </section>
+    </main>
   );
 };

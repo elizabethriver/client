@@ -7,4 +7,47 @@
   --white: #fff;
   --blueLight: #047cf8;
   --greenLight: #06E4CC;
+  --coral: #12fbfffb;
+  --grey: #e7dbd6;
+  --greyLight: #fbf8f6;
+  --greyDark: #a29b99;
+  --azure: #f0ffff;
+}
+h1{
+  padding: 10px;
+}
+section{
+  display: flex;
+  padding: 1rem;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: var(--grey);
+  border-radius: 10px;
+}
+
+input{
+  margin: 6px;
+  background-color: var(--greyLight);
+  border-radius: 5px;
+  border: solid 1px;
+  padding: 5px;
+}
+input:focus-visible {
+  outline-offset: 0px;
+  outline-color: var(--blueLight);
+  color: var(--blueLight);
+}
+main{
+  background-color: var(--azure);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  align-items: center;
 }

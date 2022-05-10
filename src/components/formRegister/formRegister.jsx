@@ -13,11 +13,11 @@ export const FormRegister = ({
     <form onSubmit={onSubmitForm}>
       <fieldset>
         <label htmlFor="product">
-          Name of product
+          Name of product: {''}
           <input
             type="text"
             name="product"
-            placeholder="add your product"
+            placeholder="add product's name"
             onChange={onChangeInputsForm}
             value={inputsFormProduct}
             required
@@ -26,11 +26,11 @@ export const FormRegister = ({
           />
         </label>
         <label htmlFor={htmlFor}>
-          Register
+          Register charge: {''}
           <input
             type="text"
             name={name}
-            placeholder="add your product"
+            placeholder="add charge"
             value={inputsFormRegistered}
             onChange={onChangeInputsForm}
             required

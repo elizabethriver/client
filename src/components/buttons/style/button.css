@@ -1,10 +1,15 @@
 .button_link{
-    background-color: transparent;
     cursor: pointer;
 }
 .classLink{
     color: var(--white);
+    background-color: transparent;
 }
 .classButton{
-    color: var(--black);
+    color: var(--white);
+    background-color: var(--blueLight);
+    margin: 10px 40% 0;
+    border-radius: 5px;
+    border: solid 1px var(--black);
+    padding: 5px;
 }

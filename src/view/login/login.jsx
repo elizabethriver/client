@@ -56,44 +56,42 @@ export const Login = () => {
         />
       </figure>
       <section className="containerLoginSectionLogin displayFlex">
-        Login
-        <div>
-          <form onSubmit={submit}>
-            <fieldset>
-              <label htmlFor="email">
-                email:
-                <input
-                  type="input"
-                  name="email"
-                  value={inputsForm.email}
-                  onChange={onChangeInputsForm}
-                  placeholder="example@mail.com"
-                  required
-                  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-                  title="Please enter your email (e.g example@mail.com)"
-                />
-              </label>
-              <label htmlFor="password">
-                password:
-                <input
-                  type="input"
-                  name="password"
-                  value={inputsForm.password}
-                  onChange={onChangeInputsForm}
-                  placeholder="*******"
-                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
-                  required
-                  title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
-                />
-              </label>
-              <Button type="submit" children="Log In" />
-            </fieldset>
-            <small id="mssgIncorrectTyping" />
-          </form>
-        </div>
+        <h1>Login</h1>
+        <form onSubmit={submit}>
+          <fieldset className="fieldsetLogin">
+            <label htmlFor="email">
+              email:
+              <input
+                type="email"
+                name="email"
+                value={inputsForm.email}
+                onChange={onChangeInputsForm}
+                placeholder="example@mail.com"
+                required
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                title="Please enter your email (e.g example@mail.com)"
+              />
+            </label>
+            <label htmlFor="password">
+              password:
+              <input
+                type="password"
+                name="password"
+                value={inputsForm.password}
+                onChange={onChangeInputsForm}
+                placeholder="*******"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                required
+                title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
+              />
+            </label>
+            <Button type="submit" children="Log In" />
+          </fieldset>
+          <small id="mssgIncorrectTyping" />
+        </form>
         <div>
           <span>You dont have a account? Click</span>
-          <Button onClick={handleClick} children="here" />
+          <Button type='link' onClick={handleClick} children="here" />
         </div>
       </section>
     </main>
