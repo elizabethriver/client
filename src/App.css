@@ -6,12 +6,13 @@
   --black: #000;
   --white: #fff;
   --blueLight: #047cf8;
-  --greenLight: #06e4cc;
+  --greenLight: #009c86;
   --coral: #12fbfffb;
   --grey: #e7dbd6;
   --greyLight: #fbf8f6;
   --greyDark: #a29b99;
   --azure: #f0ffff;
+  --greenDark: #2e6166;
 }
 h1 {
   padding: 10px;
@@ -38,8 +39,8 @@ input {
 }
 input:focus-visible {
   outline-offset: 0px;
-  outline-color: var(--blueLight);
-  color: var(--blueLight);
+  outline-color: var(--greenDark);
+  color: var(--greenDark);
 }
 main {
   background-color: var(--azure);

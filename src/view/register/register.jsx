@@ -52,19 +52,19 @@ export const Register = () => {
       <figure>
         <img
           className="image_register"
-          src="https://i.ibb.co/2hhgKXF/3094352.jpg"
-          alt=""
+          src="https://i.ibb.co/2hhgKXF/3094352.jpg?tr=w-400,h-300"
+          alt="register user"
+          loading="lazy"
         />
       </figure>
       <section className="containerLoginSection displayFlex">
-        Register
-        <div>
+        <h1>Register</h1>
           <form onSubmit={submit}>
             <fieldset>
               <label htmlFor="name">
-                name:
+                Username:
                 <input
-                  type="input"
+                  type="text"
                   name="name"
                   value={inputsForm.name}
                   placeholder="add your name"
@@ -75,9 +75,9 @@ export const Register = () => {
                 />
               </label>
               <label htmlFor="email">
-                email:
+                Email:
                 <input
-                  type="input"
+                  type="email"
                   name="email"
                   value={inputsForm.email}
                   placeholder="example@mail.com"
@@ -88,9 +88,9 @@ export const Register = () => {
                 />
               </label>
               <label htmlFor="password">
-                password:
+                Password:
                 <input
-                  type="input"
+                  type="password"
                   name="password"
                   value={inputsForm.password}
                   placeholder="*******"
@@ -103,7 +103,7 @@ export const Register = () => {
               <label htmlFor="confirmPassword">
                 Repeat password:
                 <input
-                  type="input"
+                  type="password"
                   name="confirmPassword"
                   value={inputsForm.confirmPassword}
                   placeholder="*******"
@@ -113,14 +113,13 @@ export const Register = () => {
                   title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
                 />
               </label>
-              <Button type='submit' children='Register'/>
+              <Button name='register' type='submit' children='Register'/>
             </fieldset>
             <small id="mssgIncorrectTyping" />
           </form>
-        </div>
         <div>
           <span>You have a account? Click</span>
-          <Button type='button' onClick={handleClick} children='here'/>
+          <Button name='link' type='button' onClick={handleClick} children='here'/>
         </div>
       </section>
     </main>

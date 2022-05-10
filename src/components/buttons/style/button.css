@@ -7,9 +7,17 @@
     border: none;
     padding: 5px;
 }
-.classButton{
+.classButtonLogin{
     color: var(--white);
     background-color: var(--blueLight);
+    border-radius: 5px;
+    border: solid 1px var(--black);
+    padding: 5px;
+    margin: 4px 30% 0;;
+}
+.classButtonRegister{
+    color: var(--white);
+    background-color: var(--greenLight);
     border-radius: 5px;
     border: solid 1px var(--black);
     padding: 5px;

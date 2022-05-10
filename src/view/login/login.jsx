@@ -51,8 +51,9 @@ export const Login = () => {
       <figure>
         <img
           className="image_login"
-          src="https://i.ibb.co/WGPHHBp/3071357.jpg"
+          src="https://i.ibb.co/WGPHHBp/3071357.jpg?tr=w-400,h-300"
           alt="login user"
+          loading="lazy"
         />
       </figure>
       <section className="containerLoginSectionLogin displayFlex">
@@ -60,7 +61,7 @@ export const Login = () => {
         <form onSubmit={submit}>
           <fieldset className="fieldsetLogin">
             <label htmlFor="email">
-              email:
+              Email:
               <input
                 type="email"
                 name="email"
@@ -73,7 +74,7 @@ export const Login = () => {
               />
             </label>
             <label htmlFor="password">
-              password:
+              Password:
               <input
                 type="password"
                 name="password"
@@ -85,13 +86,13 @@ export const Login = () => {
                 title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
               />
             </label>
-            <Button className='submit' type="submit" children="Log In" />
+            <Button className='submit' name='login' type="submit" children="Log In" />
           </fieldset>
           <small id="mssgIncorrectTyping" />
         </form>
         <div>
           <span>You dont have a account? Click</span>
-          <Button type='button' onClick={handleClick} children="here" />
+          <Button type='button' name='link' onClick={handleClick} children="here" />
         </div>
       </section>
     </main>
