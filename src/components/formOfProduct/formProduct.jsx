@@ -31,7 +31,7 @@ export const FormProduct = ({
         title="Just type number is allowed"
       />
       <Button type="submit" children="Save" />
-      <Button onClick={removeEditMode} children="Cancel" />
+      <Button type="button" onClick={removeEditMode} children="Cancel" />
     </form>
   );
 };

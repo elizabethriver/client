@@ -8,12 +8,15 @@ export const Items = (props) => {
     <>
       {props?.array.map((item) => (
         <li id={`${item._id}`} key={item._id}>
-          <Button>
-            <LinkStandard
-              to={`${props.url}/${item._id}`}
-              children={"Details"}
-            />
-          </Button>
+          <Button
+            type="button"
+            children={
+              <LinkStandard
+                to={`${props.url}/${item._id}`}
+                children={"Details"}
+              />
+            }
+          />
           <span>{item.product}</span>
           <strong>$ {item.income ? item.income : item.expense}</strong>
         </li>

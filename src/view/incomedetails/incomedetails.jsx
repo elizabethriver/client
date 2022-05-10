@@ -113,7 +113,7 @@ export const IncomeDetails = () => {
           />
         )}
       </div>
-      <Button onClick={onClickDelete} children="Delete" />
+      <Button type='button' onClick={onClickDelete} children="Delete" />
       <small id="mssgIncorrectTyping"></small>
     </div>
   );

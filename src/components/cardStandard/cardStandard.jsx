@@ -13,7 +13,7 @@ export const CardStandardProduct = ({
     <div>
       <span>{(object.product = productData)}</span>
       <strong>${(object[name] = numberData)}</strong>
-      <Button onClick={editMode} children="Update" />
+      <Button type='button' onClick={editMode} children="Update" />
     </div>
   );
 };

@@ -112,7 +112,7 @@ export const ExpenseDetails = () => {
         )}
       </div>
       <small id="mssgIncorrectTyping"></small>
-      <Button onClick={onClickDelete} children="Delete" />
+      <Button type='button' onClick={onClickDelete} children="Delete" />
     </div>
   );
 };

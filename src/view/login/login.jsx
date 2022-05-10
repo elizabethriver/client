@@ -85,13 +85,13 @@ export const Login = () => {
                 title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
               />
             </label>
-            <Button type="submit" children="Log In" />
+            <Button className='submit' type="submit" children="Log In" />
           </fieldset>
           <small id="mssgIncorrectTyping" />
         </form>
         <div>
           <span>You dont have a account? Click</span>
-          <Button type='link' onClick={handleClick} children="here" />
+          <Button type='button' onClick={handleClick} children="here" />
         </div>
       </section>
     </main>

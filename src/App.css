@@ -6,17 +6,17 @@
   --black: #000;
   --white: #fff;
   --blueLight: #047cf8;
-  --greenLight: #06E4CC;
+  --greenLight: #06e4cc;
   --coral: #12fbfffb;
   --grey: #e7dbd6;
   --greyLight: #fbf8f6;
   --greyDark: #a29b99;
   --azure: #f0ffff;
 }
-h1{
+h1 {
   padding: 10px;
 }
-section{
+section {
   display: flex;
   padding: 1rem;
 }
@@ -29,7 +29,7 @@ fieldset {
   border-radius: 10px;
 }
 
-input{
+input {
   margin: 6px;
   background-color: var(--greyLight);
   border-radius: 5px;
@@ -41,8 +41,13 @@ input:focus-visible {
   outline-color: var(--blueLight);
   color: var(--blueLight);
 }
-main{
+main {
   background-color: var(--azure);
+}
+label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .container {

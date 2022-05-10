@@ -6,9 +6,7 @@ export const NotFound = () => {
   return (
     <>
       <div>NotFound</div>
-      <Button>
-        <LinkStandard to="/" children="Go home" />
-      </Button>
+      <Button type='button' children={<LinkStandard to="/" children="Go home" />} />
     </>
   );
 };
