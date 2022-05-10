@@ -9,6 +9,12 @@ li.container_list {
   margin: 10px;
   border-radius: 10px;
 }
+li.container_list:hover {
+  background-color: var(--greenLighter);
+}
+li.container_list:active {
+  background-color: var(--greyLight);
+}
 strong.item_price {
   margin-left: 10px;
   color: var(--greenDarkest);

@@ -33,7 +33,7 @@ export const Navigate = () => {
         <div>
           {userToken ? (
             <li>
-              <Button type='button' onClick={logOut} children="Log Out" />
+              <Button type='button' name='link' onClick={logOut} children="Log Out" />
             </li>
           ) : (
             <li>
