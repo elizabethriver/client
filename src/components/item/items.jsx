@@ -6,8 +6,13 @@ import { LinkStandard } from "./../link/Link";
 export const Items = (props) => {
   return (
     <>
-      {props?.array.map((item) => (
-        <li className="container_list" id={`${item._id}`} key={item._id}>
+      {props?.array.map((item) => {
+        const priceIncome = new Intl.NumberFormat().format(item.income)
+        const priceExpense = new Intl.NumberFormat().format(item.expense)
+        console.log('priceIncome', priceIncome, 'priceExpense', priceExpense)
+
+        return (
+          <li className="container_list" id={`${item._id}`} key={item._id}>
           <Button
             name="details_link"
             type="button"
@@ -19,10 +24,13 @@ export const Items = (props) => {
             }
           />
           <strong className="item_price">
-            ${item.income ? item.income : item.expense}
+            {/* ${item.income ? item.income : item.expense} */}
+            ${isNaN(priceIncome) ? priceExpense : priceIncome }
           </strong>
         </li>
-      ))}
+        )
+      }
+      )}
     </>
   );
 };
