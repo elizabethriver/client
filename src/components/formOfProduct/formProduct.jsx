@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../buttons/button";
+import "./style/formProduct.css";
 
 export const FormProduct = ({
   name,
@@ -9,10 +10,10 @@ export const FormProduct = ({
   dataProductNameUpdated,
   dataNumberUpdated,
 }) => {
-
   return (
-    <form onSubmit={submitUpdate}>
+    <form className="formUpdate" onSubmit={submitUpdate}>
       <input
+        className="updateForm"
         type="text"
         name="product"
         placeholder={dataProductNameUpdated}
@@ -22,6 +23,7 @@ export const FormProduct = ({
         title="Just type letters is allowed"
       />
       <input
+        className="updateForm"
         type="text"
         name={name}
         placeholder={dataNumberUpdated}
@@ -30,8 +32,8 @@ export const FormProduct = ({
         pattern="^[0-9]+$"
         title="Just type number is allowed"
       />
-      <Button type="submit" children="Save" />
-      <Button type="button" onClick={removeEditMode} children="Cancel" />
+      <Button  name='update_product' type="submit" children="Save" />
+      <Button name='update_product' type="button" onClick={removeEditMode} children="Cancel" />
     </form>
   );
 };

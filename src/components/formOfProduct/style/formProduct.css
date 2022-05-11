@@ -1,0 +1,13 @@
+.formUpdate{
+    background-color: var(--greenLighter);
+    padding: 5px;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
+input.updateForm {
+    margin: 6px;
+    background-color: var(--azure);
+    border-radius: 5px;
+    border: solid 1px;
+    padding: 5px;
+}
