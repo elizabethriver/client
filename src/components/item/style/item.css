@@ -13,13 +13,20 @@ li.container_list:hover {
   background-color: var(--greenLighter);
 }
 li.container_list:active {
-  background-color: var(--greyLight);
+  background-color: var(--pinkDark);
 }
 strong.item_price {
   margin-left: 10px;
+  color: var(--greyLight);
+}
+strong.item_price:hover {
+  margin-left: 10px;
   color: var(--greenDarkest);
 }
-
+strong.item_price:active {
+  margin-left: 10px;
+  color: var(--greyDark);
+}
 a:hover {
   color: var(--greenDarkest);
 }
