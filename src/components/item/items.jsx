@@ -9,8 +9,6 @@ export const Items = (props) => {
       {props?.array.map((item) => {
         const priceIncome = new Intl.NumberFormat().format(item.income)
         const priceExpense = new Intl.NumberFormat().format(item.expense)
-        console.log('priceIncome', priceIncome, 'priceExpense', priceExpense)
-
         return (
           <li className="container_list" id={`${item._id}`} key={item._id}>
           <Button
