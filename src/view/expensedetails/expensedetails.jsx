@@ -7,7 +7,11 @@ import {
   updateExpenseByIdTrunk,
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
-import { getKeyFromLocalStorage, productExpense, sendMsg } from "../../utils/utils";
+import {
+  getKeyFromLocalStorage,
+  productExpense,
+  sendMsg,
+} from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
@@ -22,8 +26,9 @@ export const ExpenseDetails = () => {
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const { dataExpenseById, loading } =
-    useSelector((state) => state.getExpenseByID);
+  const { dataExpenseById, loading } = useSelector(
+    (state) => state.getExpenseByID
+  );
   const initFetch = useCallback(() => {
     dispatch(
       getExpenseByIdTrunk({ token: token, expenseId: params.expenseId })
@@ -33,9 +38,10 @@ export const ExpenseDetails = () => {
   useEffect(() => {
     initFetch();
   }, [initFetch]);
-  const { product, expense } = productExpense
-  const { inputsForm, setInputsForm, onChangeInputsForm } =
-    HooksFormOfProducts({ product, expense });
+  const { product, expense } = productExpense;
+  const { inputsForm, setInputsForm, onChangeInputsForm } = HooksFormOfProducts(
+    { product, expense }
+  );
   const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
     product: inputsForm.product,
@@ -88,31 +94,33 @@ export const ExpenseDetails = () => {
     return <NotFound />;
   }
   return (
-    <div>
-      expenseDetails {params.expenseId}
-      <div>
-        {editState ? (
-          <FormProduct
-            name="expense"
-            submitUpdate={submitUpdate}
-            onChangeInputsForm={onChangeInputsForm}
-            inputsFormProduct={dataToUpdate.product}
-            inputsFormNumber={dataToUpdate.expense}
-            removeEditMode={removeEditMode}
-            dataProductNameUpdated={dataExpenseById.product}
-            dataNumberUpdated={dataExpenseById.expense}
-          />
-        ) : (
-          <CardStandardProduct
-            name="expense"
-            editMode={editMode}
-            productData={dataExpenseById.product}
-            numberData={dataExpenseById.expense}
-          />
-        )}
+    <main>
+      <div className="container_details">
+        <h1>Details's product</h1>
+        <>
+          {editState ? (
+            <FormProduct
+              name="expense"
+              submitUpdate={submitUpdate}
+              onChangeInputsForm={onChangeInputsForm}
+              inputsFormProduct={dataToUpdate.product}
+              inputsFormNumber={dataToUpdate.expense}
+              removeEditMode={removeEditMode}
+              dataProductNameUpdated={dataExpenseById.product}
+              dataNumberUpdated={dataExpenseById.expense}
+            />
+          ) : (
+            <CardStandardProduct
+              name="expense"
+              editMode={editMode}
+              productData={dataExpenseById.product}
+              numberData={dataExpenseById.expense}
+            />
+          )}
+        </>
+        <Button name='delete_product' type="button" onClick={onClickDelete} children="Delete" />
+        <small id="mssgIncorrectTyping"></small>
       </div>
-      <small id="mssgIncorrectTyping"></small>
-      <Button type='button' onClick={onClickDelete} children="Delete" />
-    </div>
+    </main>
   );
 };

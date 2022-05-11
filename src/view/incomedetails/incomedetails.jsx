@@ -90,31 +90,33 @@ export const IncomeDetails = () => {
     return <NotFound />;
   }
   return (
-    <div>
-      IncomeDetails {params.incomeId}
-      <div>
-        {editState ? (
-          <FormProduct
-            name="income"
-            submitUpdate={submitUpdate}
-            onChangeInputsForm={onChangeInputsForm}
-            inputsFormProduct={dataToUpdate.product}
-            inputsFormNumber={dataToUpdate.income}
-            removeEditMode={removeEditMode}
-            dataProductNameUpdated={dataIncomeById.product}
-            dataNumberUpdated={dataIncomeById.income}
-          />
-        ) : (
-          <CardStandardProduct
-            name="income"
-            editMode={editMode}
-            productData={dataIncomeById.product}
-            numberData={dataIncomeById.income}
-          />
-        )}
+    <main>
+      <div className="container_details">
+        <h1>Details's product</h1>
+        <>
+          {editState ? (
+            <FormProduct
+              name="income"
+              submitUpdate={submitUpdate}
+              onChangeInputsForm={onChangeInputsForm}
+              inputsFormProduct={dataToUpdate.product}
+              inputsFormNumber={dataToUpdate.income}
+              removeEditMode={removeEditMode}
+              dataProductNameUpdated={dataIncomeById.product}
+              dataNumberUpdated={dataIncomeById.income}
+            />
+          ) : (
+            <CardStandardProduct
+              name="income"
+              editMode={editMode}
+              productData={dataIncomeById.product}
+              numberData={dataIncomeById.income}
+            />
+          )}
+        </>
+        <Button name='delete_product' type="button" onClick={onClickDelete} children="Delete" />
+        <small id="mssgIncorrectTyping"></small>
       </div>
-      <Button type='button' onClick={onClickDelete} children="Delete" />
-      <small id="mssgIncorrectTyping"></small>
-    </div>
+    </main>
   );
 };

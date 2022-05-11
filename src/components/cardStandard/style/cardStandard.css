@@ -1,0 +1,11 @@
+section.cardStandard{
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    background-color: var(--greenLighter);
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+strong.price_product{
+    margin-left: 10px;
+}
