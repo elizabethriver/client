@@ -21,13 +21,13 @@ export const Navigate = () => {
       <nav>
         <div className='container_nav'>
           <li>
-            <LinkStandard to="/dashboard" children="Dashboard" />
+            <LinkStandard name='link' to="/dashboard" children="Dashboard" />
           </li>
           <li>
-            <LinkStandard to={"/income"} children={"Income"} />
+            <LinkStandard name='link' to={"/income"} children={"Income"} />
           </li>
           <li>
-            <LinkStandard to={"/expense"} children={"Expense"} />
+            <LinkStandard name='link' to={"/expense"} children={"Expense"} />
           </li>
         </div>
         <div>
@@ -37,7 +37,7 @@ export const Navigate = () => {
             </li>
           ) : (
             <li>
-              <LinkStandard to="/" children="Log In" />
+              <LinkStandard name='link' to="/" children="Log In" />
             </li>
           )}
         </div>

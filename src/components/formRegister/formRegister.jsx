@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "../buttons/button";
+import './style/formRegister.css'
 
 export const FormRegister = ({
   name,
@@ -9,16 +10,16 @@ export const FormRegister = ({
   inputsFormRegistered,
   htmlFor
 }) => {
-  const classFieldset = name=== 'income' ? 'classIncomeFieldset' : 'classExpenseFieldset'
   return (
     <form onSubmit={onSubmitForm}>
-      <fieldset className={classFieldset}>
+      <fieldset className='classFieldset'>
         <label htmlFor="product">
-          Name of product: {''}
+          Product: {''}
           <input
+          className="inputRegisterProduct"
             type="text"
             name="product"
-            placeholder="add product's name"
+            placeholder="product's name"
             onChange={onChangeInputsForm}
             value={inputsFormProduct}
             required
@@ -27,11 +28,12 @@ export const FormRegister = ({
           />
         </label>
         <label htmlFor={htmlFor}>
-          Register charge: {''}
+          Charge: {''}
           <input
+          className="inputRegisterProduct"
             type="text"
             name={name}
-            placeholder="add charge"
+            placeholder="charge"
             value={inputsFormRegistered}
             onChange={onChangeInputsForm}
             required
