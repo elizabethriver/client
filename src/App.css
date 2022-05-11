@@ -59,7 +59,7 @@ label {
   justify-content: space-between;
 }
 
-.container {
+.containerCard {
   display: flex;
   flex-direction: column;
   padding: 1rem;

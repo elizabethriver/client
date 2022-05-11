@@ -1,5 +1,27 @@
-section.dashboard{
-  display: flex;
-  padding: 1rem;
-  justify-content: center;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+      "income_title expense_title"
+      "productIn productEx";
+  justify-items: start;
+  align-items: start;
+}
+
+.income_title {
+  grid-area: income_title;
+}
+
+.expense_title {
+  grid-area: expense_title;
+}
+
+.productIn {
+  grid-area: productIn;
+}
+
+.productEx {
+  grid-area: productEx;
 }

@@ -47,7 +47,7 @@ export const Expense = () => {
   if (loading) return <Loading />;
   return (
     <main>
-      <section className="container">
+      <section className="containerCard">
         <h1>Expense</h1>
         <FormRegister
           name="expense"

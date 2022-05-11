@@ -1,8 +1,9 @@
 li {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   padding: 5px 10px;
   justify-content: space-between;
+
 }
 li.container_list {
   background-color: var(--greenLight);

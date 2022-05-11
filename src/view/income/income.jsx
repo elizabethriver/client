@@ -50,7 +50,7 @@ export const Income = () => {
   }
   return (
     <main>
-      <section className="container">
+      <section className="containerCard">
         <h1>Income</h1>
         <FormRegister
           name="income"

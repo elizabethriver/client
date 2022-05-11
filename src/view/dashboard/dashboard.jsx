@@ -36,7 +36,7 @@ export const Dashboard = () => {
   return (
     <main>
       <h1>Welcome {nameUserSet}</h1>
-      <section className="dashboard">
+      <section className="container">
         <DashboardArray
           listDashboardData={incomeAllDashboardData}
           title="Incomes"

@@ -9,9 +9,10 @@ export const FormRegister = ({
   inputsFormRegistered,
   htmlFor
 }) => {
+  const classFieldset = name=== 'income' ? 'classIncomeFieldset' : 'classExpenseFieldset'
   return (
     <form onSubmit={onSubmitForm}>
-      <fieldset>
+      <fieldset className={classFieldset}>
         <label htmlFor="product">
           Name of product: {''}
           <input
@@ -38,7 +39,7 @@ export const FormRegister = ({
             title="Just type number is allowed"
           />
         </label>
-        <Button type="submit" children="Click" />
+        <Button name='register_product' type="submit" children="Click" />
       </fieldset>
       <small id="mssgIncorrectTyping" />
     </form>
