@@ -42,6 +42,8 @@ export const deleteIncomeByIdTrunk = createAsyncThunk(
       return mssg;
     } catch (error) {
       response = error.response;
+      console.log(response)
+
       if (response.status === 403) {
         removeKeyFromLocalStorage('token')
         removeKeyFromLocalStorage('name')

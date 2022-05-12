@@ -57,11 +57,13 @@ export const IncomeDetails = () => {
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
+      console.log(error)
       throw error;
     }
   };
 
-  const onClickDelete = async () => {
+  const onClickDelete = async (e) => {
+    e.preventDefault();
     try {
       dispatch(
         deleteIncomeByIdTrunk({
@@ -71,9 +73,10 @@ export const IncomeDetails = () => {
       ).unwrap();
       sendMsg("mssgIncorrectTyping", "Deleting");
       removeEditMode();
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+      navigate("/dashboard");
+      // setTimeout(() => {
+      //   navigate("/dashboard");
+      // }, 2000);
     } catch (error) {
       document.getElementById("mssgIncorrectTyping").innerHTML =
         "Error with deleting";

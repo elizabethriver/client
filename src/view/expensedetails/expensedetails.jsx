@@ -66,7 +66,8 @@ export const ExpenseDetails = () => {
     }
   };
 
-  const onClickDelete = async () => {
+  const onClickDelete = async (e) => {
+    e.preventDefault();
     try {
       dispatch(
         deleteExpenseByIdTrunk({
@@ -76,10 +77,12 @@ export const ExpenseDetails = () => {
       ).unwrap();
       sendMsg("mssgIncorrectTyping", "Deleting");
       removeEditMode();
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+      navigate("/dashboard");
+      // setTimeout(() => {
+      //   navigate("/dashboard");
+      // }, 2000);
     } catch (error) {
+      console.log(error)
       sendMsg("mssgIncorrectTyping", "Error with deleting");
       throw error;
     }
