@@ -3,22 +3,19 @@ main {
 
     height: 100vh;
 }
-fieldset{
-    display: flex;
-    flex-direction: column;
-}
+
 figure{
     width: 50%;
     display: flex;
     justify-content: center;
-    background-color: #fff;
+    background-color: var(--white);
 }
 .mainLogin{
     display: flex;
     flex-direction: row-reverse;
 }
 .containerLoginSection{
-    background-color: #06E4CC;
+    background-color: var(--greenLight);
     width: 50%;
 }
 .displayFlex{
@@ -29,5 +26,4 @@ figure{
 }
 .image_register{
     background-size: cover;
-    width: auto;
 }

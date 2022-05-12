@@ -1,5 +1,37 @@
-li{
-    display: flex;
-    align-items: center;
-    padding: 5px 10px;
+li {
+  display: flex;
+  align-items: baseline;
+  padding: 5px 10px;
+  justify-content: space-between;
+
+}
+li.container_list {
+  background-color: var(--greenLight);
+  margin: 10px;
+  border-radius: 10px;
+}
+li.container_list:hover {
+  background-color: var(--greenLighter);
+}
+li.container_list:active {
+  background-color: var(--pinkDark);
+}
+strong.item_price {
+  margin-left: 10px;
+  color: var(--greyLight);
+}
+strong.item_price:hover {
+  margin-left: 10px;
+  color: var(--greenDarkest);
+}
+strong.item_price:active {
+  margin-left: 10px;
+  color: var(--greyDark);
+}
+a:hover {
+  color: var(--greenDarkest);
+}
+
+a:active {
+  color: var(--greyDark);
 }

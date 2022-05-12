@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Login } from "./view/login/login";
@@ -10,15 +10,10 @@ import { Navigate } from "./components/navigate/navigate";
 import { NotFound } from "./view/notfound/notfound";
 import { IncomeDetails } from "./view/incomedetails/incomedetails";
 import { ExpenseDetails } from "./view/expensedetails/expensedetails";
-import { Protected } from "./utils/utils";
 
-const AuthContext = createContext(null);
-console.log(AuthContext);
 function App() {
-  const [token, setToken] = useState(null);
-
   return (
-    <AuthContext.Provider value={token}>
+    <>
       <Navigate />
       <Routes>
         <Route path="/">
@@ -31,8 +26,8 @@ function App() {
           <Route path="expense/:expenseId" element={<ExpenseDetails />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-      </Routes>
-    </AuthContext.Provider>
+      </Routes>{" "}
+    </>
   );
 }
 

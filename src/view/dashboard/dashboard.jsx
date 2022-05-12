@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useContext } from "react";
-import { Link, Navigate } from "react-router-dom";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   incomeAllAxiosDashboard,
   expensesAllAxiosDashboard,
 } from "./dashboardSlice";
-import { Items } from "../../components/item/items";
 import "./style/dashboard.css";
 import { getKeyFromLocalStorage } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
+import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { DashboardArray } from "../../components/dashboardArray/dashboardArray";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
@@ -27,32 +27,27 @@ export const Dashboard = () => {
   }, [initFetch]);
 
   if (!token) {
-    return <Navigate to="/" />;
+    return <AuthNoLogged />;
   }
-  if (loading) return <Loading/>;
+  // if (status) {
+  //   return <AuthNoLogged />;
+  // }
+  if (loading) return <Loading />;
   return (
-    <div>
-      dashboard {nameUserSet}
-      <main>
-        <div>
-          <button>
-            <Link to="/income">Income</Link>
-          </button>
-          <button>
-            <Link to="/expense">Expense</Link>
-          </button>
-        </div>
-        <section className="container">
-          <span className="income_title">Incomes</span>
-          <ul className="income_body">
-            <Items array={incomeAllDashboardData} url="/income" />
-          </ul>
-          <span className="expense_title">Expenses</span>
-          <ul className="expense_body">
-            <Items array={expenseAllDashboardData} url="/expense" />
-          </ul>
-        </section>
-      </main>
-    </div>
+    <main>
+      <h1>Welcome {nameUserSet}</h1>
+      <section className="container">
+        <DashboardArray
+          listDashboardData={incomeAllDashboardData}
+          title="Incomes"
+          url="/income"
+        />
+        <DashboardArray
+          listDashboardData={expenseAllDashboardData}
+          title="Expenses"
+          url="/expense"
+        />
+      </section>
+    </main>
   );
 };

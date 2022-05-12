@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style/login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { axiosLogin } from "./loginslide";
-import { setToken } from "../../utils/utils";
+import { cleanMsg, sendMsg, setKeyFromLocalStorage } from "../../utils/utils";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { Button } from "../../components/buttons/button";
 
 export const Login = () => {
-  const [inputForm, setInputForm] = useState({ email: "", password: "" });
+  const product = { email: "", password: "" };
+  const { inputsForm, setInputsForm, onChangeInputsForm } =
+    HooksFormOfProducts(product);
   const dispatch = useDispatch();
 
   let navigate = useNavigate();
@@ -14,40 +18,30 @@ export const Login = () => {
   const handleClick = () => {
     navigate("/register");
   };
-
-  const changeInputsForm = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputForm({
-      ...inputForm,
-      [name]: value,
-    });
-  };
   const submit = async (e) => {
     e.preventDefault();
+    let response = null;
     try {
-      const response = await dispatch(
+      response = await dispatch(
         axiosLogin({
-          email: inputForm.email.trim(),
-          password: inputForm.password.trim(),
+          email: inputsForm.email.trim(),
+          password: inputsForm.password.trim(),
         })
       ).unwrap();
       // handle result here
-      const { token } = response;
-      console.log(token)
-      setToken(token)
-      setInputForm({ email: "", password: "" });
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Welcome";
+      const { token, name } = response;
+      setKeyFromLocalStorage("token", token);
+      setKeyFromLocalStorage("name", name);
+      setInputsForm({ email: "", password: "" });
+      sendMsg("mssgIncorrectTyping", "Welcome");
       setTimeout(() => {
         navigate("/dashboard");
       }, 2000);
     } catch (error) {
       // handle error here
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Incorrect password or email";
-      setTimeout(() => {
-        document.getElementById("mssgIncorrectTyping").innerHTML = "";
-      }, 2000);
+      response = error;
+      sendMsg("mssgIncorrectTyping", "Incorrect password or email");
+      cleanMsg(2000);
       throw error;
     }
   };
@@ -57,49 +51,48 @@ export const Login = () => {
       <figure>
         <img
           className="image_login"
-          src="https://i.ibb.co/WGPHHBp/3071357.jpg"
+          src="https://i.ibb.co/WGPHHBp/3071357.jpg?tr=w-400,h-300"
           alt="login user"
+          loading="lazy"
         />
       </figure>
       <section className="containerLoginSectionLogin displayFlex">
-        Login
-        <div>
-          <form onSubmit={submit}>
-            <fieldset>
-              <label htmlFor="email">
-                email:
-                <input
-                  type="input"
-                  name="email"
-                  value={inputForm.email}
-                  onChange={changeInputsForm}
-                  placeholder="example@mail.com"
-                  required
-                  pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
-                  title="Please enter your email (e.g example@mail.com)"
-                />
-              </label>
-              <label htmlFor="password">
-                password:
-                <input
-                  type="input"
-                  name="password"
-                  value={inputForm.password}
-                  onChange={changeInputsForm}
-                  placeholder="*******"
-                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
-                  required
-                  title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
-                />
-              </label>
-              <button type="submit">Log In</button>
-            </fieldset>
-            <small id="mssgIncorrectTyping" />
-          </form>
-        </div>
+        <h1>Login</h1>
+        <form onSubmit={submit}>
+          <fieldset className="fieldsetLogin">
+            <label htmlFor="email">
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={inputsForm.email}
+                onChange={onChangeInputsForm}
+                placeholder="example@mail.com"
+                required
+                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+                title="Please enter your email (e.g example@mail.com)"
+              />
+            </label>
+            <label htmlFor="password">
+              Password:
+              <input
+                type="password"
+                name="password"
+                value={inputsForm.password}
+                onChange={onChangeInputsForm}
+                placeholder="*******"
+                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+                required
+                title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
+              />
+            </label>
+            <Button className='submit' name='login' type="submit" children="Log In" />
+          </fieldset>
+          <small id="mssgIncorrectTyping" />
+        </form>
         <div>
           <span>You dont have a account? Click</span>
-          <button onClick={handleClick}>here</button>
+          <Button type='button' name='link' onClick={handleClick} children="here" />
         </div>
       </section>
     </main>

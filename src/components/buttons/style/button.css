@@ -1,0 +1,57 @@
+.button_link {
+  cursor: pointer;
+}
+.classLink {
+  color: var(--white);
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+}
+.classButtonLogin {
+  color: var(--white);
+  background-color: var(--blueLight);
+  border-radius: 5px;
+  border: solid 1px var(--black);
+  padding: 5px;
+  margin: 4px 30% 0;
+}
+.classButtonRegister {
+  color: var(--white);
+  background-color: var(--greenLight);
+  border-radius: 5px;
+  border: solid 1px var(--black);
+  padding: 5px;
+  margin: 4px 30% 0;
+}
+.classButtonRegisterProduct {
+  color: var(--white);
+  background-color: var(--black);
+  border-radius: 5px;
+  border: solid 1px var(--black);
+  padding: 5px;
+  margin: 4px 30% 0;
+}
+.classButtonDetailsLink {
+  border: none;
+  background-color: transparent;
+  white-space: nowrap;
+  width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.classButtonUpdateProduct {
+  margin-left: 10px;
+  padding: 3px 6px;
+  background-color: var(--greenDark);
+  border: none;
+  border-radius: 5px;
+  color: var(--white);
+}
+.classButtonDeleteProduct {
+  background-color: var(--pinkDarkCore);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}

@@ -1,22 +1,13 @@
-main {
-  
-    height: 100vh;
-}
-fieldset{
-    display: flex;
-    flex-direction: column;
-}
 figure{
-    width: 50%;
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--white);
 }
 .containerLogin{
     display: flex;
 }
 .containerLoginSectionLogin{
-    background-color: #047cf8;
+    background-color: var(--blueLight);
     width: 50%;
 }
 .displayFlex{
@@ -27,5 +18,5 @@ figure{
 }
 .image_login{
     background-size: cover;
-    width: auto;
+    /* width: auto; */
 }

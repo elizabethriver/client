@@ -1,62 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./style/register.css";
 import { axiosRegister } from "./registerSlice";
 import { useDispatch } from "react-redux";
-import { setName } from "../../utils/utils";
+import { sendMsg, setKeyFromLocalStorage } from "../../utils/utils";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { Button } from "../../components/buttons/button";
 
 export const Register = () => {
-  
-  const [inputsRegister, setInputsRegister] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const product = { name: "", email: "", password: "", confirmPassword: "" };
+  const { inputsForm, setInputsForm, onChangeInputsForm } =
+    HooksFormOfProducts(product);
   const dispatch = useDispatch();
-
   let navigate = useNavigate();
-
   const handleClick = () => {
     navigate("/");
   };
-
-  const onchangeHandler = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
-    setInputsRegister({ ...inputsRegister, [name]: value });
-  };
-
   const submit = async (e) => {
     e.preventDefault();
+    let response = null; 
     try {
-      const response = await dispatch(
+      response = await dispatch(
         axiosRegister({
-          name: inputsRegister.name.trim(),
-          email: inputsRegister.email.trim(),
-          password: inputsRegister.password.trim(),
-          confirmPassword: inputsRegister.confirmPassword.trim(),
+          name: inputsForm.name.trim(),
+          email: inputsForm.email.trim(),
+          password: inputsForm.password.trim(),
+          confirmPassword: inputsForm.confirmPassword.trim(),
         })
       ).unwrap();
       // handle result here
       const { name } = response.registerUser;
-      setName(name)
-      setInputsRegister({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
-      document.getElementById(
-        "mssgIncorrectTyping"
-      ).innerHTML = `${name}Your are register`;
+      setKeyFromLocalStorage("name", name);
+      setInputsForm(product);
+      sendMsg("mssgIncorrectTyping", `${name}Your are register`);
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (error) {
       // handle error here
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Please verify your inputs";
+      response = error
+      sendMsg("mssgIncorrectTyping", "Please verify your inputs");
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";
       }, 2000);
@@ -69,49 +52,49 @@ export const Register = () => {
       <figure>
         <img
           className="image_register"
-          src="https://i.ibb.co/2hhgKXF/3094352.jpg"
-          alt=""
+          src="https://i.ibb.co/2hhgKXF/3094352.jpg?tr=w-400,h-300"
+          alt="register user"
+          loading="lazy"
         />
       </figure>
       <section className="containerLoginSection displayFlex">
-        Register
-        <div>
+        <h1>Register</h1>
           <form onSubmit={submit}>
             <fieldset>
               <label htmlFor="name">
-                name:
+                Username:
                 <input
-                  type="input"
+                  type="text"
                   name="name"
-                  value={inputsRegister.name}
+                  value={inputsForm.name}
                   placeholder="add your name"
-                  onChange={onchangeHandler}
+                  onChange={onChangeInputsForm}
                   required
                   pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
                   title="Please add your name without a number or symbol"
                 />
               </label>
               <label htmlFor="email">
-                email:
+                Email:
                 <input
-                  type="input"
+                  type="email"
                   name="email"
-                  value={inputsRegister.email}
+                  value={inputsForm.email}
                   placeholder="example@mail.com"
-                  onChange={onchangeHandler}
+                  onChange={onChangeInputsForm}
                   required
                   pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
                   title="Please add your email (e.g example@mail.com)"
                 />
               </label>
               <label htmlFor="password">
-                password:
+                Password:
                 <input
-                  type="input"
+                  type="password"
                   name="password"
-                  value={inputsRegister.password}
+                  value={inputsForm.password}
                   placeholder="*******"
-                  onChange={onchangeHandler}
+                  onChange={onChangeInputsForm}
                   required
                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                   title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
@@ -120,24 +103,23 @@ export const Register = () => {
               <label htmlFor="confirmPassword">
                 Repeat password:
                 <input
-                  type="input"
+                  type="password"
                   name="confirmPassword"
-                  value={inputsRegister.confirmPassword}
+                  value={inputsForm.confirmPassword}
                   placeholder="*******"
-                  onChange={onchangeHandler}
+                  onChange={onChangeInputsForm}
                   required
                   pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                   title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
                 />
               </label>
-              <button type="submit">Register</button>
+              <Button name='register' type='submit' children='Register'/>
             </fieldset>
             <small id="mssgIncorrectTyping" />
           </form>
-        </div>
         <div>
           <span>You have a account? Click</span>
-          <button onClick={handleClick}>here</button>
+          <Button name='link' type='button' onClick={handleClick} children='here'/>
         </div>
       </section>
     </main>

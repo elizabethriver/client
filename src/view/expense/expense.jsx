@@ -1,79 +1,63 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { getToken } from "../../utils/utils";
-import { expensePostTrunk } from './expenseSlide';
-import { Navigate } from 'react-router-dom';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cleanMsg,
+  getKeyFromLocalStorage,
+  productExpense,
+  sendMsg,
+} from "../../utils/utils";
+import { expensePostTrunk } from "./expenseSlide";
+import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { FormRegister } from "../../components/formRegister/formRegister";
+import { Loading } from "../../components/loading/loading";
 
 export const Expense = () => {
-  const token = getToken('token');
-  const [inputsExpense, setInputsExpense] = useState({
-    product: "",
-    expense: "",
-  });
+  const token = getKeyFromLocalStorage("token");
+  const { product, expense } = productExpense;
+  const { inputsForm, setInputsForm, onChangeInputsForm } = HooksFormOfProducts(
+    { product, expense }
+  );
   const dispatch = useDispatch();
-  const onChangeInputsForm = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputsExpense({ ...inputsExpense, [name]: value });
-  };
+  const { loading, status } = useSelector((state) => state.dataPostExpense);
+
   const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       await dispatch(
         expensePostTrunk({
           token,
-          product: inputsExpense.product.trim(),
-          expense: parseInt(inputsExpense.expense),
+          product: inputsForm.product.trim(),
+          expense: parseInt(inputsForm.expense),
         })
       ).unwrap();
-      setInputsExpense({ product: "", expense: "" });
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Item added";
-      setTimeout(() => {
-        document.getElementById("mssgIncorrectTyping").innerHTML = "";
-      }, 2000);
+      setInputsForm({ product, expense });
+      sendMsg("mssgIncorrectTyping", "Item added");
+      cleanMsg(2000);
     } catch (error) {
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Item with name is duplicated";
+      sendMsg("mssgIncorrectTyping", "Item with name is duplicated");
     }
   };
   if (!token) {
-    return <Navigate to="/" />;
+    return <AuthNoLogged />;
   }
+  if (status !== null) {
+    return <AuthNoLogged />;
+  }
+  if (loading) return <Loading />;
   return (
-    <section>
-      expense
-      <form onSubmit={onSubmitForm}>
-        <fieldset>
-          <label htmlFor="product">
-            Name of product
-            <input
-              type="text"
-              name="product"
-              placeholder="add your product"
-              onChange={onChangeInputsForm}
-              value={inputsExpense.product}
-              required
-              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
-              title="Just type letters is allowed"
-            />
-          </label>
-          <label htmlFor="expense">
-            Expense
-            <input
-              type="text"
-              name="expense"
-              placeholder="add your expense"
-              value={inputsExpense.expense}
-              onChange={onChangeInputsForm}
-              required
-              pattern="^[0-9]+$"
-              title="Just type number is allowed"
-            />
-          </label>
-          <button type="submit">Click</button>
-        </fieldset>
-        <small id="mssgIncorrectTyping" />
-      </form>
-    </section>
-  );    
-  };
+    <main>
+      <section className="containerCard">
+        <h1>Expense</h1>
+        <FormRegister
+          name="expense"
+          onSubmitForm={onSubmitForm}
+          onChangeInputsForm={onChangeInputsForm}
+          inputsFormProduct={inputsForm.product}
+          inputsFormRegistered={inputsForm.expense}
+          htmlFor="expense"
+        />
+      </section>
+    </main>
+  );
+};

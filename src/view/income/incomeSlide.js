@@ -1,20 +1,29 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { incomePost } from "../../api/api";
+import { removeKeyFromLocalStorage } from "../../utils/utils";
 
 const initialState = {
   dataIncome: [],
   loading: false,
+  status: null
 };
 
 export const incomePostTrunk = createAsyncThunk(
   "incomePost/api",
   async (dataIncome) => {
     const { token, product, income } = dataIncome;
+    let response = null;
+
     try {
-      const response = await incomePost(token, product, income);
-      console.log(response);
+      response = await incomePost(token, product, income);
       return response.data;
     } catch (error) {
+      // handle error
+      response = error.response;
+      if (response.status === 403) {
+        removeKeyFromLocalStorage('token')
+        removeKeyFromLocalStorage('name')
+      }
       throw error;
     }
   }
@@ -37,8 +46,9 @@ const incomeSlide = createSlice({
       state.dataIncome = action.payload;
     });
     // Add reducers for additional action types here, and handle loading state as needed
-    builder.addCase(incomePostTrunk.rejected, (state) => {
+    builder.addCase(incomePostTrunk.rejected, (state, action) => {
       // Add user to the state array
+      state.status = action.error
       state.loading = false;
     });
   },

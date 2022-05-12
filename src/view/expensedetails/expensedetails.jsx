@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
-import { useParams, useNavigate, Navigate} from "react-router-dom";
+import React, { useCallback, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/expensedetails.css";
 import {
@@ -7,17 +7,28 @@ import {
   updateExpenseByIdTrunk,
   deleteExpenseByIdTrunk,
 } from "./expenseDetailsSlice";
-import { getToken } from "../../utils/utils";
+import {
+  getKeyFromLocalStorage,
+  productExpense,
+  sendMsg,
+} from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
+import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { EditMode } from "../../components/editMode/EditMode";
+import { Button } from "../../components/buttons/button";
+import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
+import { FormProduct } from "../../components/formOfProduct/formProduct";
+import { NotFound } from "../notfound/notfound";
 
 export const ExpenseDetails = () => {
-  const token = getToken("token");
+  const token = getKeyFromLocalStorage("token");
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
-  const { dataExpenseById, loading, docUpdateById, deleteDocUpdateById } =
-    useSelector((state) => state.getExpenseByID);
-  console.log(dataExpenseById, loading, docUpdateById, deleteDocUpdateById);
+  const { dataExpenseById, loading } = useSelector(
+    (state) => state.getExpenseByID
+  );
   const initFetch = useCallback(() => {
     dispatch(
       getExpenseByIdTrunk({ token: token, expenseId: params.expenseId })
@@ -27,32 +38,15 @@ export const ExpenseDetails = () => {
   useEffect(() => {
     initFetch();
   }, [initFetch]);
-
-  const [inputsEditMode, setInputsEditMode] = useState({
-    product: "",
-    expense: "",
-  });
-  const [editState, setEditState] = useState(false);
-  const editMode = () => {
-    setEditState(!editState);
-  };
-  const removeEditMode = () => {
-    setEditState(false);
-  };
-  const onChangeHandlerInputs = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputsEditMode({
-      ...inputsEditMode,
-      [name]: value,
-    });
-  };
-
+  const { product, expense } = productExpense;
+  const { inputsForm, setInputsForm, onChangeInputsForm } = HooksFormOfProducts(
+    { product, expense }
+  );
+  const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
-    product: inputsEditMode.product,
-    expense: parseInt(inputsEditMode.expense),
+    product: inputsForm.product,
+    expense: parseInt(inputsForm.expense),
   };
-
   const submitUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -64,6 +58,7 @@ export const ExpenseDetails = () => {
           expenseId: params.expenseId,
         })
       ).unwrap();
+      setInputsForm({ product, expense });
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
@@ -71,72 +66,64 @@ export const ExpenseDetails = () => {
     }
   };
 
-  const onClickDelete = async () => {
+  const onClickDelete = async (e) => {
+    e.preventDefault();
     try {
-      console.log();
       dispatch(
         deleteExpenseByIdTrunk({
           token: token,
           expenseId: params.expenseId,
         })
       ).unwrap();
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
+      sendMsg("mssgIncorrectTyping", "Deleting");
       removeEditMode();
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+      navigate("/dashboard");
+      // setTimeout(() => {
+      //   navigate("/dashboard");
+      // }, 2000);
     } catch (error) {
-      document.getElementById("mssgIncorrectTyping").innerHTML =
-        "Error with deleting";
+      console.log(error)
+      sendMsg("mssgIncorrectTyping", "Error with deleting");
       throw error;
     }
-    
   };
   if (!token) {
-    return <Navigate to="/" />;
+    return <AuthNoLogged />;
   }
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
+  }
+  if (dataExpenseById.length === 0) {
+    return <NotFound />;
   }
   return (
-    <div>
-      expenseDetails {params.expenseId}
-      <div>
-        {editState ? (
-          <form onSubmit={submitUpdate}>
-            <input
-              type="text"
-              name="product"
-              placeholder={dataExpenseById.product}
-              onChange={onChangeHandlerInputs}
-              value={inputsEditMode.product}
-              required
-              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
-              title="Just type letters is allowed"
-            />
-            <input
-              type="text"
+    <main>
+      <div className="container_details">
+        <h1>Details's product</h1>
+        <>
+          {editState ? (
+            <FormProduct
               name="expense"
-              placeholder={dataExpenseById.expense}
-              onChange={onChangeHandlerInputs}
-              value={inputsEditMode.expense}
-              required
-              pattern="^[0-9]+$"
-              title="Just type number is allowed"
+              submitUpdate={submitUpdate}
+              onChangeInputsForm={onChangeInputsForm}
+              inputsFormProduct={dataToUpdate.product}
+              inputsFormNumber={dataToUpdate.expense}
+              removeEditMode={removeEditMode}
+              dataProductNameUpdated={dataExpenseById.product}
+              dataNumberUpdated={dataExpenseById.expense}
             />
-            <button type="submit">Save</button>
-            <button onClick={removeEditMode}>Cancel</button>
-          </form>
-        ) : (
-          <div>
-            <span>{dataExpenseById.product}</span>
-            <strong>${dataExpenseById.expense}</strong>
-            <button onClick={editMode}>Update</button>
-          </div>
-        )}
+          ) : (
+            <CardStandardProduct
+              name="expense"
+              editMode={editMode}
+              productData={dataExpenseById.product}
+              numberData={dataExpenseById.expense}
+            />
+          )}
+        </>
+        <Button name='delete_product' type="button" onClick={onClickDelete} children="Delete" />
+        <small id="mssgIncorrectTyping"></small>
       </div>
-      <small id="mssgIncorrectTyping"></small>
-      <button onClick={onClickDelete}>Delete</button>
-    </div>
+    </main>
   );
 };

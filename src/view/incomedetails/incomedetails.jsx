@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./style/incomedetails.css";
@@ -8,12 +8,22 @@ import {
   updateIncomeByIdTrunk,
   deleteIncomeByIdTrunk,
 } from "./incomeDetailsSlice";
-import { getToken } from "../../utils/utils";
-import { Navigate } from 'react-router-dom';
+import {
+  getKeyFromLocalStorage,
+  productIncome,
+  sendMsg,
+} from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
+import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
+import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
+import { EditMode } from "../../components/editMode/EditMode";
+import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
+import { FormProduct } from "../../components/formOfProduct/formProduct";
+import { Button } from "../../components/buttons/button";
+import { NotFound } from "../notfound/notfound";
 
 export const IncomeDetails = () => {
-  const token = getToken("token");
+  const token = getKeyFromLocalStorage("token");
   let params = useParams();
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -23,32 +33,15 @@ export const IncomeDetails = () => {
   useEffect(() => {
     dispatch(getIncomeByIdTrunk({ token: token, incomeId: params.incomeId }));
   }, [dispatch, params.incomeId, token]);
-
-  const [inputsEditMode, setInputsEditMode] = useState({
-    product: "",
-    income: "",
-  });
-  const [editState, setEditState] = useState(false);
-  const editMode = () => {
-    setEditState(!editState);
-  };
-  const removeEditMode = () => {
-    setEditState(false);
-  };
-  const onChangeHandlerInputs = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setInputsEditMode({
-      ...inputsEditMode,
-      [name]: value,
-    });
-  };
-
+  const { product, income } = productIncome;
+  const { inputsForm, setInputsForm, onChangeInputsForm } = HooksFormOfProducts(
+    { product, income }
+  );
+  const { editState, editMode, removeEditMode } = EditMode();
   const dataToUpdate = {
-    product: inputsEditMode.product,
-    income: parseInt(inputsEditMode.income),
+    product: inputsForm.product,
+    income: parseInt(inputsForm.income),
   };
-
   const submitUpdate = async (e) => {
     e.preventDefault();
     try {
@@ -60,28 +53,30 @@ export const IncomeDetails = () => {
           incomeId: params.incomeId,
         })
       ).unwrap();
+      setInputsForm({ product, income });
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
+      console.log(error)
       throw error;
     }
   };
 
-  const onClickDelete = async () => {
-    console.log("Delete");
+  const onClickDelete = async (e) => {
+    e.preventDefault();
     try {
-      console.log();
       dispatch(
         deleteIncomeByIdTrunk({
           token: token,
           incomeId: params.incomeId,
         })
       ).unwrap();
-      document.getElementById("mssgIncorrectTyping").innerHTML = "Deleting";
+      sendMsg("mssgIncorrectTyping", "Deleting");
       removeEditMode();
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 2000);
+      navigate("/dashboard");
+      // setTimeout(() => {
+      //   navigate("/dashboard");
+      // }, 2000);
     } catch (error) {
       document.getElementById("mssgIncorrectTyping").innerHTML =
         "Error with deleting";
@@ -89,50 +84,42 @@ export const IncomeDetails = () => {
     }
   };
   if (!token) {
-    return <Navigate to="/" />;
+    return <AuthNoLogged />;
   }
   if (loading) {
-    return <Loading/>;
+    return <Loading />;
+  }
+  if (dataIncomeById.length === 0) {
+    return <NotFound />;
   }
   return (
-    <div>
-      IncomeDetails {params.incomeId}
-      <div>
-        {editState ? (
-          <form onSubmit={submitUpdate}>
-            <input
-              type="text"
-              name="product"
-              placeholder={dataIncomeById.product}
-              onChange={onChangeHandlerInputs}
-              value={inputsEditMode.product}
-              required
-              pattern="^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$"
-              title="Just type letters is allowed"
-            />
-            <input
-              type="text"
+    <main>
+      <div className="container_details">
+        <h1>Details's product</h1>
+        <>
+          {editState ? (
+            <FormProduct
               name="income"
-              placeholder={dataIncomeById.income}
-              onChange={onChangeHandlerInputs}
-              value={inputsEditMode.income}
-              required
-              pattern="^[0-9]+$"
-              title="Just type number is allowed"
+              submitUpdate={submitUpdate}
+              onChangeInputsForm={onChangeInputsForm}
+              inputsFormProduct={dataToUpdate.product}
+              inputsFormNumber={dataToUpdate.income}
+              removeEditMode={removeEditMode}
+              dataProductNameUpdated={dataIncomeById.product}
+              dataNumberUpdated={dataIncomeById.income}
             />
-            <button type="submit">Save</button>
-            <button onClick={removeEditMode}>Cancel</button>
-          </form>
-        ) : (
-          <div>
-            <span>{dataIncomeById.product}</span>
-            <strong>${dataIncomeById.income}</strong>
-            <button onClick={editMode}>Update</button>
-          </div>
-        )}
+          ) : (
+            <CardStandardProduct
+              name="income"
+              editMode={editMode}
+              productData={dataIncomeById.product}
+              numberData={dataIncomeById.income}
+            />
+          )}
+        </>
+        <Button name='delete_product' type="button" onClick={onClickDelete} children="Delete" />
+        <small id="mssgIncorrectTyping"></small>
       </div>
-      <button onClick={onClickDelete}>Delete</button>
-      <small id="mssgIncorrectTyping"></small>
-    </div>
+    </main>
   );
 };

@@ -1,20 +1,34 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Button } from "../buttons/button";
 import "./style/item.css";
+import { LinkStandard } from "./../link/Link";
 
 export const Items = (props) => {
   return (
     <>
-      {props?.array.map((item) => (
-        <li id={`${item._id}`} key={item._id}>
-          <button>
-            <Link to={`${props.url}/${item._id}`}>Details
-            </Link>
-          </button>
-          <span>{item.product}</span>
-          <strong>$ {item.income ? item.income : item.expense}</strong>
-        </li>
-      ))}
+      {props?.array.map((item) => {
+        const priceIncome = new Intl.NumberFormat().format(item.income);
+        const priceExpense = new Intl.NumberFormat().format(item.expense);
+        return (
+          <li className="container_list" id={`${item._id}`} key={item._id}>
+            <Button
+              name="details_link"
+              type="button"
+              children={
+                <LinkStandard
+                  to={`${props.url}/${item._id}`}
+                  children={
+                    <span className="item_product">{item.product}</span>
+                  }
+                />
+              }
+            />
+            <strong className="item_price">
+              {isNaN(priceIncome) ? priceExpense : priceIncome}
+            </strong>
+          </li>
+        );
+      })}
     </>
   );
 };

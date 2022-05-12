@@ -1,7 +1,8 @@
-section{
-    display: flex;
-    flex-direction: column;
+.formForEdit {
+  padding: 10px;
 }
-.formForEdit{
-    padding: 10px;
+.container_details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
