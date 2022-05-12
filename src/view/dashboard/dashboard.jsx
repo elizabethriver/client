@@ -29,9 +29,6 @@ export const Dashboard = () => {
   if (!token) {
     return <AuthNoLogged />;
   }
-  // if (status) {
-  //   return <AuthNoLogged />;
-  // }
   if (loading) return <Loading />;
   return (
     <main>
