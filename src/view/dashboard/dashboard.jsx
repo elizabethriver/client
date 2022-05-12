@@ -32,7 +32,7 @@ export const Dashboard = () => {
   if (loading) return <Loading />;
   return (
     <main>
-      <h1>Welcome {nameUserSet}</h1>
+      <h1>Welcome <i>{nameUserSet}</i></h1>
       <section className="container">
         <DashboardArray
           listDashboardData={incomeAllDashboardData}
