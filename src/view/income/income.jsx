@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./style/income.css";
 import { incomePostTrunk } from "./incomeSlide";
 import {
@@ -11,7 +11,6 @@ import {
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { FormRegister } from "./../../components/formRegister/formRegister";
-import { Loading } from "../../components/loading/loading";
 
 export const Income = () => {
   const token = getKeyFromLocalStorage("token");
@@ -20,7 +19,6 @@ export const Income = () => {
     { product, income }
   );
   const dispatch = useDispatch();
-  const { loading, status } = useSelector((state) => state.dataPostExpense);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -41,9 +39,6 @@ export const Income = () => {
   };
   if (!token) {
     return <AuthNoLogged />;
-  }
-  if (loading) {
-    return <Loading />;
   }
   return (
     <main>

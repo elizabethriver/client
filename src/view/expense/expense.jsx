@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   cleanMsg,
   getKeyFromLocalStorage,
@@ -10,7 +10,6 @@ import { expensePostTrunk } from "./expenseSlide";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { HooksFormOfProducts } from "../../components/formOfProduct/hooksFormOfProducts";
 import { FormRegister } from "../../components/formRegister/formRegister";
-import { Loading } from "../../components/loading/loading";
 
 export const Expense = () => {
   const token = getKeyFromLocalStorage("token");
@@ -19,7 +18,6 @@ export const Expense = () => {
     { product, expense }
   );
   const dispatch = useDispatch();
-  const { loading, status } = useSelector((state) => state.dataPostExpense);
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -41,7 +39,6 @@ export const Expense = () => {
   if (!token) {
     return <AuthNoLogged />;
   }
-  if (loading) {return <Loading />};
   return (
     <main>
       <section className="containerCard">
