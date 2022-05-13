@@ -16,9 +16,12 @@ export const expensePostTrunk = createAsyncThunk(
 
     try {
       response = await expensePost(token, product, expense);
+      console.log(response)
+
       return response.data;
     } catch (error) {
       response = error.response;
+      console.log(error)
       if (response.status === 403) {
         removeKeyFromLocalStorage('token')
         removeKeyFromLocalStorage('name')

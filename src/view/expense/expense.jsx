@@ -41,7 +41,7 @@ export const Expense = () => {
   if (!token) {
     return <AuthNoLogged />;
   }
-  if (loading) return <Loading />;
+  if (loading) {return <Loading />};
   return (
     <main>
       <section className="containerCard">
