@@ -42,9 +42,6 @@ export const Income = () => {
   if (!token) {
     return <AuthNoLogged />;
   }
-  if (status !== null) {
-    return <AuthNoLogged />;
-  }
   if (loading) {
     return <Loading />;
   }

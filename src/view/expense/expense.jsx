@@ -41,9 +41,6 @@ export const Expense = () => {
   if (!token) {
     return <AuthNoLogged />;
   }
-  if (status !== null) {
-    return <AuthNoLogged />;
-  }
   if (loading) return <Loading />;
   return (
     <main>
