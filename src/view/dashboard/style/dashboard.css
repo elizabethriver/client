@@ -1,13 +1,12 @@
 .container {
   display: grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template-columns: 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-      "income_title expense_title"
-      "productIn productEx";
-  justify-items: start;
-  align-items: start;
+    "income_title expense_title"
+    "productIn productEx";
+  justify-items: center;
 }
 
 .income_title {
@@ -24,4 +23,16 @@
 
 .productEx {
   grid-area: productEx;
+}
+
+.container-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container_account {
+  background-color: var(--pinkDark);
+  color: var(--azure);
+  padding: 7px;
+  border-radius: 10px;
 }

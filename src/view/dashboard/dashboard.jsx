@@ -5,7 +5,7 @@ import {
   expensesAllAxiosDashboard,
 } from "./dashboardSlice";
 import "./style/dashboard.css";
-import { getKeyFromLocalStorage } from "../../utils/utils";
+import { getKeyFromLocalStorage, reduceBalance } from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { DashboardArray } from "../../components/dashboardArray/dashboardArray";
@@ -16,7 +16,7 @@ export const Dashboard = () => {
   const dispatch = useDispatch();
   const { incomeAllDashboardData, expenseAllDashboardData, loading } =
     useSelector((state) => state.dataDashboard);
-
+ const balance = reduceBalance(incomeAllDashboardData, expenseAllDashboardData)
   const initFetch = useCallback(() => {
     dispatch(incomeAllAxiosDashboard(token));
     dispatch(expensesAllAxiosDashboard(token));
@@ -32,7 +32,12 @@ export const Dashboard = () => {
   if (loading) return <Loading />;
   return (
     <main>
+      <div className="container-header">
       <h1>Welcome <i>{nameUserSet}</i></h1>
+      <div className="container_account">
+      <h2>Balance: ${''}{balance}</h2>
+      </div>
+      </div>
       <section className="container">
         <DashboardArray
           listDashboardData={incomeAllDashboardData}

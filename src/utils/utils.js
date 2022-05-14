@@ -24,5 +24,16 @@ export const productObject = (name) => {
 };
 export const productExpense = { product: "", expense: "" };
 export const productIncome = { product: "", income: "" };
-
+export const reduceBalance = (incomeAllDashboardData, expenseAllDashboardData) => {
+  const arrayListIncome = incomeAllDashboardData.map((item) => item.income)
+  const arrayListExpense = expenseAllDashboardData.map((item) => item.expense)
+  const reduceIncome = arrayListIncome.reduce((valorAnterior, valorActual)=> {
+    return valorAnterior + valorActual;
+  }, 0);
+  const reduceExpense = arrayListExpense.reduce((valorAnterior, valorActual)=> {
+    return valorAnterior + valorActual;
+  }, 0);
+  const balance = new Intl.NumberFormat().format(reduceIncome - reduceExpense);
+  return balance
+}
 
