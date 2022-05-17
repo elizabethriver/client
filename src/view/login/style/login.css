@@ -1,19 +1,18 @@
-
 figure {
-    display: none;
-  }
-  main{
-    align-items: end;
-    /* background-color: var(--blueLight); */
-  }
+  display: none;
+}
+main {
+  align-items: end;
+  /* background-color: var(--blueLight); */
+}
 .containerLogin {
-    background-image: url(https://i.ibb.co/WGPHHBp/3071357.jpg);
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: inherit;
+  background-image: url(https://i.ibb.co/WGPHHBp/3071357.jpg);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: inherit;
 }
 .containerLoginSectionLogin {
-    margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 /* .displayFlex {
   display: flex;
@@ -25,10 +24,18 @@ figure {
   background-size: cover;
   /* width: auto; */
 }
-@media (max-width: 600px) {
-    figure {
-        display: flex;
-        align-items: center;
-        background-color: var(--white);
-      }
+
+@media only screen and (min-width: 600px) {
+  figure {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+  }
+  .containerLogin {
+    background-position: left;
+    background-repeat: round;
+  }
+  main {
+    align-items: center;
+  }
 }
