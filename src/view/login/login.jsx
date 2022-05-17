@@ -48,14 +48,6 @@ export const Login = () => {
 
   return (
     <main className="containerLogin">
-            {/* <figure>
-        <img
-          className="image_login"
-          src="https://i.ibb.co/WGPHHBp/3071357.jpg?tr=w-400,h-300"
-          alt="login user"
-          loading="lazy"
-        />
-      </figure> */}
       <section className="containerLoginSectionLogin displayFlex">
         <h1>Login</h1>
         <form onSubmit={submit}>
