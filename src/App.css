@@ -22,14 +22,14 @@
 h1 {
   padding: 10px;
 }
-a{
+a {
   text-decoration: none;
-  color: var(--white)
+  color: var(--white);
 }
-section {
+/* section {
   display: flex;
   padding: 1rem;
-}
+} */
 
 fieldset {
   display: flex;
@@ -52,7 +52,11 @@ input:focus-visible {
   color: var(--greenDark);
 }
 main {
-  background-color: var(--grey);
+  /* background-color: var(--grey); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 label {
   display: flex;

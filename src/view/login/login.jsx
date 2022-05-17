@@ -48,14 +48,14 @@ export const Login = () => {
 
   return (
     <main className="containerLogin">
-      <figure>
+            {/* <figure>
         <img
           className="image_login"
           src="https://i.ibb.co/WGPHHBp/3071357.jpg?tr=w-400,h-300"
           alt="login user"
           loading="lazy"
         />
-      </figure>
+      </figure> */}
       <section className="containerLoginSectionLogin displayFlex">
         <h1>Login</h1>
         <form onSubmit={submit}>
@@ -90,10 +90,10 @@ export const Login = () => {
           </fieldset>
           <small id="mssgIncorrectTyping" />
         </form>
-        <div>
-          <span>You dont have a account? Click</span>
-          <Button type='button' name='link' onClick={handleClick} children="here" />
-        </div>
+        <>
+          <span>You don't have a account? Click</span>
+          <Button type='button' name='link' onClick={handleClick} children={<strong>Here</strong>} />
+        </>
       </section>
     </main>
   );

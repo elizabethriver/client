@@ -2,7 +2,7 @@
   cursor: pointer;
 }
 .classLink {
-  color: var(--white);
+  color: var(--blueLight);
   background-color: transparent;
   border: none;
   padding: 5px;
