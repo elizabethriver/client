@@ -18,29 +18,32 @@ export const Navigate = () => {
   };
   return (
     <header>
-      <nav>
-        <div className='container_nav'>
-          <li>
-            <LinkStandard name='link' to="/dashboard" children="Dashboard" />
-          </li>
-          <li>
-            <LinkStandard name='link' to={"/income"} children={"Income"} />
-          </li>
-          <li>
-            <LinkStandard name='link' to={"/expense"} children={"Expense"} />
-          </li>
-        </div>
-        <div>
-          {userToken ? (
+      <nav className="container_nav">
+        {userToken !== null ? (
+          <>
             <li>
-              <Button type='button' name='link' onClick={logOut} children="Log Out" />
+              <LinkStandard name="link" to="/dashboard" children="Dashboard" />
             </li>
-          ) : (
             <li>
-              <LinkStandard name='link' to="/" children="Log In" />
+              <LinkStandard name="link" to={"/income"} children={"Income"} />
             </li>
-          )}
-        </div>
+            <li>
+              <LinkStandard name="link" to={"/expense"} children={"Expense"} />
+            </li>
+            <div>
+              <li>
+                <Button
+                  type="button"
+                  name="link"
+                  onClick={logOut}
+                  children="Log Out"
+                />
+              </li>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
       </nav>
       <Outlet />
     </header>
