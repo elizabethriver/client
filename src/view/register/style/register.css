@@ -1,29 +1,24 @@
-/* main {
-   
+.mainLogin {
+  background-image: url(https://i.ibb.co/2hhgKXF/3094352.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: 4rem;
+}
+.containerLoginSection {
+  margin-bottom: 4rem;
+}
 
-    height: 100vh;
-} */
-
-figure{
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    background-color: var(--white);
-}
-.mainLogin{
-    display: flex;
-    flex-direction: row-reverse;
-}
-.containerLoginSection{
-    background-color: var(--greenLight);
-    width: 50%;
-}
-/* .displayFlex{
-    display: flex;
-    flex-direction: column;
+@media only screen and (min-width: 600px) {
+  .mainLogin {
+    background-position: left;
+    background-repeat: no-repeat;
+  }
+  main {
     align-items: center;
-    justify-content: space-around;
-} */
-.image_register{
-    background-size: cover;
+  }
+  .containerLoginSection {
+    margin-bottom: 4rem;
+    margin-left: 14rem;
+  }
 }

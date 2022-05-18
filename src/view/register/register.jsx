@@ -49,16 +49,8 @@ export const Register = () => {
 
   return (
     <main className="mainLogin">
-      <figure>
-        <img
-          className="image_register"
-          src="https://i.ibb.co/2hhgKXF/3094352.jpg?tr=w-400,h-300"
-          alt="register user"
-          loading="lazy"
-        />
-      </figure>
-      <section className="containerLoginSection displayFlex">
-        <h1>Register</h1>
+      <section className="containerLoginSection">
+        <h1 className="h1text_center">My Wallet</h1>
           <form onSubmit={submit}>
             <fieldset>
               <label htmlFor="name">
@@ -119,7 +111,7 @@ export const Register = () => {
           </form>
         <div>
           <span>You have a account? Click</span>
-          <Button name='link' type='button' onClick={handleClick} children='here'/>
+          <Button name='link' type='button' onClick={handleClick} children={<strong> Here</strong>}/>
         </div>
       </section>
     </main>

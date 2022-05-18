@@ -49,7 +49,7 @@ export const Login = () => {
   return (
     <main className="containerLogin">
       <section className="containerLoginSectionLogin displayFlex">
-        <h1>Login</h1>
+        <h1 className="h1text_center">My Wallet</h1>
         <form onSubmit={submit}>
           <fieldset className="fieldsetLogin">
             <label htmlFor="email">
@@ -78,13 +78,23 @@ export const Login = () => {
                 title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
               />
             </label>
-            <Button className='submit' name='login' type="submit" children="Log In" />
+            <Button
+              className="submit"
+              name="login"
+              type="submit"
+              children="Log In"
+            />
           </fieldset>
           <small id="mssgIncorrectTyping" />
         </form>
         <>
           <span>You don't have a account? Click</span>
-          <Button type='button' name='link' onClick={handleClick} children={<strong>Here</strong>} />
+          <Button
+            type="button"
+            name="link"
+            onClick={handleClick}
+            children={<strong>Here</strong>}
+          />
         </>
       </section>
     </main>
