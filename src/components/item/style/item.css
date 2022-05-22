@@ -1,8 +1,6 @@
 li {
   display: flex;
-  align-items: baseline;
   padding: 5px 10px;
-  justify-content: space-between;
 
 }
 li.container_list {
@@ -28,10 +26,10 @@ strong.item_price:active {
   margin-left: 10px;
   color: var(--greyDark);
 }
-a:hover {
+/* a:hover {
   color: var(--greenDarkest);
 }
 
 a:active {
   color: var(--greyDark);
-}
+} */

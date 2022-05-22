@@ -1,6 +1,6 @@
-li > a.classNav{
+.classNav_notActive{
     color: var(--white);
 }
-li > a.classNav:active{
-    color: var(--pinkDark);
+.classNav_active{
+    color: var(--coral);
 }

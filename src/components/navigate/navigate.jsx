@@ -7,6 +7,8 @@ import {
   removeKeyFromLocalStorage,
 } from "../../utils/utils";
 import { Button } from "./../buttons/button";
+import "material-symbols";
+import { IconFonts } from "./../iconFonts/iconFonts";
 
 export const Navigate = () => {
   const userToken = getKeyFromLocalStorage("token");
@@ -22,24 +24,39 @@ export const Navigate = () => {
         {userToken !== null ? (
           <>
             <li>
-              <LinkStandard name="link" to="/dashboard" children="Dashboard" />
+              <LinkStandard
+                name="link"
+                to="/dashboard"
+                children={<IconFonts icon="home" label="My wallet" />}
+                style={isActive => ({
+                  color: isActive ? "green" : "blue"
+                })}
+              />
             </li>
             <li>
-              <LinkStandard name="link" to={"/income"} children={"Income"} />
+              <LinkStandard
+                name="link"
+                to={"/income"}
+                children={<IconFonts icon="add" label="Income" />}
+              />
             </li>
             <li>
-              <LinkStandard name="link" to={"/expense"} children={"Expense"} />
+              <LinkStandard
+                name="link"
+                to={"/expense"}
+                children={<IconFonts icon="remove" label="Expense" />}
+              />
             </li>
-            <div>
-              <li>
-                <Button
-                  type="button"
-                  name="link"
-                  onClick={logOut}
-                  children="Log Out"
-                />
-              </li>
-            </div>
+
+            <li>
+              <Button
+                type="button"
+                name='link'
+                className="logout"
+                onClick={logOut}
+                children={<IconFonts icon="logout" label="Log Out" />}
+              />
+            </li>
           </>
         ) : (
           <></>

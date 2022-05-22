@@ -1,28 +1,28 @@
 nav {
   display: flex;
-  background-color: var(--black);
   justify-content: space-between;
+  background-color: var(--black);
 }
 /* li > a {
   color: var(--white);
   text-decoration: none;
 } */
-.container_nav {
+/* .container_nav {
   display: flex;
-    flex-direction: column;
-}
+  flex-direction: column;
+  justify-content: space-between;
+} */
 
 .button_logOut {
   background-color: transparent;
 }
 @media only screen and (min-width: 600px){
   nav {
-    display: flex;
     background-color: var(--black);
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
-  .container_nav {
+  /* .container_nav {
     display: flex;
     flex-direction: column;
-  }
+  } */
 }
