@@ -14,9 +14,12 @@ main {
 @media only screen and (min-width: 600px) {
   .containerLogin {
     background-position: left;
-    background-repeat: round;
+    background-repeat: no-repeat;
   }
   main {
     align-items: center;
   }
+  .containerLoginSectionLogin {
+    margin-bottom: 4rem;
+    margin-left: 14rem;  }
 }

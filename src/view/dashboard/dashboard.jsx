@@ -16,7 +16,10 @@ export const Dashboard = () => {
   const dispatch = useDispatch();
   const { incomeAllDashboardData, expenseAllDashboardData, loading } =
     useSelector((state) => state.dataDashboard);
- const balance = reduceBalance(incomeAllDashboardData, expenseAllDashboardData)
+  const balance = reduceBalance(
+    incomeAllDashboardData,
+    expenseAllDashboardData
+  );
   const initFetch = useCallback(() => {
     dispatch(incomeAllAxiosDashboard(token));
     dispatch(expensesAllAxiosDashboard(token));
@@ -33,12 +36,17 @@ export const Dashboard = () => {
   return (
     <main>
       <div className="container-header">
-      <h1>Welcome <i>{nameUserSet}</i></h1>
-      <div className="container_account">
-      <h2>Balance: ${''}{balance}</h2>
+        <h1>
+          Welcome <i>{nameUserSet}</i>
+        </h1>
+        <div className="container_account">
+          <h2>
+            Balance: ${""}
+            {balance}
+          </h2>
+        </div>
       </div>
-      </div>
-      <section className="container">
+      <section className="container_dashboard">
         <DashboardArray
           listDashboardData={incomeAllDashboardData}
           title="Incomes"

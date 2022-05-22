@@ -63,7 +63,12 @@ label {
   align-items: center;
   justify-content: space-between;
 }
-
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative;
+}
 .containerCard {
   display: flex;
   flex-direction: column;

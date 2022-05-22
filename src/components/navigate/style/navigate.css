@@ -9,7 +9,20 @@ nav {
 } */
 .container_nav {
   display: flex;
+    flex-direction: column;
 }
+
 .button_logOut {
   background-color: transparent;
+}
+@media only screen and (min-width: 600px){
+  nav {
+    display: flex;
+    background-color: var(--black);
+    justify-content: space-between;
+  }
+  .container_nav {
+    display: flex;
+    flex-direction: column;
+  }
 }
