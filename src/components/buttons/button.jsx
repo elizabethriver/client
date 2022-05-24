@@ -22,9 +22,12 @@ export const Button = ({ type, name, onClick, children }) => {
     case "update_product":
       classButton = "classButtonUpdateProduct";
       break;
-      case "delete_product":
-        classButton = "classButtonDeleteProduct";
-        break;
+    case "delete_product":
+      classButton = "classButtonDeleteProduct";
+      break;
+    case "hyperlink":
+      classButton = "classHyperlink";
+      break;
     default:
     // code block
   }

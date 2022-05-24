@@ -2,6 +2,12 @@
   cursor: pointer;
 }
 .classLink {
+  color: var(--white);
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+}
+.classHyperlink {
   color: var(--black);
   background-color: transparent;
   border: none;

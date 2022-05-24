@@ -49,7 +49,6 @@ export const Navigate = () => {
               <Button
                 type="button"
                 name='link'
-                className="logout"
                 onClick={logOut}
                 children={<IconFonts icon="logout" label="Log Out" />}
               />

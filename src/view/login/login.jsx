@@ -91,7 +91,7 @@ export const Login = () => {
           <span>You don't have a account? Click</span>
           <Button
             type="button"
-            name="link"
+            name="hyperlink"
             onClick={handleClick}
             children={<strong>Here</strong>}
           />
