@@ -4,12 +4,13 @@ li {
 
 }
 li.container_list {
-  background-color: var(--greenLight);
+  background-color: var(--blueLight);
   margin: 10px;
   border-radius: 10px;
+  border: 1px solid var(--coral);
 }
 li.container_list:hover {
-  background-color: var(--greenLighter);
+  background-color: var(--blueLighter);
 }
 li.container_list:active {
   background-color: var(--greenDark);

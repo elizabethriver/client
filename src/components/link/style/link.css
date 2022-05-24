@@ -2,7 +2,6 @@
     color: var(--white);
 }
 .classNav_active{
-    color: var(--white);
-    background-color: var(--pinkDarkCore);
+    color: var(--blueLighter);
     border-radius: 10px;
 }

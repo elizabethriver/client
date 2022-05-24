@@ -1,5 +1,6 @@
 import React from "react";
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
+import './style/graphs.css'
 
 export const Graphs = ({ objectValues, title }) => {
   const RADIAN = Math.PI / 180;
@@ -42,7 +43,7 @@ export const Graphs = ({ objectValues, title }) => {
     >
       <strong>{title}</strong>
       <ResponsiveContainer width={100} height="100%">
-        <PieChart width={730} height={250}>
+        <PieChart width={800} height={250} style={{fontSize: 12}}>
           <Pie
             data={objectValues}
             cx="50%"
@@ -50,11 +51,11 @@ export const Graphs = ({ objectValues, title }) => {
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={50}
-            fill="#7e0b42"
+            fill="#047cf8"
             dataKey="value"
           >
             {objectValues.map((entry, index) => (
-              <Cell key={`cell-${index}`} />
+              <Cell key={`cell-${index}`}/>
             ))}
           </Pie>
           <Tooltip
