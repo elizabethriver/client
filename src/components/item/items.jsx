@@ -24,7 +24,8 @@ export const Items = (props) => {
               }
             />
             <strong className="item_price">
-              ${''}{isNaN(priceIncome) ? priceExpense : priceIncome}
+              ${""}
+              {isNaN(priceIncome) ? priceExpense : priceIncome}
             </strong>
           </li>
         );

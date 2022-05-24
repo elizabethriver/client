@@ -123,7 +123,7 @@ export const ExpenseDetails = () => {
           )}
         </>
         <div className="container_Delete">
-        <span className="spanText">Delete?</span>
+          <span className="spanText">Delete?</span>
           <Button
             name="delete_product"
             type="button"
@@ -131,7 +131,7 @@ export const ExpenseDetails = () => {
             children={<IconFonts icon="delete" />}
           />
         </div>
-        
+
         <small id="mssgIncorrectTyping"></small>
       </div>
     </main>

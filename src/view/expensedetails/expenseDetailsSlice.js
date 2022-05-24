@@ -66,7 +66,7 @@ export const deleteExpenseByIdTrunk = createAsyncThunk(
     } catch (error) {
       // handle error
       response = error.response;
-      console.log(response)
+      console.log(response);
       if (response.status === 403) {
         removeKeyFromLocalStorage("token");
         removeKeyFromLocalStorage("name");

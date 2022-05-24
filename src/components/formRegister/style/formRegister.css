@@ -2,14 +2,14 @@ fieldset.classFieldset {
   background-color: var(--grey);
 }
 input.inputRegisterProduct {
-    margin: 6px;
-    background-color: var(--greyLittle);
-    border-radius: 5px;
-    border: solid 1px;
-    padding: 5px;
+  margin: 6px;
+  background-color: var(--greyLittle);
+  border-radius: 5px;
+  border: solid 1px;
+  padding: 5px;
 }
 input.inputRegisterProduct:focus-visible {
-    outline-offset: 0px;
-    outline-color: var(--coral);
-    color: var(--greenDark);
+  outline-offset: 0px;
+  outline-color: var(--coral);
+  color: var(--greenDark);
 }

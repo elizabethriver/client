@@ -1,7 +1,7 @@
-.classNav_notActive{
-    color: var(--white);
+.classNav_notActive {
+  color: var(--white);
 }
-.classNav_active{
-    color: var(--blueLighter);
-    border-radius: 10px;
+.classNav_active {
+  color: var(--blueLighter);
+  border-radius: 10px;
 }

@@ -1,7 +1,6 @@
 li {
   display: flex;
   padding: 5px 10px;
-
 }
 li.container_list {
   background-color: var(--blueLight);

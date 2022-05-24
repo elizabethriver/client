@@ -39,8 +39,12 @@ export const FormProduct = ({
           title="Just type number is allowed"
         />
       </label>
-      <div className="container_buttons"> 
-        <Button name="update_product" type="submit" children={<IconFonts icon="save" label="Save" />} />
+      <div className="container_buttons">
+        <Button
+          name="update_product"
+          type="submit"
+          children={<IconFonts icon="save" label="Save" />}
+        />
         <Button
           name="update_product"
           type="button"

@@ -64,7 +64,8 @@ label {
   align-items: center;
   justify-content: space-between;
 }
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 body {
@@ -76,8 +77,6 @@ body {
   padding: 1rem;
   align-items: center;
 }
-.h1text_center{
-  
+.h1text_center {
   text-align: center;
-
 }

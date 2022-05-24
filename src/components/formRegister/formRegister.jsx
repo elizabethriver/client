@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../buttons/button";
-import './style/formRegister.css'
+import "./style/formRegister.css";
 
 export const FormRegister = ({
   name,
@@ -8,15 +8,15 @@ export const FormRegister = ({
   onChangeInputsForm,
   inputsFormProduct,
   inputsFormRegistered,
-  htmlFor
+  htmlFor,
 }) => {
   return (
     <form onSubmit={onSubmitForm}>
-      <fieldset className='classFieldset'>
+      <fieldset className="classFieldset">
         <label htmlFor="product">
-          Product: {''}
+          Product: {""}
           <input
-          className="inputRegisterProduct"
+            className="inputRegisterProduct"
             type="text"
             name="product"
             placeholder="product's name"
@@ -28,9 +28,9 @@ export const FormRegister = ({
           />
         </label>
         <label htmlFor={htmlFor}>
-          Charge: {''}
+          Charge: {""}
           <input
-          className="inputRegisterProduct"
+            className="inputRegisterProduct"
             type="text"
             name={name}
             placeholder="charge"
@@ -41,7 +41,7 @@ export const FormRegister = ({
             title="Just type number is allowed"
           />
         </label>
-        <Button name='register_product' type="submit" children="Click" />
+        <Button name="register_product" type="submit" children="Click" />
       </fieldset>
       <small id="mssgIncorrectTyping" />
     </form>

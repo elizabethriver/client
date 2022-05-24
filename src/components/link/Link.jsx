@@ -6,8 +6,9 @@ export const LinkStandard = ({ to, children }) => {
   return (
     <NavLink
       to={to}
-      className={({ isActive }) => 
-      (isActive ? "classNav_active" : "classNav_notActive")}
+      className={({ isActive }) =>
+        isActive ? "classNav_active" : "classNav_notActive"
+      }
     >
       {children}
     </NavLink>

@@ -11,6 +11,5 @@ export const HooksFormOfProducts = (product) => {
     inputsForm,
     setInputsForm,
     onChangeInputsForm,
-
   };
 };

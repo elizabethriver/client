@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "../../components/buttons/button";
 import { LinkStandard } from "../../components/link/Link";
-import './style/notfound.css'
+import "./style/notfound.css";
 
 export const NotFound = () => {
   return (

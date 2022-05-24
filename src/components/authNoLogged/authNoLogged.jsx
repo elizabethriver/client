@@ -7,7 +7,7 @@ export const AuthNoLogged = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigate('/', { replace: true });
+      navigate("/", { replace: true });
     }, 3000);
   });
 
@@ -15,15 +15,15 @@ export const AuthNoLogged = () => {
     <main>
       <div className="container_NotLogged">
         <h1>You are not logged</h1>
-          <iframe
-            src="https://giphy.com/embed/EoH4Wpu8suiNTLpI6j"
-            width="480"
-            height="360"
-            frameBorder="0"
-            className="giphy-embed"
-            allowFullScreen
-            title="notAuth"
-          ></iframe>
+        <iframe
+          src="https://giphy.com/embed/EoH4Wpu8suiNTLpI6j"
+          width="480"
+          height="360"
+          frameBorder="0"
+          className="giphy-embed"
+          allowFullScreen
+          title="notAuth"
+        ></iframe>
       </div>
     </main>
   );
