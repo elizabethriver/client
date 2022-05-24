@@ -36,4 +36,17 @@ export const reduceBalance = (incomeAllDashboardData, expenseAllDashboardData) =
   const balance = new Intl.NumberFormat().format(reduceIncome - reduceExpense);
   return balance
 }
-
+export const objectValuesListI = (array) => {
+  return array.map((item) => {
+    const picked = (({ product, income }) => ({ product, income }))(item);
+    const pickedDu = { name: picked.product, value: picked.income };
+    return pickedDu;
+  });
+} 
+export const objectValuesListE = (array) => {
+  return array.map((item) => {
+    const picked = (({ product, expense }) => ({ product, expense }))(item);
+    const pickedDu = { name: picked.product, value: picked.expense };
+    return pickedDu;
+  });
+} 

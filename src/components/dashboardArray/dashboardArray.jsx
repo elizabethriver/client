@@ -8,7 +8,7 @@ export const DashboardArray = ({ listDashboardData, title, url }) => {
 
   return (
     <>
-      <h2 className={classItems_title}>{title}</h2>
+      <h3 className={classItems_title}>{title}</h3>
       <ul className={classItem}>
         <Items array={listDashboardData} url={url} />
       </ul>

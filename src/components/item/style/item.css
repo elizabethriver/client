@@ -20,7 +20,6 @@ strong.item_price {
 }
 strong.item_price:hover {
   margin-left: 10px;
-  color: var(--greenDarkest);
 }
 strong.item_price:active {
   margin-left: 10px;

@@ -5,10 +5,16 @@ import {
   expensesAllAxiosDashboard,
 } from "./dashboardSlice";
 import "./style/dashboard.css";
-import { getKeyFromLocalStorage, reduceBalance } from "../../utils/utils";
+import {
+  getKeyFromLocalStorage,
+  reduceBalance,
+  objectValuesListI,
+  objectValuesListE,
+} from "../../utils/utils";
 import { Loading } from "../../components/loading/loading";
 import { AuthNoLogged } from "../../components/authNoLogged/authNoLogged";
 import { DashboardArray } from "../../components/dashboardArray/dashboardArray";
+import { Graphs } from "./../../components/graphs/graphs";
 
 export const Dashboard = () => {
   const token = getKeyFromLocalStorage("token");
@@ -29,15 +35,18 @@ export const Dashboard = () => {
     initFetch();
   }, [initFetch]);
 
+  const objectValuesIncome = objectValuesListI(incomeAllDashboardData);
+  const objectValuesExpense = objectValuesListE(expenseAllDashboardData);
+
   if (!token) {
     return <AuthNoLogged />;
   }
   if (loading) return <Loading />;
   return (
-    <main>
+    <main className="container_main_dashboard">
       <div className="container-header">
         <h1>
-          Welcome <i>{nameUserSet}</i>
+          Welcome <i>{nameUserSet}</i>!
         </h1>
         <div className="container_account">
           <h2>
@@ -58,6 +67,10 @@ export const Dashboard = () => {
           url="/expense"
         />
       </section>
+      <div className="container_graphs">
+        <Graphs objectValues={objectValuesIncome} title='Incomes' />
+        <Graphs objectValues={objectValuesExpense} title='Expenses'/>
+      </div>
     </main>
   );
 };

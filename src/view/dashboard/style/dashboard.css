@@ -16,6 +16,10 @@ main {
   overflow: scroll;
   width: 300px;
   margin-top: 1rem;
+  background-color: var(--pinkDark);
+  border-radius: 10px;
+  color: var(--white);
+  padding: 1rem;
 }
 
 .income_title {
@@ -37,20 +41,37 @@ main {
 .container-header {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
   flex-direction: column;
 }
 .container_account {
-  background-color: var(--pinkDark);
+  background-color: var(--pinkDarkCore);
   color: var(--azure);
   padding: 7px;
   border-radius: 10px;
 }
+.container_graphs{
+  display: flex;
+  padding: 1rem;
+  margin: 1rem;
+}
 
+main.container_main_dashboard{
+  background-color: var(--azure);
+
+}
 @media only screen and (min-width: 600px) {
   .container-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .container_dashboard {
+    width: 600px;
+  }
+  .container_graphs {
+    display: flex;
+    width: 400px;
+    padding: 1rem;
+    margin: 1rem;
   }
 }

@@ -6,6 +6,8 @@ main {
   background-repeat: no-repeat;
   background-position: top;
   background-size: inherit;
+  justify-content: flex-end;
+
 }
 .containerLoginSectionLogin {
   margin-bottom: 4rem;
@@ -15,6 +17,7 @@ main {
   .containerLogin {
     background-position: left;
     background-repeat: no-repeat;
+    justify-content: center;
   }
   main {
     align-items: center;

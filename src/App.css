@@ -12,7 +12,7 @@
   --grey: #e7dbd6;
   --greyLight: #fbf8f6;
   --greyDark: #a29b99;
-  --greyLittle: #ffffff;
+  --greyLittle: #ffffffc1;
   --azure: #f0ffffe0;
   --greenDarkest: #1b3a3c;
   --greenDark: #2e6166;
@@ -20,16 +20,14 @@
   --pinkDarkCore: #7e0b42;
 }
 h1 {
-  padding: 10px;
+  padding: 1em;
+  font-size: 1.3em;
+  text-align: center;
 }
 a {
   text-decoration: none;
   /* color: var(--white); */
 }
-/* section {
-  display: flex;
-  padding: 1rem;
-} */
 
 fieldset {
   display: flex;
@@ -56,7 +54,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 label {
   display: flex;
