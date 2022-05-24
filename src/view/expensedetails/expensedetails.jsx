@@ -20,6 +20,7 @@ import { Button } from "../../components/buttons/button";
 import { CardStandardProduct } from "../../components/cardStandard/cardStandard";
 import { FormProduct } from "../../components/formOfProduct/formProduct";
 import { NotFound } from "../notfound/notfound";
+import { IconFonts } from "../../components/iconFonts/iconFonts";
 
 export const ExpenseDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -82,7 +83,7 @@ export const ExpenseDetails = () => {
       //   navigate("/dashboard");
       // }, 2000);
     } catch (error) {
-      console.log(error)
+      console.log(error);
       sendMsg("mssgIncorrectTyping", "Error with deleting");
       throw error;
     }
@@ -121,7 +122,16 @@ export const ExpenseDetails = () => {
             />
           )}
         </>
-        <Button name='delete_product' type="button" onClick={onClickDelete} children="Delete" />
+        <div className="container_Delete">
+        <span className="spanText">Delete?</span>
+          <Button
+            name="delete_product"
+            type="button"
+            onClick={onClickDelete}
+            children={<IconFonts icon="delete" />}
+          />
+        </div>
+        
         <small id="mssgIncorrectTyping"></small>
       </div>
     </main>

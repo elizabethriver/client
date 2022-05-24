@@ -103,4 +103,9 @@ main.container_main_dashboard {
   ::-webkit-scrollbar-thumb:hover {
     background: var(--blueLight);
   }
+  .balanceText{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
 }

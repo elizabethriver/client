@@ -1,4 +1,11 @@
-
-.formForEdit{
-    padding: 10px;
+.formForEdit {
+  padding: 10px;
+}
+.container_Delete {
+  display: flex;
+  align-items: center;
+}
+.spanText {
+  font-size: 15px;
+  padding: 0 4px;
 }

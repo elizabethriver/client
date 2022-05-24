@@ -1,13 +1,21 @@
-.formUpdate{
-    background-color: var(--greenLighter);
-    padding: 5px;
-    margin-bottom: 1em;
-    border-radius: 10px;
+.formUpdate {
+  background-color: var(--grey);
+  padding: 10px;
+  margin-bottom: 1em;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--greyDark);
 }
 input.updateForm {
-    margin: 6px;
-    background-color: var(--azure);
-    border-radius: 5px;
-    border: solid 1px;
-    padding: 5px;
+  margin: 6px;
+  background-color: var(--azure);
+  border-radius: 5px;
+  border: solid 1px;
+  padding: 5px;
+}
+.container_buttons {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
 }

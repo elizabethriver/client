@@ -1,11 +1,24 @@
 section.cardStandard{
     display: flex;
     padding: 1rem;
-    align-items: center;
-    background-color: var(--greenLighter);
+    align-items: flex-start;
+    background-color: var(--grey);
     margin-bottom: 1rem;
     border-radius: 10px;
+    flex-direction: column;
+    width: 200px;
+    border: 1px solid var(--greyDark);
 }
 strong.price_product{
     margin-left: 10px;
+}
+.container_update{
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    margin-left: 6rem;
+}
+.small_update{
+    font-size: 13px;
+    padding: 5px;
 }

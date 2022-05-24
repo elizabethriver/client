@@ -21,6 +21,7 @@ import { CardStandardProduct } from "../../components/cardStandard/cardStandard"
 import { FormProduct } from "../../components/formOfProduct/formProduct";
 import { Button } from "../../components/buttons/button";
 import { NotFound } from "../notfound/notfound";
+import { IconFonts } from "../../components/iconFonts/iconFonts";
 
 export const IncomeDetails = () => {
   const token = getKeyFromLocalStorage("token");
@@ -57,7 +58,7 @@ export const IncomeDetails = () => {
       removeEditMode();
       navigate("/dashboard");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       throw error;
     }
   };
@@ -117,7 +118,16 @@ export const IncomeDetails = () => {
             />
           )}
         </>
-        <Button name='delete_product' type="button" onClick={onClickDelete} children="Delete" />
+        <div className="container_Delete">
+          <span className="spanText">Delete?</span>
+          <Button
+            name="delete_product"
+            type="button"
+            onClick={onClickDelete}
+            children={<IconFonts icon="delete" />}
+          />
+        </div>
+
         <small id="mssgIncorrectTyping"></small>
       </div>
     </main>
