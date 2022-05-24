@@ -1,9 +1,9 @@
 fieldset.classFieldset {
-  background-color: var(--greenLighter);
+  background-color: var(--grey);
 }
 input.inputRegisterProduct {
     margin: 6px;
-    background-color: var(--azure);
+    background-color: var(--greyLittle);
     border-radius: 5px;
     border: solid 1px;
     padding: 5px;

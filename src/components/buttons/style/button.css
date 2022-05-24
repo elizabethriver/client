@@ -25,7 +25,7 @@
 }
 .classButtonRegisterProduct {
   color: var(--white);
-  background-color: var(--black);
+  background-color: var(--blueLight);
   border-radius: 5px;
   border: solid 1px var(--black);
   padding: 5px;
