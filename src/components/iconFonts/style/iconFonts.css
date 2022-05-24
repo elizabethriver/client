@@ -3,3 +3,7 @@
   flex-direction: column;
   align-items: center;
 }
+.iconLabel{
+  padding: 0 4px;
+  font-size: 11px;
+}

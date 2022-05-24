@@ -40,7 +40,7 @@ export const Expense = () => {
     return <AuthNoLogged />;
   }
   return (
-    <main>
+    <main className="main_form">
       <section className="containerCard">
         <h1>Expense</h1>
         <FormRegister

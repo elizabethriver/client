@@ -50,14 +50,17 @@ export const Graphs = ({ objectValues, title }) => {
             labelLine={false}
             label={renderCustomizedLabel}
             outerRadius={50}
-            fill="#c3196b"
+            fill="#7e0b42"
             dataKey="value"
           >
             {objectValues.map((entry, index) => (
               <Cell key={`cell-${index}`} />
             ))}
           </Pie>
-          <Tooltip />
+          <Tooltip
+            itemStyle={{ color:'#fff', fontSize:11 }}
+            contentStyle={{ backgroundColor: '#009c86', borderRadius: 10}}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>

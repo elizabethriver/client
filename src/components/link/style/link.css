@@ -2,5 +2,7 @@
     color: var(--white);
 }
 .classNav_active{
-    color: var(--coral);
+    color: var(--white);
+    background-color: var(--pinkDarkCore);
+    border-radius: 10px;
 }

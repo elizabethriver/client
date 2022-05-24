@@ -16,7 +16,7 @@ main {
   overflow: scroll;
   width: 300px;
   margin-top: 1rem;
-  background-color: var(--pinkDark);
+  background-color: var(--pinkDarkCore);
   border-radius: 10px;
   color: var(--white);
   padding: 1rem;
@@ -44,20 +44,24 @@ main {
   flex-direction: column;
 }
 .container_account {
-  background-color: var(--pinkDarkCore);
-  color: var(--azure);
+  color: var(--white);
   padding: 7px;
   border-radius: 10px;
 }
-.container_graphs{
+.positive {
+  background-color: var(--greenButton);
+}
+.negative {
+  background-color: var(--pinkDark);
+}
+.container_graphs {
   display: flex;
   padding: 1rem;
   margin: 1rem;
 }
 
-main.container_main_dashboard{
-  background-color: var(--azure);
-
+main.container_main_dashboard {
+  background-color: var(--grey);
 }
 @media only screen and (min-width: 600px) {
   .container-header {
@@ -73,5 +77,26 @@ main.container_main_dashboard{
     width: 400px;
     padding: 1rem;
     margin: 1rem;
+  }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--greenLight) ;
+    border-radius: 6px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--black);
   }
 }

@@ -41,7 +41,7 @@ export const Income = () => {
     return <AuthNoLogged />;
   }
   return (
-    <main>
+    <main className="main_form">
       <section className="containerCard">
         <h1>Income</h1>
         <FormRegister

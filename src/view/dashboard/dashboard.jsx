@@ -26,6 +26,7 @@ export const Dashboard = () => {
     incomeAllDashboardData,
     expenseAllDashboardData
   );
+  console.log(typeof balance)
   const initFetch = useCallback(() => {
     dispatch(incomeAllAxiosDashboard(token));
     dispatch(expensesAllAxiosDashboard(token));
@@ -48,7 +49,9 @@ export const Dashboard = () => {
         <h1>
           Welcome <i>{nameUserSet}</i>!
         </h1>
-        <div className="container_account">
+        <div
+          className={`container_account ${parseInt(balance) < 0 ? "negative" : "positive"}`}
+        >
           <h2>
             Balance: ${""}
             {balance}
@@ -68,8 +71,8 @@ export const Dashboard = () => {
         />
       </section>
       <div className="container_graphs">
-        <Graphs objectValues={objectValuesIncome} title='Incomes' />
-        <Graphs objectValues={objectValuesExpense} title='Expenses'/>
+        <Graphs objectValues={objectValuesIncome} title="Incomes" />
+        <Graphs objectValues={objectValuesExpense} title="Expenses" />
       </div>
     </main>
   );

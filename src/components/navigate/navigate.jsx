@@ -28,9 +28,6 @@ export const Navigate = () => {
                 name="link"
                 to="/dashboard"
                 children={<IconFonts icon="home" label="My wallet" />}
-                style={isActive => ({
-                  color: isActive ? "green" : "blue"
-                })}
               />
             </li>
             <li>

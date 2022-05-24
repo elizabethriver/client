@@ -97,7 +97,7 @@ export const ExpenseDetails = () => {
     return <NotFound />;
   }
   return (
-    <main>
+    <main className="main_form">
       <div className="container_details">
         <h1>Details's product</h1>
         <>

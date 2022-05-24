@@ -5,7 +5,7 @@ export const IconFonts = ({icon, label}) => {
   return (
     <div className='container-nav'>
         <span className="material-symbols-outlined">{icon}</span>
-        <small>{label}</small>
+        <small className='iconLabel'>{label}</small>
     </div>
   )
 }

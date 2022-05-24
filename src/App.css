@@ -18,6 +18,8 @@
   --greenDark: #2e6166;
   --pinkDark: #c3196b;
   --pinkDarkCore: #7e0b42;
+  --red: #ff0000;
+  --greenButton: #00b33f;
 }
 h1 {
   padding: 1em;
@@ -32,9 +34,10 @@ a {
 fieldset {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 1rem;
   background-color: var(--grey);
   border-radius: 10px;
+  border: none;
 }
 
 input {
@@ -54,6 +57,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 label {
   display: flex;
