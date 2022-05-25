@@ -30,11 +30,11 @@ function App() {
           property="og:description"
           content="This is a app for register your incomes and expenses, usefully for your personal finances, where you'll see percentage of income and expense"
         />
-        {/* <meta
+        <meta
           id="og-image"
           property="og:image"
           content="https://i.ibb.co/k2rrW97/myWallet.jpg"
-        /> */}
+        />
         <link rel="canonical" href="https://client-five-plum.vercel.app/" />
       </Helmet>
       <Navigate />
