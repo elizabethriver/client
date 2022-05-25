@@ -15,6 +15,7 @@ const initialState = {
 
 export const getExpenseByIdTrunk = createAsyncThunk(
   "getExpenseById/api",
+  
   async (dataExpenseByID) => {
     const { token, expenseId } = dataExpenseByID;
     let response = null;
