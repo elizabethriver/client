@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import "./style/register.css";
 import { axiosRegister } from "./registerSlice";
@@ -9,6 +9,14 @@ import { Button } from "../../components/buttons/button";
 
 export const Register = () => {
   const product = { name: "", email: "", password: "", confirmPassword: "" };
+  // Initialize a boolean state
+  const [passwordShown, setPasswordShown] = useState(false);
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
   const { inputsForm, setInputsForm, onChangeInputsForm } =
     HooksFormOfProducts(product);
   const dispatch = useDispatch();
@@ -32,7 +40,7 @@ export const Register = () => {
       const { name } = response.registerUser;
       setKeyFromLocalStorage("name", name);
       setInputsForm(product);
-      sendMsg("mssgIncorrectTyping", `${name}Your are register`);
+      sendMsg("mssgIncorrectTyping", `${name}Your are registered`);
       setTimeout(() => {
         navigate("/");
       }, 2000);
@@ -82,7 +90,7 @@ export const Register = () => {
             <label htmlFor="password">
               Password:
               <input
-                type="password"
+                type={passwordShown ? "text" : "password"}
                 name="password"
                 value={inputsForm.password}
                 placeholder="*******"
@@ -91,11 +99,20 @@ export const Register = () => {
                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                 title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
               />
+              <i onClick={togglePassword}>
+                {passwordShown ? (
+                  <span className="material-symbols-outlined">visibility</span>
+                ) : (
+                  <span className="material-symbols-outlined">
+                    visibility_off
+                  </span>
+                )}{" "}
+              </i>
             </label>
             <label htmlFor="confirmPassword">
               Repeat password:
               <input
-                type="password"
+                type={passwordShown ? "text" : "password"}
                 name="confirmPassword"
                 value={inputsForm.confirmPassword}
                 placeholder="*******"
@@ -104,6 +121,15 @@ export const Register = () => {
                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                 title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
               />
+              <i onClick={togglePassword}>
+                {passwordShown ? (
+                  <span className="material-symbols-outlined">visibility</span>
+                ) : (
+                  <span className="material-symbols-outlined">
+                    visibility_off
+                  </span>
+                )}{" "}
+              </i>
             </label>
             <Button name="register" type="submit" children="Register" />
           </fieldset>

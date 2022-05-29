@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style/login.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,14 @@ import { Button } from "../../components/buttons/button";
 
 export const Login = () => {
   const product = { email: "", password: "" };
+  // Initialize a boolean state
+  const [passwordShown, setPasswordShown] = useState(false);
+  // Password toggle handler
+  const togglePassword = () => {
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
   const { inputsForm, setInputsForm, onChangeInputsForm } =
     HooksFormOfProducts(product);
   const dispatch = useDispatch();
@@ -68,7 +76,7 @@ export const Login = () => {
             <label htmlFor="password">
               Password:
               <input
-                type="password"
+                type={passwordShown ? "text" : "password"}
                 name="password"
                 value={inputsForm.password}
                 onChange={onChangeInputsForm}
@@ -76,8 +84,17 @@ export const Login = () => {
                 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                 required
                 title="Please enter your password. Minimum eight characters, at least one uppercase letter, one lowercase letter and one number"
+                id="password"
               />
+              <i onClick={togglePassword}>
+                {passwordShown ? (
+                  <span className="material-symbols-outlined">visibility</span>
+                ) : (
+                  <span className="material-symbols-outlined">visibility_off</span>
+                )}{" "}
+              </i>
             </label>
+
             <Button
               className="submit"
               name="login"
