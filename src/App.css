@@ -62,14 +62,19 @@ main {
 label {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
+  justify-content: space-evenly;}
 html,
 body {
   overflow-x: hidden;
 }
 body {
   position: relative;
+}
+#mssgIncorrectTyping{
+  color: var(--red);
+  border-radius: 10px;
+  padding: 10px;
+  font-weight: 700;
 }
 .containerCard {
   display: flex;

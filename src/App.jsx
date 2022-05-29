@@ -49,7 +49,7 @@ function App() {
           <Route path="expense/:expenseId" element={<ExpenseDetails />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-      </Routes>{" "}
+      </Routes>
     </>
   );
 }

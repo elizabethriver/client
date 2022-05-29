@@ -40,14 +40,15 @@ export const Register = () => {
       const { name } = response.registerUser;
       setKeyFromLocalStorage("name", name);
       setInputsForm(product);
-      sendMsg("mssgIncorrectTyping", `${name}Your are registered`);
+      sendMsg("mssgIncorrectTyping", `${name} you are registered`);
       setTimeout(() => {
         navigate("/");
       }, 2000);
     } catch (error) {
       // handle error here
+      console.log(error)
       response = error;
-      sendMsg("mssgIncorrectTyping", "Please verify your inputs");
+      sendMsg("mssgIncorrectTyping", "Please verify your inputs or email already has a account");
       setTimeout(() => {
         document.getElementById("mssgIncorrectTyping").innerHTML = "";
       }, 2000);
