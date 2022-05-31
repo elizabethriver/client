@@ -48,7 +48,7 @@ export const Login = () => {
     } catch (error) {
       // handle error here
       response = error;
-      sendMsg("mssgIncorrectTyping", "Incorrect password or email");
+      sendMsg("mssgIncorrectTyping", "Incorrect password or email, or email has not an account");
       cleanMsg(2000);
       throw error;
     }
