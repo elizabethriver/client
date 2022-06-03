@@ -137,7 +137,7 @@ export const Register = () => {
           <small id="mssgIncorrectTyping" />
         </form>
         <div>
-          <span>You have a account? Click</span>
+          <span>You have an account? Click</span>
           <Button
             name="hyperlink"
             type="button"

@@ -105,7 +105,7 @@ export const Login = () => {
           <small id="mssgIncorrectTyping" />
         </form>
         <>
-          <span>You don't have a account? Click</span>
+          <span>You don't have an account? Click</span>
           <Button
             type="button"
             name="hyperlink"
