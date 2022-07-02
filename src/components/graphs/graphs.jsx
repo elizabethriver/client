@@ -34,16 +34,16 @@ export const Graphs = ({ objectValues, title }) => {
     <div
       style={{
         width: "100%",
-        height: 200,
+        height: "100%",
         alignItems: "center",
         display: "flex",
         flexDirection: "column",
-        margin: "1rem",
+        margin: "1px",
       }}
     >
       <strong>{title}</strong>
-      <ResponsiveContainer width={100} height="100%">
-        <PieChart width={800} height={250} style={{ fontSize: 12 }}>
+      <ResponsiveContainer width={100} height={100}>
+        <PieChart width={200} height={200} style={{ fontSize: 12 }}>
           <Pie
             data={objectValues}
             cx="50%"
@@ -59,8 +59,8 @@ export const Graphs = ({ objectValues, title }) => {
             ))}
           </Pie>
           <Tooltip
-            itemStyle={{ color: "#fff", fontSize: 11 }}
-            contentStyle={{ backgroundColor: "#009c86", borderRadius: 10 }}
+            itemStyle={{ color: "#fff", fontSize: 14 }}
+            contentStyle={{ backgroundColor: "#009c86", borderRadius: 15 }}
           />
         </PieChart>
       </ResponsiveContainer>

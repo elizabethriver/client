@@ -23,9 +23,10 @@
   --greenButton: #00b33f;
 }
 h1 {
-  padding: 1em;
+  padding: 0.75em;
   font-size: 1.3em;
   text-align: center;
+  
 }
 a {
   text-decoration: none;
@@ -54,9 +55,9 @@ input:focus-visible {
 }
 main {
   /* background-color: var(--grey); */
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   height: 100vh;
 }
 label {

@@ -18,6 +18,8 @@
   }
   main {
     align-items: center;
+    display: flex;
+    flex-direction: column;
   }
   .containerLoginSection {
     margin-bottom: 4rem;
